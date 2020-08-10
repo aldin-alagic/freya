@@ -2,7 +2,7 @@
 
 **Freya** is a fictional character from MCU. She is a Asgardian goddess of beauty and fertility.
 
-Freya is a React application that provides user interface for application we have been developing.
+Freya is a React application that provides a user interface for the application we have been developing.
 
 # Requirements
 Freya uses ReactJS 16.13.1.
@@ -15,7 +15,7 @@ To run the application locally switch to application folder:
 ```cd Freya```
 Then run the application with:
 ```npm start```
-This will run the app in the development mode. After that Freya will be availlable in all its beauty on http://localhost:3000/
+This will run the app in the development mode. After that Freya will appear in all its beauty on http://localhost:3000/.
 
 ## Tests
 
