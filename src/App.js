@@ -13,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
+        <Spinner />
         <ToastContainer
           position="top-right"
           autoClose={5000}
