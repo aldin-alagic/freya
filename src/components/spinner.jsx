@@ -2,7 +2,7 @@ import React from "react";
 import { usePromiseTracker } from "react-promise-tracker";
 import { PuffLoader } from "react-spinners";
 
-export const Spinner = () => {
+const Spinner = () => {
   const { promiseInProgress } = usePromiseTracker();
   return promiseInProgress === true ? (
     <div className="dim">
@@ -12,3 +12,5 @@ export const Spinner = () => {
     </div>
   ) : null;
 };
+
+export default Spinner;
