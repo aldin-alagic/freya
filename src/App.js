@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./components/home";
 import Spinner from "./components/spinner";
 import NavBar from "./components/navbar";
+import Footer from "./components/footer";
 
 class App extends Component {
   state = {};
@@ -35,6 +36,7 @@ class App extends Component {
             <Redirect to="/" />
           </Switch>
         </main>
+        <Footer />
       </div>
     );
   }
