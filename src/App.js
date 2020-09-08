@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Home from "./components/home";
+import Spinner from "./components/spinner";
+import NavBar from "./components/navbar";
 
 class App extends Component {
   state = {};
@@ -26,6 +28,7 @@ class App extends Component {
           pauseOnHover
           bodyClassName="p-3 text-justify"
         />
+        <NavBar />
         <main className="container">
           <Switch>
             <Route path="/" component={Home} />
