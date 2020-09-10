@@ -27,6 +27,9 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className="navbar-nav">
+          <NavLink className="nav-item nav-link" to="/registration">
+            Registration
+          </NavLink>
           <NavLink className="nav-item nav-link" to="/login">
             Login
             <FontAwesomeIcon className="ml-2" icon={faSignInAlt} size="lg" />
