@@ -7,6 +7,10 @@ import Home from "./components/home";
 import Spinner from "./components/spinner";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
+import HelpAndSupport from "./components/helpAndSupport";
+import FAQ from "./components/faq";
+import SubmitTicket from "./components/submitTicket";
+import ContactUs from "./components/contactUs";
 
 class App extends Component {
   state = {};
@@ -32,6 +36,10 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
+            <Route path="/help-and-support" component={HelpAndSupport} />
+            <Route path="/faq" component={FAQ} />
+            <Route path="/submit-ticket" component={SubmitTicket} />
+            <Route path="/contact-us" component={ContactUs} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
