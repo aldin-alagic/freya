@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "./common/card";
-import img_ask from "../images/questions.svg";
-import img_hire from "../images/interview.svg";
-import img_solutions from "../images/solutions.svg";
+import imgAsk from "../images/questions.svg";
+import imgHire from "../images/interview.svg";
+import imgSolutions from "../images/solutions.svg";
 
 const HomeCards = () => {
   return (
@@ -10,7 +10,7 @@ const HomeCards = () => {
       <Card
         title="Solutions"
         text="Get answers to your issue by searching trough predefined categories. Each solutions has short description with detailed issue description."
-        image={img_solutions}
+        image={imgSolutions}
         imageStyle="card-img-top h-50 p-3"
         url={"/newsletter"}
         button="Find"
@@ -19,7 +19,7 @@ const HomeCards = () => {
       <Card
         title="Ask for help"
         text="Can't find your solution? Just ask our validated experts from all around the world."
-        image={img_ask}
+        image={imgAsk}
         imageStyle="card-img-top h-50 p-3"
         url={"/newsletter"}
         button="Ask"
@@ -28,7 +28,7 @@ const HomeCards = () => {
       <Card
         title="Hire Expert"
         text="You need extra support? Hire expert per hour or per issue."
-        image={img_hire}
+        image={imgHire}
         imageStyle="card-img-top h-50 p-3"
         url={"/newsletter"}
         button="Hire"
