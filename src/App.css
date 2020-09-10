@@ -4,6 +4,10 @@
   min-height: 100vh;
 }
 
+.ul-no-bullets {
+  list-style-type: none;
+}
+
 .h-55 {
   height: 55% !important;
 }
