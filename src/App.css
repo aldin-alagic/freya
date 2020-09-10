@@ -4,6 +4,22 @@
   min-height: 100vh;
 }
 
+.h-55 {
+  height: 55% !important;
+}
+
+.mt-10 {
+  margin-top: 6rem !important;
+}
+
+.mb-10 {
+  margin-bottom: 6rem !important;
+}
+
+.pt-10 {
+  padding-top: 6rem !important;
+}
+
 /* START Sticky Footer */
 .footer {
   width: 100%;
