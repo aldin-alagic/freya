@@ -8,6 +8,7 @@ import Spinner from "./components/spinner";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import Login from "./components/login";
+import Registration from "./components/registration";
 
 class App extends Component {
   state = {};
@@ -34,6 +35,7 @@ class App extends Component {
         <main className="container">
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
