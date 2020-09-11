@@ -37,7 +37,7 @@ class ContactForm extends Form {
 
   render() {
     return (
-      <div className="col-6 d-flex justify-content-center pr-5">
+      <div className="col-md-6 col-sm-12 d-flex justify-content-center pl-md-5">
         <form onSubmit={this.handleSubmit}>
           <div>
             {this.renderInput("subject", "Subject", "text", "", "form-control")}
