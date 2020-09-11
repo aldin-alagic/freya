@@ -14,6 +14,7 @@ import ContactUs from "./components/contactUs";
 import UserAgreement from "./components/userAgreement";
 import PrivacyPolicy from "./components/privacyPolicy";
 import AboutUs from "./components/aboutUs";
+import Pricing from "./components/pricing";
 
 class App extends Component {
   state = {};
@@ -46,6 +47,7 @@ class App extends Component {
             <Route path="/user-agreement" component={UserAgreement} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
             <Route path="/about-us" component={AboutUs} />
+            <Route path="/pricing" component={Pricing} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
