@@ -4,8 +4,8 @@ import TicketForm from "./ticketForm";
 const SubmitTicket = () => {
   return (
     <div className="w-100">
-      <h1>Submit a ticket</h1>
-      <p className="text-justify">
+      <h1 className="mb-5">Submit a ticket</h1>
+      <p className="text-justify mb-5">
         When submitting a ticket to our Technical Support, please be aware of
         the following: This is a general technical support category and tickets
         into it should be submitted only if you can find answer on our
