@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="col-md-3 mb-md-0 mb-3">
             <h5 className="text-uppercase">Support</h5>
             <ul className="list-unstyled">
-              <Link className="nav-item nav-link p-0" to="/">
+              <Link className="nav-item nav-link p-0" to="/help-and-support">
                 Help & Support
               </Link>
             </ul>
