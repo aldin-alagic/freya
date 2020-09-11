@@ -22,16 +22,16 @@ const Footer = () => {
             <h5 className="text-uppercase">About</h5>
 
             <ul className="list-unstyled">
-              <Link className="nav-item nav-link p-0" to="/">
+              <Link className="nav-item nav-link p-0" to="/about-us">
                 About us
               </Link>
-              <Link className="nav-item nav-link p-0" to="/">
+              <Link className="nav-item nav-link p-0" to="/contact-us">
                 Contact us
               </Link>
-              <Link className="nav-item nav-link p-0" to="/">
+              <Link className="nav-item nav-link p-0" to="/privacy-policy">
                 Privacy Policy
               </Link>
-              <Link className="nav-item nav-link p-0" to="/">
+              <Link className="nav-item nav-link p-0" to="/user-agreement">
                 User Agreement
               </Link>
             </ul>
