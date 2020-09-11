@@ -4,11 +4,10 @@ import ContactForm from "./contactForm";
 const ContactUs = () => {
   return (
     <div>
-      <h1>Contact us</h1>
+      <h1 className="mb-5">Contact us</h1>
       <div>
         <div className="row vdivide">
-          <ContactForm />
-          <ul className="col-6 ul-no-bullets font-weight-bold pl-5">
+          <ul className="col-md-6 col-sm-12 ul-no-bullets font-weight-bold">
             <li className="mb-2">Registered office</li>
             <li className="mb-2">Street</li>
             <li className="mb-2">Post code</li>
@@ -17,6 +16,8 @@ const ContactUs = () => {
             <li className="mb-2">VAT number</li>
             <li className="mb-2">support@findaskhire.com</li>
           </ul>
+          <hr />
+          <ContactForm />
         </div>
       </div>
     </div>
