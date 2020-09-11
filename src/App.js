@@ -11,6 +11,9 @@ import HelpAndSupport from "./components/helpAndSupport";
 import FAQ from "./components/faq";
 import SubmitTicket from "./components/submitTicket";
 import ContactUs from "./components/contactUs";
+import UserAgreement from "./components/userAgreement";
+import PrivacyPolicy from "./components/privacyPolicy";
+import AboutUs from "./components/aboutUs";
 
 class App extends Component {
   state = {};
@@ -40,6 +43,9 @@ class App extends Component {
             <Route path="/faq" component={FAQ} />
             <Route path="/submit-ticket" component={SubmitTicket} />
             <Route path="/contact-us" component={ContactUs} />
+            <Route path="/user-agreement" component={UserAgreement} />
+            <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route path="/about-us" component={AboutUs} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
