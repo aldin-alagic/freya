@@ -42,11 +42,22 @@
   background: #f4f4f4;
   padding: 0;
 }
-.accordion-section .panel-default .panel-title a {
+.drop-down-card-faq {
   display: block;
   font-style: italic;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
+
+.drop-down-card-sidebar {
+  display: block;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.drop-down-card-sidebar:hover {
+  text-decoration: none;
+}
+
 .accordion-section .panel-default .panel-title a:after {
   font-family: "FontAwesome";
   font-style: normal;
