@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import stock1 from "../images/stock1.svg";
 import stock2 from "../images/stock2.svg";
 import CustomerSmallCards from "./customerSmallCards";
