@@ -6,13 +6,13 @@ const HowItWorksMenu = () => {
     <Fragment>
       <h1 className="mb-4">What do you want?</h1>
       <NavLink
-        className="btn btn-outline-primary mr-2 mb-2"
+        className="btn btn-outline-primary col-md-2 m-2"
         to="/how-it-works/customer"
       >
         Solution
       </NavLink>
       <NavLink
-        className="btn btn-outline-primary mb-2"
+        className="btn btn-outline-primary col-md-2 m-2"
         to="/how-it-works/expert"
       >
         Work
