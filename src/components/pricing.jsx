@@ -6,9 +6,11 @@ import PricingCards from "./pricingCards";
 const Pricing = () => {
   return (
     <Fragment>
+      <h1 className="mb-4">Pricing</h1>
+      <hr className="my-5" />
       <h3 className="mb-4">Regular users</h3>
       <div className="row">
-        <div className="col-sm-12 col-md-6">
+        <div className="col-sm-12 col-md-8 mr-auto">
           <h5 className="mb-4">Why do you need tokens?</h5>
           <p className="text-justify">
             With tokens you can purchase existing solutions and answers to your
@@ -18,9 +20,8 @@ const Pricing = () => {
             is defined by expert himself.
           </p>
         </div>
-        <div className="col-sm-2 col-md-2"></div>
         <Card
-          className="animate__animated animate__fadeInDown col-sm-12 col-md-4 text-center"
+          className="col-sm-12 col-md-3 text-center"
           title="User Tokens"
           text="How much tokens do you need?"
           image={imgTokens}
@@ -41,7 +42,7 @@ const Pricing = () => {
       </div>
       <hr className="my-5" />
       <h3 className="mb-4">Experts</h3>
-      <div className="animate__animated animate__fadeInLeft">
+      <div>
         <PricingCards />
       </div>
     </Fragment>
