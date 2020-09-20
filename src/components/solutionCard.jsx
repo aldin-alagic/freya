@@ -10,10 +10,10 @@ import { Link } from "react-router-dom";
 
 const SolutionCard = ({ title, description, company, price, tags }) => {
   return (
-    <div className="bg-light p-4">
-      <div className="d-flex justify-content-start align-content-top pb-4">
+    <div className="bg-light p-4 mb-3">
+      <div className="row m-1 pb-2">
         <FontAwesomeIcon className="text-dark" icon={faUser} size="4x" />
-        <div className="ml-3 mr-auto">
+        <div className="ml-3 mr-auto mb-2">
           <Link to="/home">{company}</Link>
           <div className="text-secondary">Expert</div>
           <div className="text-success">
@@ -21,9 +21,9 @@ const SolutionCard = ({ title, description, company, price, tags }) => {
             <FontAwesomeIcon className="ml-1" icon={faCheckCircle} />
           </div>
         </div>
-        <span class="badge-pill badge-primary px-3 py-2 my-auto">
+        <div className="badge-pill badge-primary text-center col-md-3 col-sm-12 py-2 my-md-4">
           {price} Tokens
-        </span>
+        </div>
       </div>
       <Link to="/home">
         <h5>{title}</h5>
@@ -33,8 +33,8 @@ const SolutionCard = ({ title, description, company, price, tags }) => {
         {tags.map(function (tag, index) {
           return (
             <span
-              key={"tag_" + index}
-              class="badge badge-pill badge-secondary px-2 m-1"
+              key={"tag-" + index}
+              className="badge badge-pill badge-secondary px-2 m-1"
             >
               {tag}
             </span>
