@@ -23,10 +23,7 @@ const Footer = () => {
 
             <ul className="list-unstyled">
               <Link className="nav-item nav-link p-0" to="/about-us">
-                About us
-              </Link>
-              <Link className="nav-item nav-link p-0" to="/contact-us">
-                Contact us
+                Find Ask Hire
               </Link>
               <Link className="nav-item nav-link p-0" to="/privacy-policy">
                 Privacy Policy
@@ -42,8 +39,14 @@ const Footer = () => {
           <div className="col-md-3 mb-md-0 mb-3">
             <h5 className="text-uppercase">Support</h5>
             <ul className="list-unstyled">
-              <Link className="nav-item nav-link p-0" to="/help-and-support">
-                Help & Support
+              <Link className="nav-item nav-link p-0" to="/faq">
+                Frequently Asked Questions
+              </Link>
+              <Link className="nav-item nav-link p-0" to="/submit-ticket">
+                Submit a ticket
+              </Link>
+              <Link className="nav-item nav-link p-0" to="/contact-us">
+                Contact us
               </Link>
             </ul>
           </div>
