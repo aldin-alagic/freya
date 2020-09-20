@@ -40,7 +40,7 @@ class App extends Component {
           bodyClassName="p-3 text-justify"
         />
         <NavBar />
-        <main className="container">
+        <main className="container col-9">
           <Switch>
             <Route path="/help-and-support" component={HelpAndSupport} />
             <Route path="/faq" component={FAQ} />
