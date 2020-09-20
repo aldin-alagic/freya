@@ -2,7 +2,7 @@ import React from "react";
 
 const Radio = ({ id, name, label, error, ...rest }) => {
   return (
-    <div className="form-check">
+    <div className="form-check m-2">
       <input
         type="radio"
         name={name}
