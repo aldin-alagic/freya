@@ -28,6 +28,7 @@ const FindSolutionMain = () => {
         company="Company XYZ"
         price="250"
         tags={["Mercedes", "C200", "AMG"]}
+        solutionUrl="/solution/test/"
       />
       <SolutionCard
         title="Brake problem"
@@ -35,6 +36,7 @@ const FindSolutionMain = () => {
         company="Company ABC"
         price="200"
         tags={["BMW", "M5"]}
+        solutionUrl="/solution/test/"
       />
     </div>
   );
