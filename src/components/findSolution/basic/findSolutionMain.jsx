@@ -1,7 +1,7 @@
 import React from "react";
-import SearchBox from "../../searchBox";
-import SolutionCard from "../../solutionCard";
+import SolutionCard from "../solutionCard";
 import Select from "./../../common/select";
+import SearchBox from "./../../common/searchBox";
 
 const FindSolutionMain = () => {
   return (
