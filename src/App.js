@@ -17,6 +17,8 @@ import AboutUs from "./components/aboutUs";
 import Pricing from "./components/pricing";
 import HowItWorks from "./components/howItWorks";
 import FindSolution from "./components/findSolution/findSolution";
+import BecomeExpert from "./components/becomeExpert";
+import SolutionView from "./components/findSolution/solutionView/solutionView";
 
 class App extends Component {
   state = {};
@@ -51,7 +53,9 @@ class App extends Component {
             <Route path="/about-us" component={AboutUs} />
             <Route path="/pricing" component={Pricing} />
             <Route path="/how-it-works" component={HowItWorks} />
+            <Route path="/become-an-expert" component={BecomeExpert} />
             <Route path="/find-solution" component={FindSolution} />
+            <Route path="/solution/test" component={SolutionView} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
