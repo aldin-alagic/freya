@@ -47,8 +47,7 @@ const IssueType = () => {
         path="/find-solution/advanced/issue-type/additional-electric-parts"
         component={AdditionalElectricParts}
       />
-      <Redirect to="/find-solution/advanced/issue-type/interior" />
-
+      <Redirect to="/find-solution/advanced/issue-type/" />
       <Link
         className="btn btn-primary col-2 m-1"
         to="/find-solution/advanced/vehicle"
