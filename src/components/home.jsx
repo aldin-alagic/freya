@@ -9,16 +9,22 @@ const Home = () => {
     <React.Fragment>
       <div className="row">
         <div className="col-8">
-          <h3 className="">Quick and easy way to find a verified solution</h3>
+          <h3>Quick and easy way to find a verified solution</h3>
           <p className="text-justified">
             Solutions are provided by subject-matter experts from all around the
             world.
           </p>
-          <Link className="nav-item btn btn-primary mr-2 mb-2" to="/">
-            Find Solution
+          <Link
+            className="nav-item btn btn-outline-primary mr-2 mb-2"
+            to="/find-solution/"
+          >
+            Find solution
           </Link>
-          <Link className="nav-item btn btn-outline-primary mb-2" to="/">
-            Become an Expert
+          <Link
+            className="nav-item btn btn-outline-primary mb-2"
+            to="/become-an-expert"
+          >
+            Become an expert
           </Link>
         </div>
       </div>
