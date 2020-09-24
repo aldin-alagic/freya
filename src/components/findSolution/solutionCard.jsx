@@ -8,7 +8,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const SolutionCard = ({ title, description, company, price, tags }) => {
+const SolutionCard = ({
+  title,
+  description,
+  company,
+  price,
+  tags,
+  solutionUrl,
+}) => {
   return (
     <div className="bg-light p-4 mb-3">
       <div className="row m-1 pb-2">
@@ -25,7 +32,7 @@ const SolutionCard = ({ title, description, company, price, tags }) => {
           {price} Tokens
         </div>
       </div>
-      <Link to="/home">
+      <Link to={solutionUrl}>
         <h5>{title}</h5>
       </Link>
       <p className="text-justify">{description}</p>
@@ -52,7 +59,7 @@ const SolutionCard = ({ title, description, company, price, tags }) => {
         <Link className="btn btn-primary m-1" to="/home">
           View profile
         </Link>
-        <Link className="btn btn-primary m-1" to="/home">
+        <Link className="btn btn-primary m-1" to={solutionUrl}>
           View
         </Link>
         <Link className="btn btn-primary m-1" to="/home">
