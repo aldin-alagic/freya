@@ -1,7 +1,8 @@
 class Vehicle {
-  constructor(brand, model, year, fuelType, transmission) {
+  constructor(brand, model, version, year, fuelType, transmission) {
     this._brand = brand;
     this._model = model;
+    this._version = version;
     this._year = year;
     this._fuelType = fuelType;
     this._transmission = transmission;
@@ -21,6 +22,14 @@ class Vehicle {
 
   set model(newModel) {
     this._model = newModel;
+  }
+
+  get version() {
+    return this._version;
+  }
+
+  set version(newVersion) {
+    this._version = newVersion;
   }
 
   get year() {
