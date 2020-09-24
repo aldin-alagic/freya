@@ -6,7 +6,7 @@ import PricingCards from "./pricingCards";
 const Pricing = () => {
   return (
     <Fragment>
-      <h1 className="mb-4">Pricing</h1>
+      <h1>Pricing</h1>
       <hr className="my-5" />
       <h3 className="mb-4">Regular users</h3>
       <div className="row">

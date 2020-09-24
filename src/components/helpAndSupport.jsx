@@ -7,7 +7,8 @@ import imgContactUs from "../images/contact_us.svg";
 const HelpAndSupport = () => {
   return (
     <div>
-      <h1 className="mb-5">Help & Support</h1>
+      <h1>Help & Support</h1>
+      <hr className="my-5" />
       <div className="row">
         <Card
           image={imgFaq}

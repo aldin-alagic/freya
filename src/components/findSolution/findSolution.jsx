@@ -7,7 +7,8 @@ import FindSolutionAdvanced from "./advanced/findSolutionAdvanced";
 const FindSolution = () => {
   return (
     <Fragment>
-      <h1 className="mb-5">Find solution</h1>
+      <h1>Find solution</h1>
+      <hr className="mt-5 mb-4" />
       <FindSolutionMenu />
       <hr className="my-4" />
       <Route path="/find-solution/basic" component={FindSolutionBasic} />
