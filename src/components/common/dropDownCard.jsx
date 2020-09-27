@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropDownCard = ({ id, title, titleStyle, content }) => {
+const DropDownCard = ({ id, title, titleStyle, children: content }) => {
   const idHeading = "heading" + id;
   const idCollapse = "collapse" + id;
 
