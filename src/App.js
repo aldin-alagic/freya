@@ -20,6 +20,7 @@ import FindSolution from "./components/findSolution/findSolution";
 import BecomeExpert from "./components/becomeExpert";
 import SolutionView from "./components/findSolution/solutionView/solutionView";
 import ReactTooltip from "react-tooltip";
+import Report from "./components/report";
 
 class App extends Component {
   state = {};
@@ -43,6 +44,7 @@ class App extends Component {
           pauseOnHover
           bodyClassName="p-3 text-justify"
         />
+        <Report />
         <NavBar />
         <main className="container col-9">
           <Switch>
