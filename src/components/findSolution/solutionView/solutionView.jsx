@@ -8,6 +8,7 @@ import Description from "./description";
 import Attachments from "./attachments";
 import Expert from "./expert";
 import Menu from "./menu";
+import Modal from "./../../common/modal";
 
 class SolutionView extends Component {
   state = { packageType: "standard" };
@@ -37,7 +38,12 @@ class SolutionView extends Component {
             Premium
           </button>
           <SolutionStandard />
-          <Link className="btn btn-primary col-12 m-0" to="/">
+          <Link
+            className="btn btn-primary col-12 m-0"
+            data-toggle="modal"
+            data-target="#solution-checkout-modal"
+            to="#"
+          >
             Purchase
           </Link>
         </div>
@@ -62,7 +68,12 @@ class SolutionView extends Component {
           Premium
         </button>
         <SolutionPremium />
-        <Link className="btn btn-primary col-12 m-0" to="/">
+        <Link
+          className="btn btn-primary col-12 m-0"
+          data-toggle="modal"
+          data-target="#modalWindow"
+          to="#"
+        >
           Purchase
         </Link>
       </div>
@@ -111,6 +122,14 @@ class SolutionView extends Component {
           />
         </div>
         {this.renderSidebar()}
+        <Modal id="solution-checkout-modal" title="Checkout" button="Purchase">
+          <div className="m-2">
+            <h6 className="text-justify">
+              By confirming below you accept to purchase this solution with your
+              tokens.
+            </h6>
+          </div>
+        </Modal>
       </div>
     );
   }
