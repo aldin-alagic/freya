@@ -1,22 +1,24 @@
 import React from "react";
 
-const Modal = ({ title, children: content }) => {
+const Modal = ({ id, title, children: content, button, small = true }) => {
+  let dialogClasses = "modal-dialog modal-dialog-centered";
+  if (small) {
+    dialogClasses = "modal-dialog modal-sm modal-dialog-centered";
+  }
+
   return (
     <div
       className="modal fade"
-      id="smallModal"
+      id={id}
       tabIndex="-1"
       role="dialog"
-      aria-labelledby="smallModalTitle"
+      aria-labelledby="modalWindowTitle"
       aria-hidden="true"
     >
-      <div
-        className="modal-dialog modal-sm modal-dialog-centered"
-        role="document"
-      >
+      <div className={dialogClasses} role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="smallModalLongTitle">
+            <h5 className="modal-title" id="modalWindowLongTitle">
               {title}
             </h5>
             <button
@@ -35,10 +37,10 @@ const Modal = ({ title, children: content }) => {
               className="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              Cancel
             </button>
             <button type="button" className="btn btn-primary">
-              Ok
+              {button}
             </button>
           </div>
         </div>
