@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link, Route, Redirect } from "react-router-dom";
+import { NavLink, Route, Redirect } from "react-router-dom";
 import Vehicle from "./vehicle";
 import IssueType from "./issueType";
 import AdditionalFilters from "./additionalFilters";
