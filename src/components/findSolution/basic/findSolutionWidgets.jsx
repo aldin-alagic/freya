@@ -20,23 +20,21 @@ const FindSolutionWidgets = () => {
           <DropDownCard
             id="11"
             title="Custom filters"
-            content={
-              <Link className="nav nav-link" to="/">
-                Create a custom filter
-              </Link>
-            }
             titleStyle="collapsed drop-down-card-sidebar"
-          />
+          >
+            <Link className="nav nav-link" to="/">
+              Create a custom filter
+            </Link>
+          </DropDownCard>
           <DropDownCard
             id="12"
             title="Ignored tags"
-            content={
-              <Link className="nav nav-link" to="/">
-                Add an ignored tag
-              </Link>
-            }
             titleStyle="collapsed drop-down-card-sidebar"
-          />
+          >
+            <Link to="#" data-toggle="modal" data-target="#ignore-tag-modal">
+              Add a tag
+            </Link>
+          </DropDownCard>
         </div>
       </section>
     </div>
