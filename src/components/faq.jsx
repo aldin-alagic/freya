@@ -20,27 +20,36 @@ const FAQ = () => {
           <DropDownCard
             id="0"
             title="What kind of payment is possible?"
-            content="Find Ask Hire is a online platform which helps users to solve their problems. You can find solutions by searching them or by challagning our experts by creating a post with description of a problem. In case  problem on platform. In case you still need help you can always hire one of our filed experts for extra help."
             titleStyle="collapsed drop-down-card-faq"
-          />
+          >
+            Find Ask Hire is a online platform which helps users to solve their
+            problems. You can find solutions by searching them or by challagning
+            our experts by creating a post with description of a problem. In
+            case problem on platform. In case you still need help you can always
+            hire one of our filed experts for extra help.
+          </DropDownCard>
           <DropDownCard
             id="1"
             title="What are tokens?"
-            content="Find Ask Hire is a online platform which helps users to solve their problems. You can find solutions by searching them or by challagning our experts by creating a post with description of a problem. In case  problem on platform. In case you still need help you can always hire one of our filed experts for extra help."
             titleStyle="collapsed drop-down-card-faq"
-          />
+          >
+            Find Ask Hire is a online platform which helps users to solve their
+            problems. You can find solutions by searching them or by challagning
+            our experts by creating a post with description of a problem. In
+            case problem on platform. In case you still need help you can always
+            hire one of our filed experts for extra help.
+          </DropDownCard>
           <DropDownCard
             id="2"
             title="What kind of payment is possible?"
-            content="Find Ask Hire is a online platform which helps users to solve their problems. You can find solutions by searching them or by challagning our experts by creating a post with description of a problem. In case  problem on platform. In case you still need help you can always hire one of our filed experts for extra help."
             titleStyle="collapsed drop-down-card-faq"
-          />
-          <DropDownCard
-            id="3"
-            title="What kind of payment is possible?"
-            content="Find Ask Hire is a online platform which helps users to solve their problems. You can find solutions by searching them or by challagning our experts by creating a post with description of a problem. In case  problem on platform. In case you still need help you can always hire one of our filed experts for extra help."
-            titleStyle="collapsed drop-down-card-faq"
-          />
+          >
+            Find Ask Hire is a online platform which helps users to solve their
+            problems. You can find solutions by searching them or by challagning
+            our experts by creating a post with description of a problem. In
+            case problem on platform. In case you still need help you can always
+            hire one of our filed experts for extra help.
+          </DropDownCard>
         </div>
       </section>
     </div>
