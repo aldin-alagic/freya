@@ -19,6 +19,7 @@ import HowItWorks from "./components/howItWorks";
 import FindSolution from "./components/findSolution/findSolution";
 import BecomeExpert from "./components/becomeExpert";
 import SolutionView from "./components/findSolution/solutionView/solutionView";
+import ReactTooltip from "react-tooltip";
 
 class App extends Component {
   state = {};
@@ -28,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
+        <ReactTooltip place="right" type="dark" effect="solid" />
         <Spinner />
         <ToastContainer
           position="top-right"
