@@ -5,8 +5,6 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-select/dist/css/bootstrap-select.css";
-import "bootstrap-select/dist/js/bootstrap-select.js";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "font-awesome/css/font-awesome.css";
 import "animate.css/animate.css";
