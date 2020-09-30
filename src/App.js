@@ -21,6 +21,7 @@ import BecomeExpert from "./components/becomeExpert";
 import SolutionView from "./components/findSolution/solutionView/solutionView";
 import ReactTooltip from "react-tooltip";
 import Report from "./components/report";
+import Profile from "./components/profile/profile";
 
 class App extends Component {
   state = {};
@@ -60,6 +61,7 @@ class App extends Component {
             <Route path="/become-an-expert" component={BecomeExpert} />
             <Route path="/find-solution" component={FindSolution} />
             <Route path="/solution/test" component={SolutionView} />
+            <Route path="/profile" component={Profile} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>

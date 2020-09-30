@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import DropDownCard from "./../../common/dropDownCard";
-import Select from "./../../common/select";
+import SelectBox from "./../../common/selectBox";
 
 const FindSolutionSideBar = () => {
   return (
@@ -21,21 +21,15 @@ const FindSolutionSideBar = () => {
             title="Brand"
             titleStyle="collapsed drop-down-card-sidebar"
           >
-            <Select
+            <SelectBox
               name="brand"
-              value=""
-              label=""
+              placeholder="Brand"
               options={[
-                { id: 0, text: "BMW" },
-                { id: 1, text: "Audi" },
-                { id: 2, text: "Volkswagen" },
-                { id: 3, text: "Mercedes" },
+                { value: 0, label: "BMW" },
+                { value: 1, label: "Audi" },
+                { value: 2, label: "Volkswagen" },
+                { value: 3, label: "Mercedes" },
               ]}
-              data-size="5"
-              data-live-search
-              data-show-tick
-              data-width="100%"
-              data-virtual-scroll="20"
             />
           </DropDownCard>
           <DropDownCard
@@ -43,19 +37,13 @@ const FindSolutionSideBar = () => {
             title="Model"
             titleStyle="collapsed drop-down-card-sidebar"
           >
-            <Select
+            <SelectBox
               name="model"
-              value=""
-              label=""
+              placeholder="Model"
               options={[
-                { id: 0, text: "C200" },
-                { id: 1, text: "E220" },
+                { value: 0, label: "C200" },
+                { value: 1, label: "E220" },
               ]}
-              data-size="5"
-              data-live-search
-              data-show-tick
-              data-width="100%"
-              data-virtual-scroll="20"
             />
           </DropDownCard>
           <DropDownCard
@@ -63,19 +51,14 @@ const FindSolutionSideBar = () => {
             title="Year"
             titleStyle="collapsed drop-down-card-sidebar"
           >
-            <Select
+            <SelectBox
               name="year"
-              label=""
+              placeholder="Year"
               options={[
-                { id: 0, text: "2018" },
-                { id: 1, text: "2019" },
-                { id: 2, text: "2020" },
+                { value: 0, label: "2018" },
+                { value: 1, label: "2019" },
+                { value: 2, label: "2020" },
               ]}
-              data-size="5"
-              data-live-search
-              data-show-tick
-              data-width="100%"
-              data-virtual-scroll="20"
             />
           </DropDownCard>
           <h4 className="mb-2">Select your issue</h4>
@@ -85,34 +68,24 @@ const FindSolutionSideBar = () => {
             titleStyle="collapsed drop-down-card-sidebar"
           >
             <Fragment>
-              <Select
+              <SelectBox
                 name="issueType"
-                label=""
+                placeholder="Issue type"
                 options={[
-                  { id: 0, text: "Interior" },
-                  { id: 1, text: "Engine" },
-                  { id: 2, text: "Body and exterior" },
-                  { id: 3, text: "Control and suspension" },
+                  { value: 0, label: "Interior" },
+                  { value: 1, label: "Engine" },
+                  { value: 2, label: "Body and exterior" },
+                  { value: 3, label: "Control and suspension" },
                 ]}
-                data-size="5"
-                data-live-search
-                data-show-tick
-                data-width="100%"
-                data-virtual-scroll="20"
               />
-              <Select
+              <SelectBox
                 name="issueSubType"
-                label=""
+                placeholder="Category"
                 options={[
-                  { id: 0, text: "Cockpit module" },
-                  { id: 1, text: "Seat" },
-                  { id: 2, text: "Instrument switch" },
+                  { value: 0, label: "Cockpit module" },
+                  { value: 1, label: "Seat" },
+                  { value: 2, label: "Instrument switch" },
                 ]}
-                data-size="5"
-                data-live-search
-                data-show-tick
-                data-width="100%"
-                data-virtual-scroll="20"
               />
             </Fragment>
           </DropDownCard>
@@ -122,15 +95,10 @@ const FindSolutionSideBar = () => {
             title="Filters"
             titleStyle="collapsed drop-down-card-sidebar"
           >
-            <Select
+            <SelectBox
               name="filter"
-              label=""
-              options={[{ id: 0, text: "Price" }]}
-              data-size="5"
-              data-live-search
-              data-show-tick
-              data-width="100%"
-              data-virtual-scroll="20"
+              placeholder="Price"
+              options={[{ value: 0, label: "Price" }]}
             />
           </DropDownCard>
         </div>

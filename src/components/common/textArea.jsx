@@ -23,7 +23,7 @@ const TextArea = ({
         rows={rows}
         className={styleTextArea}
       ></textarea>
-      {error && <div className="alert alert-danger">{error}</div>}
+      {error && <div className="alert alert-danger mt-1">{error}</div>}
     </div>
   );
 };

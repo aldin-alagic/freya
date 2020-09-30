@@ -1,7 +1,7 @@
 import React from "react";
 import SolutionCard from "../solutionCard";
-import Select from "./../../common/select";
 import SearchBox from "./../../common/searchBox";
+import SelectBox from "./../../common/selectBox";
 
 const FindSolutionMain = () => {
   return (
@@ -9,12 +9,13 @@ const FindSolutionMain = () => {
       <SearchBox />
       <div className="row mx-0">
         <div className="col-sm-12 col-md-5 px-0 mr-auto">
-          <Select
+          <SelectBox
             name="sort"
             label=""
+            placeholder="Filter"
             options={[
-              { id: 0, text: "Price (from high to low)" },
-              { id: 1, text: "Price (from low to high)" },
+              { value: 0, label: "Price (from high to low)" },
+              { value: 1, label: "Price (from low to high)" },
             ]}
           />
         </div>

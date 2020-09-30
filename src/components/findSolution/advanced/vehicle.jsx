@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import Select from "./../../common/select";
+import SelectBox from "../../common/selectBox";
 import Radio from "../../common/radio";
 
 const Vehicle = () => {
@@ -30,34 +30,37 @@ const Vehicle = () => {
         <div className="card-header bg-light">Brand, Model, Version</div>
         <div className="card-body row justify-content-center">
           <div className="col-md-3">
-            <Select
+            <SelectBox
               name="brand"
+              placeholder="Brand"
               label="Brand"
               options={[
-                { id: 0, text: "Mercedes" },
-                { id: 1, text: "BMW" },
-                { id: 2, text: "Audi" },
+                { value: 0, label: "Mercedes" },
+                { value: 1, label: "BMW" },
+                { value: 2, label: "Audi" },
               ]}
             />
           </div>
 
           <div className="col-md-3">
-            <Select
+            <SelectBox
               name="model"
+              placeholder="Model"
               label="Model"
               options={[
-                { id: 0, text: "C200" },
-                { id: 1, text: "E220" },
-                { id: 2, text: "S230" },
+                { value: 0, label: "C200" },
+                { value: 1, label: "E220" },
+                { value: 2, label: "S230" },
               ]}
             />
           </div>
 
           <div className="col-md-3">
-            <Select
+            <SelectBox
               name="version"
+              placeholder="Version"
               label="Version"
-              options={[{ id: 0, text: "AMG" }]}
+              options={[{ value: 0, label: "AMG" }]}
             />
           </div>
 
@@ -73,7 +76,7 @@ const Vehicle = () => {
 
       <div className="card mb-4">
         <div className="card-header bg-light">Fuel type</div>
-        <div className="card-body row justify-content-between px-5">
+        <div className="card-body row justify-content-start px-5">
           {fuelTypeOptions.map((option) => (
             <Radio
               key={"fuel-type-" + option.value}

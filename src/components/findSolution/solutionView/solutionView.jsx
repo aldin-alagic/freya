@@ -122,7 +122,11 @@ class SolutionView extends Component {
           />
         </div>
         {this.renderSidebar()}
-        <Modal id="solution-checkout-modal" title="Checkout" button="Purchase">
+        <Modal
+          id="solution-checkout-modal"
+          title="Checkout"
+          button="Add to basket"
+        >
           <div className="m-2">
             <h6 className="text-justify">
               By confirming below you accept to purchase this solution with your

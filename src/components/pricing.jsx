@@ -25,7 +25,7 @@ const Pricing = () => {
           title="User Tokens"
           text="How much tokens do you need?"
           image={imgTokens}
-          imageStyle="card-img-top h-50 p-5"
+          imageStyle="card-img-top p-5"
           url={"/newsletter"}
           button="Purchase"
           input={
@@ -34,7 +34,7 @@ const Pricing = () => {
               type="number"
               placeholder="1 Token = 1 &euro;"
               min="5"
-              className="form-control text-center w-75 mx-auto"
+              className="form-control text-center w-75 mx-auto mb-3"
             />
           }
           buttonStyle="btn btn-lg btn-outline-primary px-5"
