@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 import File from "./file";
-import Select from "./select";
+import SelectBox from "./selectBox";
 import Radio from "./radio";
 import TextArea from "./textArea";
+import SwitchBox from "./switchBox";
+import Phone from "./phone";
 
 class Form extends Component {
   state = {
@@ -52,22 +54,24 @@ class Form extends Component {
     return <button className="btn btn-primary mt-3">{label}</button>;
   }
 
-  renderSelect(name, label, options) {
+  renderSelect(name, label, placeholder, options, styleLabel) {
     const { data, errors } = this.state;
 
     return (
-      <Select
+      <SelectBox
         name={name}
         value={data[name]}
         label={label}
+        placeholder={placeholder}
         options={options}
         onChange={this.handleChange}
+        styleLabel={styleLabel}
         error={errors[name]}
       />
     );
   }
 
-  renderInput(name, label, type, styleLabel = " ", styleInput = " ") {
+  renderInput(name, label, type, styleLabel, styleInput) {
     const { data, errors } = this.state;
     return (
       <Input
@@ -102,7 +106,7 @@ class Form extends Component {
     return (
       <TextArea
         name={name}
-        value={data[name]}
+        value={data[name] ? data[name] : "Short description..."}
         label={label}
         onChange={this.handleChange}
         columns={columns}
