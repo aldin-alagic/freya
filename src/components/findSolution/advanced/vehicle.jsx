@@ -76,7 +76,7 @@ const Vehicle = () => {
 
       <div className="card mb-4">
         <div className="card-header bg-light">Fuel type</div>
-        <div className="card-body row justify-content-between px-5">
+        <div className="card-body row justify-content-start px-5">
           {fuelTypeOptions.map((option) => (
             <Radio
               key={"fuel-type-" + option.value}
