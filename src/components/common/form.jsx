@@ -87,6 +87,33 @@ class Form extends Component {
     );
   }
 
+  renderPhone(name, label, styleLabel) {
+    const { data, errors } = this.state;
+    return (
+      <Phone
+        name={name}
+        value={data[name]}
+        label={label}
+        styleLabel={styleLabel}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  renderSwitchBox(name, label) {
+    const { data, errors } = this.state;
+    return (
+      <SwitchBox
+        name={name}
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
   renderFile(name, label, type) {
     const { data, errors } = this.state;
     return (
