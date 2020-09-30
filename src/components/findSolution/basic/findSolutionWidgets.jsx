@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Input from "../../common/input";
 import DropDownCard from "./../../common/dropDownCard";
-import Modal from "./../../common/modal";
-import Select from "./../../common/select";
 
 const FindSolutionWidgets = () => {
   return (
@@ -29,39 +26,8 @@ const FindSolutionWidgets = () => {
               Create a custom filter
             </Link>
           </DropDownCard>
-          <DropDownCard
-            id="12"
-            title="Ignored tags"
-            titleStyle="collapsed drop-down-card-sidebar"
-          >
-            <Link to="#" data-toggle="modal" data-target="#ignore-tag-modal">
-              Add a tag
-            </Link>
-          </DropDownCard>
         </div>
       </section>
-      <Modal id="ignore-tag-modal" title="Tag ignore" button="Add">
-        <div className="m-2">
-          <Select
-            name="tag"
-            label="Ignore the following tag:"
-            options={[
-              { id: 0, text: "Mercedes" },
-              { id: 1, text: "Automatic" },
-              { id: 2, text: "C200" },
-              { id: 3, text: "Engine" },
-              { id: 4, text: "2016" },
-              { id: 5, text: "2015" },
-              { id: 6, text: "Diesel" },
-            ]}
-            data-size="5"
-            data-live-search
-            data-show-tick
-            data-width="100%"
-            data-virtual-scroll="20"
-          />
-        </div>
-      </Modal>
     </div>
   );
 };
