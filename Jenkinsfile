@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'echo hellp_world'
+                sh 'docker ps'
             }
         }
     }
