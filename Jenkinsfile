@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "docker build -t freya:${BUILD_NUMBER}"
+                sh "docker build -t freya:${BUILD_NUMBER} ."
             }
         }
         stage('Deploy') {
