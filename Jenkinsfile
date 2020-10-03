@@ -14,6 +14,7 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
+                sh "git checkout develop"
                 sh "printenv"
             }
         }
