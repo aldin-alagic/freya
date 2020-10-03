@@ -30,8 +30,8 @@ pipeline {
         }
         stage('Clean') {
             steps {
-                sh "docker rmi -f $(docker images |grep freya)"
-                sh "docker rmi -f $(docker images |grep <none>)"
+                sh "docker rmi -f `docker images |grep freya`"
+                sh "docker rmi -f `docker images |grep <none>`"
             }
         }
     }
