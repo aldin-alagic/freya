@@ -1,9 +1,18 @@
 pipeline {
-    agent { docker { image 'docker:dind' } }
+    agent {
+        node {
+        label 'master'
+        } 
+    }
+    options {
+        skipDefaultCheckout()
+    }
     stages {
-        stage('build') {
+        stage('Checkout') {
             steps {
-                sh 'docker ps'
+                cleanWs()
+                checkout scm
+                sh "printenv"
             }
         }
     }
