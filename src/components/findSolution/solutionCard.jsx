@@ -28,7 +28,7 @@ const SolutionCard = ({
             <FontAwesomeIcon className="ml-1" icon={faCheckCircle} />
           </div>
         </div>
-        <div className="badge-pill badge-primary text-center col-md-3 col-sm-12 py-2 my-md-4">
+        <div className="badge badge-secondary text-center p-3 my-auto">
           {price} Tokens
         </div>
       </div>
