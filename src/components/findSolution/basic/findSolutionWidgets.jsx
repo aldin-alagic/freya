@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Input from "../../common/input";
 import DropDownCard from "./../../common/dropDownCard";
+import Modal from "./../../common/modal";
 
 const FindSolutionWidgets = () => {
   return (
@@ -22,11 +24,32 @@ const FindSolutionWidgets = () => {
             title="Custom filters"
             titleStyle="collapsed drop-down-card-sidebar"
           >
-            <Link className="nav nav-link" to="/">
-              Create a custom filter
+            <Link
+              className="nav nav-link"
+              data-toggle="modal"
+              data-target="#custom-filter-modal"
+              to="#"
+            >
+              Add the current filter
             </Link>
           </DropDownCard>
         </div>
+        <Modal
+          id="custom-filter-modal"
+          title="Add the current filter"
+          button="Save"
+        >
+          <div className="m-2">
+            <Input
+              name="filter"
+              label="Filter name:"
+              styleLabel=""
+              styleInput="form-control"
+              type="text"
+              placeholder="Give your custom filter a name"
+            />
+          </div>
+        </Modal>
       </section>
     </div>
   );
