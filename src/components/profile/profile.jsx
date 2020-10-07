@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import ProfileSidebar from "./profileSidebar";
-import ProfileDetails from "./profileDetails";
-import ProfileChangePassword from "./profileChangePassword";
 import { Redirect, Route } from "react-router-dom";
+import Sidebar from "./../issues/sidebar";
+import Details from "./details";
+import ChangePassword from "./changePassword";
 
 class Profile extends Component {
   state = {};
   render() {
     return (
       <div className="container row">
-        <ProfileSidebar />
-        <Route path="/profile/details" component={ProfileDetails} />
-        <Route
-          path="/profile/change-password"
-          component={ProfileChangePassword}
-        />
+        <Sidebar />
+        <Route path="/profile/details" component={Details} />
+        <Route path="/profile/change-password" component={ChangePassword} />
         <Redirect to="/profile/details" />
       </div>
     );
