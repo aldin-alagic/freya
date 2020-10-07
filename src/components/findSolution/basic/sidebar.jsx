@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import DropDownCard from "./../../common/dropDownCard";
-import SelectBox from "./../../common/selectBox";
+import DropDownCard from "../../common/dropDownCard";
+import SelectBox from "../../common/selectBox";
 
-const FindSolutionSideBar = () => {
+const Sidebar = () => {
   return (
     <div className="col-md-3">
       <section
@@ -108,4 +108,4 @@ const FindSolutionSideBar = () => {
   );
 };
 
-export default FindSolutionSideBar;
+export default Sidebar;

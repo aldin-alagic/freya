@@ -1,9 +1,9 @@
 import React from "react";
 import SolutionCard from "../solutionCard";
-import SearchBox from "./../../common/searchBox";
-import SelectBox from "./../../common/selectBox";
+import SearchBox from "../../common/searchBox";
+import SelectBox from "../../common/selectBox";
 
-const FindSolutionMain = () => {
+const Main = () => {
   return (
     <div className="col-md-6 mt-23">
       <SearchBox />
@@ -43,4 +43,4 @@ const FindSolutionMain = () => {
   );
 };
 
-export default FindSolutionMain;
+export default Main;

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Input from "../../common/input";
-import DropDownCard from "./../../common/dropDownCard";
-import Modal from "./../../common/modal";
+import DropDownCard from "../../common/dropDownCard";
+import Modal from "../../common/modal";
 
-const FindSolutionWidgets = () => {
+const Widgets = () => {
   return (
     <div className="col-md-3">
       <hr className="d-block d-sm-none" />
@@ -55,4 +55,4 @@ const FindSolutionWidgets = () => {
   );
 };
 
-export default FindSolutionWidgets;
+export default Widgets;
