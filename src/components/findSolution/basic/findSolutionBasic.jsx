@@ -1,14 +1,14 @@
 import React from "react";
-import FindSolutionSideBar from "./findSolutionSidebar";
-import FindSolutionWidgets from "./findSolutionWidgets";
-import FindSolutionMain from "./findSolutionMain";
+import Sidebar from "./sidebar";
+import Main from "./main";
+import Widgets from "./widgets";
 
 const FindSolutionBasic = () => {
   return (
     <div className="row">
-      <FindSolutionSideBar />
-      <FindSolutionMain />
-      <FindSolutionWidgets />
+      <Sidebar />
+      <Main />
+      <Widgets />
     </div>
   );
 };

@@ -208,7 +208,7 @@ class ProfileForm extends Form {
               </div>
 
               <div className="d-inline-block mx-3">
-                {this.renderButton("Save Changes")}
+                {this.renderButton("Save changes")}
               </div>
               <button className="btn btn-secondary mt-3">Cancel</button>
             </form>

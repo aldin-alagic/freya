@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const ProfileSidebar = () => {
+const Sidebar = () => {
   return (
     <div className="col-md-3 mb-3">
       <div className="list-group ">
@@ -40,4 +40,4 @@ const ProfileSidebar = () => {
   );
 };
 
-export default ProfileSidebar;
+export default Sidebar;

@@ -1,8 +1,18 @@
 import React from "react";
 
-const DropDownCard = ({ id, title, titleStyle, children: content }) => {
+const DropDownCard = ({
+  id,
+  title,
+  titleStyle,
+  children: content,
+  hidden = true,
+}) => {
   const idHeading = "heading" + id;
   const idCollapse = "collapse" + id;
+  let panelStyle = "panel-collapse";
+  if (hidden) {
+    panelStyle += " collapse";
+  }
 
   return (
     <div className="panel panel-default">
@@ -15,7 +25,7 @@ const DropDownCard = ({ id, title, titleStyle, children: content }) => {
             data-toggle="collapse"
             data-parent="#accordion"
             href={"#" + idCollapse}
-            aria-expanded="true"
+            aria-expanded="false"
             aria-controls={idCollapse}
           >
             {title}
@@ -24,7 +34,7 @@ const DropDownCard = ({ id, title, titleStyle, children: content }) => {
       </div>
       <div
         id={idCollapse}
-        className="panel-collapse collapse"
+        className={panelStyle}
         role="tabpanel"
         aria-labelledby={idHeading}
       >

@@ -1,9 +1,9 @@
 import React from "react";
-import SolutionCard from "../solutionCard";
-import SearchBox from "./../../common/searchBox";
-import SelectBox from "./../../common/selectBox";
+import IssueCard from "./issueCard";
+import SelectBox from "../common/selectBox";
+import SearchBox from "../common/searchBox";
 
-const FindSolutionMain = () => {
+const Main = () => {
   return (
     <div className="col-md-6 mt-23">
       <SearchBox />
@@ -20,27 +20,20 @@ const FindSolutionMain = () => {
           />
         </div>
         <span className="text-primary col-sm-12 col-md-2 text-right mb-2 mx-0 px-0">
-          2 results
+          1 results
         </span>
       </div>
-      <SolutionCard
+      <IssueCard
         title="Transmission problem"
         description="We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ...."
-        company="Company XYZ"
-        price="250"
+        user="Marko Grd"
         tags={["Mercedes", "C200", "AMG"]}
-        solutionUrl="/solution/test/"
-      />
-      <SolutionCard
-        title="Brake problem"
-        description="We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ...."
-        company="Company ABC"
-        price="200"
-        tags={["BMW", "M5"]}
-        solutionUrl="/solution/test/"
+        url="/issues/test/"
+        views={45}
+        offers={3}
       />
     </div>
   );
 };
 
-export default FindSolutionMain;
+export default Main;

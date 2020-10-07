@@ -1,38 +1,36 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBan,
-  faCheckCircle,
-  faHeart,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import SwitchBox from "./../common/switchBox";
 
-const SolutionCard = ({
-  title,
-  description,
-  company,
-  price,
-  tags,
-  solutionUrl,
-}) => {
+const IssueCard = ({ title, description, user, tags, url, offers, views }) => {
   return (
     <div className="bg-light p-4 mb-3">
       <div className="row m-1 pb-2">
         <FontAwesomeIcon className="text-dark" icon={faUser} size="4x" />
         <div className="ml-3 mr-auto mb-2">
-          <Link to="/home">{company}</Link>
-          <div className="text-secondary">Expert</div>
+          <Link to="/home">{user}</Link>
+          <div className="text-secondary">User</div>
           <div className="text-success">
             Verified
             <FontAwesomeIcon className="ml-1" icon={faCheckCircle} />
           </div>
         </div>
-        <div className="badge badge-secondary text-center p-3 my-auto">
-          {price} Tokens
+        <div>
+          <div className="d-flex">
+            <span className="mt-1 mr-3">Published</span>
+            <SwitchBox name="publish" />
+          </div>
+          <div>
+            <span className="badge badge-secondary p-2 mr-2">
+              {views} views
+            </span>
+            <span className="badge badge-secondary p-2">{offers} offers</span>
+          </div>
         </div>
       </div>
-      <Link to={solutionUrl}>
+      <Link to={url}>
         <h5>{title}</h5>
       </Link>
       <p className="text-justify">{description}</p>
@@ -50,27 +48,18 @@ const SolutionCard = ({
       </div>
       <hr />
       <div className="row justify-content-center">
-        <FontAwesomeIcon className="text-danger m-1" icon={faBan} size="2x" />
-        <FontAwesomeIcon
-          className="text-primary m-1"
-          icon={faHeart}
-          size="2x"
-        />
-        <Link className="btn btn-primary m-1" to="/home">
-          View profile
-        </Link>
-        <Link className="btn btn-primary m-1" to={solutionUrl}>
-          View
+        <Link className="btn btn-primary m-1" to={url}>
+          View issue
         </Link>
         <Link className="btn btn-primary m-1" to="/home">
-          Send a message
+          View offers
         </Link>
         <Link className="btn btn-primary m-1" to="/home">
-          Purchase
+          Edit
         </Link>
       </div>
     </div>
   );
 };
 
-export default SolutionCard;
+export default IssueCard;

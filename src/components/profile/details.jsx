@@ -1,16 +1,16 @@
 import React from "react";
-import ChangePasswordForm from "./changePasswordForm";
+import ProfileForm from "./profileForm";
 
-const ProfileChangePassword = () => {
+const Details = () => {
   return (
     <div className="col-md-9">
       <div className="card">
         <div className="card-body">
-          <ChangePasswordForm />
+          <ProfileForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default ProfileChangePassword;
+export default Details;
