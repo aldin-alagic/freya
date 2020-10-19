@@ -31,8 +31,8 @@ pipeline {
         }
         stage('Clean') {
             steps {
-                sh "docker rmi `docker images  --format '{{.ID}}: {{.Repository}}'  | grep freya | sed -E  's/(.*):(.*)/1/'` || true"
-                sh "docker rmi -f `docker images  --format '{{.ID}}: {{.Repository}}'  | grep '<none>' | sed -E  's/(.*):(.*)/1/'` || true"
+                sh "docker rmi `docker images freya  --format '{{.ID}}'` || true"
+                sh "docker rmi -f `docker images '<none>'  --format '{{.ID}}'` || true"
             }
         }
     }
