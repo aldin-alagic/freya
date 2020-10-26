@@ -2,10 +2,29 @@ import React from "react";
 import SolutionCard from "../solutionCard";
 import SearchBox from "../../common/searchBox";
 import SelectBox from "../../common/selectBox";
+import { NavLink } from "react-router-dom";
 
 const Main = () => {
   return (
     <div className="col-md-6 mt-23">
+      <div className="d-flex mb-2">
+        <div className="col-6 p-0">
+          <NavLink
+            className="btn btn-outline-secondary col-12 selection-left-option"
+            to="#"
+          >
+            All solutions
+          </NavLink>
+        </div>
+        <div className="col-6 p-0">
+          <NavLink
+            className="btn btn-outline-secondary col-12 selection-right-option"
+            to="/home"
+          >
+            Purchased solutions
+          </NavLink>
+        </div>
+      </div>
       <SearchBox />
       <div className="row mx-0">
         <div className="col-sm-12 col-md-5 px-0 mr-auto">
