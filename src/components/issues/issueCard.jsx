@@ -18,7 +18,7 @@ const IssueCard = ({ title, description, user, tags, url, offers, views }) => {
           </div>
         </div>
         <div>
-          <div className="d-flex">
+          <div className="d-flex mb-3">
             <span className="mt-1 mr-3">Published</span>
             <SwitchBox name="publish" />
           </div>
@@ -47,12 +47,9 @@ const IssueCard = ({ title, description, user, tags, url, offers, views }) => {
         })}
       </div>
       <hr />
-      <div className="row justify-content-center">
+      <div className="row justify-content-end pr-2">
         <Link className="btn btn-primary m-1" to={url}>
           View issue
-        </Link>
-        <Link className="btn btn-primary m-1" to="/home">
-          View offers
         </Link>
         <Link className="btn btn-primary m-1" to="/home">
           Edit
