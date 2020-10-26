@@ -26,13 +26,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh "docker stop freya || true && docker rm -f freya || true"
-                sh "docker run -ti -d --name freya -p 80:3000 freya:${BUILD_NUMBER}"
+                sh "docker run -ti -d --network dys --name freya -p 9900:3000 freya:${BUILD_NUMBER}"
             }
         }
         stage('Clean') {
             steps {
-                sh "docker rmi -f `docker images |grep freya` || true"
-                sh "docker rmi -f `docker images |grep <none>` || true"
+                sh "docker rmi `docker images freya  --format '{{.ID}}'` || true"
+                sh "docker rmi -f `docker images '<none>'  --format '{{.ID}}'` || true"
             }
         }
     }
