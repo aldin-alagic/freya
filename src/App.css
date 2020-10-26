@@ -55,6 +55,11 @@
   right: 0;
 }
 
+.btn-pagination:not(:disabled):not(.disabled),
+.clickable {
+  cursor: pointer;
+}
+
 .h-55 {
   height: 55% !important;
 }
