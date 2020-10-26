@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect, Route } from "react-router-dom";
-import Sidebar from "./../issues/sidebar";
+import Sidebar from "./sidebar";
 import Details from "./details";
 import ChangePassword from "./changePassword";
 

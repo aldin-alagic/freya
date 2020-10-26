@@ -1,10 +1,10 @@
 import React from "react";
-import VehicleDescription from "./vehicleDescription";
-import IssueType from "./issueType";
-import ShortDescription from "./shortDescription";
 import SideEffects from "./sideEffects";
-import Attachments from "./attachments";
-import Expert from "./expert";
+import VehicleDescription from "./../../common/vehicleDescription";
+import IssueType from "./../../common/issueType";
+import ShortDescription from "./../../common/shortDescription";
+import Attachments from "./../../common/attachments";
+import Expert from "./../../common/expert";
 
 const Overview = () => {
   return (

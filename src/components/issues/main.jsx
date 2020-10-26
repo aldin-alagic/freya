@@ -2,10 +2,12 @@ import React from "react";
 import IssueCard from "./issueCard";
 import SelectBox from "../common/selectBox";
 import SearchBox from "../common/searchBox";
+import Menu from "./menu";
 
 const Main = () => {
   return (
     <div className="col-md-6 mt-23">
+      <Menu />
       <SearchBox />
       <div className="row mx-0">
         <div className="col-sm-12 col-md-5 px-0 mr-auto">
