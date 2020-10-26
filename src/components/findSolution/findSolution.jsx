@@ -8,7 +8,7 @@ const FindSolution = () => {
   return (
     <Fragment>
       <h1>Find solution</h1>
-      <hr className="mt-5 mb-4" />
+      <h4 className="mt-4">Select a filter option</h4>
       <FindSolutionMenu />
       <hr className="my-4" />
       <Route path="/find-solution/basic" component={FindSolutionBasic} />
