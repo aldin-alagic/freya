@@ -2,7 +2,7 @@ import React from "react";
 
 const SwitchBox = ({ name, label, error, ...rest }) => {
   return (
-    <div className="mb-3">
+    <div>
       {label}
       <div className="material-switch mt-2">
         <input
