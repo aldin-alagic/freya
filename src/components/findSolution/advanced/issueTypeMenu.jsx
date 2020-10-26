@@ -13,7 +13,7 @@ const IssueTypeMenu = () => {
         </NavLink>
       </div>
 
-      <div className="col-md-3 col-sm-6  p-1">
+      <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
           to="/find-solution/advanced/issue-type/engine"
