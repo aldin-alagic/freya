@@ -1,5 +1,5 @@
 import React from "react";
-import Vehicle from "../../data/vehicle";
+import Vehicle from "./../data/vehicle";
 
 const VehicleDescription = () => {
   const vehicle = new Vehicle(

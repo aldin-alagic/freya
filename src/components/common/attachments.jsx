@@ -5,20 +5,20 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 const Attachments = () => {
   return (
     <div>
-      <h5 className="text-primary bg-light p-2">Attachments</h5>
-      <div className="row justify-content-start px-4 mb-2">
+      <h5 className="text-primary bg-light p-2 mb-1">Attachments</h5>
+      <div className="row px-4 mb-2">
         <FontAwesomeIcon
-          className="text-secondary m-2"
+          className="text-secondary mx-2"
           icon={faImage}
           size="6x"
         />
         <FontAwesomeIcon
-          className="text-secondary m-2"
+          className="text-secondary mx-2"
           icon={faImage}
           size="6x"
         />
         <FontAwesomeIcon
-          className="text-secondary m-2"
+          className="text-secondary mx-2"
           icon={faImage}
           size="6x"
         />

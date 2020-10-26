@@ -4,7 +4,7 @@ const IssueType = () => {
   return (
     <div>
       <h5 className="text-primary bg-light p-2">Issue type</h5>
-      <div className="row justify-content-start px-4 mb-2">
+      <div className="row justify-content-start px-4 my-3">
         <span className="badge badge-pill badge-secondary px-2 m-1">
           Gear box
         </span>
