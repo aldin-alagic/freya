@@ -2,14 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const SolutionStandard = () => {
+const PremiumPackage = () => {
   return (
-    <div className="card rounded-0 mb-2 px-4">
-      <div className="card-body row">
-        <div className="d-flex col-12 justify-content-between px-0 mb-2">
-          <h6>Standard</h6>
-          <h6>120 tokens</h6>
-        </div>
+    <div className="card rounded-bottom rounded-top-0 mb-2 px-2">
+      <div className="card-body">
+        <h6>Premium package</h6>
+        <h6 className="text-muted">150 tokens</h6>
         <p className="text-justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec
           posuere lorem. Sed interdum facilisis ornare.
@@ -20,10 +18,14 @@ const SolutionStandard = () => {
             <FontAwesomeIcon className="text-success mr-1" icon={faCheck} />
             Full solution
           </li>
+          <li>
+            <FontAwesomeIcon className="text-success mr-1" icon={faCheck} />
+            All attachments
+          </li>
         </ul>
       </div>
     </div>
   );
 };
 
-export default SolutionStandard;
+export default PremiumPackage;
