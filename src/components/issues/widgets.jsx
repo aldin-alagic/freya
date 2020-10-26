@@ -42,9 +42,6 @@ const Widgets = () => {
           </DropDownCard>
         </div>
       </section>
-      <Link className="btn btn-primary col-md-12" to="/home">
-        New issue
-      </Link>
       <Modal
         id="custom-filter-modal"
         title="Add the current filter"
