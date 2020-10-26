@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Joi from "joi-browser";
 import Form from "../common/form";
 
-class ProfileForm extends Form {
+class DetailsForm extends Form {
   state = {
     data: {
       firstName: "",
@@ -166,7 +166,7 @@ class ProfileForm extends Form {
                 )}
               </div>
 
-              <div className="col-12">
+              <div className="col-12 mb-3">
                 <p className="text-dark font-weight-bold">
                   Join our mailing list
                 </p>
@@ -218,4 +218,4 @@ class ProfileForm extends Form {
     );
   }
 }
-export default ProfileForm;
+export default DetailsForm;
