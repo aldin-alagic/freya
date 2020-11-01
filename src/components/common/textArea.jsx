@@ -11,7 +11,7 @@ const TextArea = ({
   ...rest
 }) => {
   return (
-    <div className="form-group row mx-0 mb-4">
+    <div className="form-group row mx-0 px-0 mb-4 col-12">
       <label htmlFor={name} className={styleLabel}>
         {label}
       </label>
