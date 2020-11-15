@@ -7,19 +7,19 @@ const VehicleDescription = ({ data }) => {
       <div className="row justify-content-between px-4">
         <div className="d-inline-block m-1">
           <span>Brand</span>
-          <h6>{data.brand.value}</h6>
+          <h6>{data.brand}</h6>
         </div>
         <div className="d-inline-block m-1">
           <span>Model</span>
-          <h6>{data.model.value}</h6>
+          <h6>{data.model}</h6>
         </div>
         <div className="d-inline-block m-1">
           <span>Version</span>
-          <h6>{data.version.value}</h6>
+          <h6>{data.version}</h6>
         </div>
         <div className="d-inline-block m-1">
           <span>Year</span>
-          <h6>{data.year.value}</h6>
+          <h6>{data.year}</h6>
         </div>
         <div className="d-inline-block m-1">
           <span>Fuel type</span>

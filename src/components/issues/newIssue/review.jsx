@@ -21,7 +21,14 @@ const Review = ({ data }) => {
   return (
     <Fragment>
       <VehicleDescription
-        data={{ brand, model, year, version, fuelType, transmission }}
+        data={{
+          brand: brand.value,
+          model: model.value,
+          year: year.value,
+          version: version.value,
+          fuelType,
+          transmission,
+        }}
       />
       <h5 className="text-primary bg-light p-2">Issue type</h5>
       <div className="row justify-content-start px-4 my-3">
