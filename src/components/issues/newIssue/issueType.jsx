@@ -13,7 +13,6 @@ class IssueType extends Component {
   state = {
     issueCategory: null,
     issueType: null,
-    issueTypeLabel: null,
   };
 
   getComponent = () => {
@@ -61,9 +60,8 @@ class IssueType extends Component {
 
   handleChange = ({ target: input }) => {
     const issueType = input.value;
-    const issueTypeLabel = input.dataset.label;
-    this.props.onIssueTypeChange(issueType, issueTypeLabel);
-    this.setState({ issueType, issueTypeLabel });
+    this.props.onIssueTypeChange(issueType);
+    this.setState({ issueType });
   };
 
   handleClick = (issueCategory) => {
@@ -80,10 +78,8 @@ class IssueType extends Component {
         <hr className="mt-3 mb-4" />
         <div className="mb-3">
           Selected issue:
-          {this.props.issueTypeLabel != null ? (
-            <span className="text-primary ml-2">
-              {this.props.issueTypeLabel}
-            </span>
+          {this.props.issueType != null ? (
+            <span className="text-primary ml-2">{this.props.issueType}</span>
           ) : (
             <span className="text-danger ml-2">None</span>
           )}
