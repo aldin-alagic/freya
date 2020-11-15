@@ -3,30 +3,43 @@ import VehicleDescription from "./../../common/vehicleDescription";
 import Attachments from "./../../common/attachments";
 import SwitchBox from "./../../common/switchBox";
 
-const Review = () => {
+const Review = ({ data }) => {
+  const {
+    brand,
+    model,
+    year,
+    version,
+    fuelType,
+    transmission,
+    issueType,
+    title,
+    description,
+    note,
+    published,
+  } = data;
+
   return (
     <Fragment>
-      <VehicleDescription />
+      <VehicleDescription
+        data={{ brand, model, year, version, fuelType, transmission }}
+      />
       <h5 className="text-primary bg-light p-2">Issue type</h5>
       <div className="row justify-content-start px-4 my-3">
         <span className="badge badge-pill badge-secondary px-2 m-1">
-          Gear box
+          {issueType}
         </span>
       </div>
       <div>
         <h5 className="text-primary bg-light p-2">Title</h5>
-        <p className="text-justify px-3">Issue for Mercedes C200</p>
+        <p className="text-justify px-3">{title}</p>
       </div>
       <div>
         <h5 className="text-primary bg-light p-2">Description</h5>
-        <p className="text-justify px-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec
-          posuere lorem. Sed interdum facilisis ornare. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit. Fusce nec posuere lorem. Sed
-          interdum facilisis ornare. Sed interdum facilisis ornare. Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit. Fusce nec posuere lorem.
-          Sed interdum facilisis ornare.
-        </p>
+        <p className="text-justify px-3">{description}</p>
+      </div>
+      <div>
+        <h5 className="text-primary bg-light p-2">Note</h5>
+        <p className="text-justify px-3">{note}</p>
       </div>
       <h5 className="text-primary bg-light p-2">Keywords</h5>
       <div className="row justify-content-start px-4 my-3">
@@ -40,7 +53,11 @@ const Review = () => {
       <Attachments />
       <h5 className="text-primary bg-light p-2">Visibility</h5>
       <div className="row justify-content-start px-4 my-3">
-        <SwitchBox name="published" checked="checked" readOnly />
+        {published ? (
+          <SwitchBox name="published" checked="checked" readOnly />
+        ) : (
+          <SwitchBox name="published" readOnly />
+        )}
       </div>
     </Fragment>
   );
