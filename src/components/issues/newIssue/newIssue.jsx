@@ -6,6 +6,7 @@ import { Steps } from "rsuite";
 import Attachments from "./attachments";
 import Visibility from "./visibility";
 import Review from "./review";
+import { toast } from "react-toastify";
 
 class NewIssue extends Component {
   state = {
@@ -19,7 +20,6 @@ class NewIssue extends Component {
       fuelType: null,
       transmission: null,
       issueType: null,
-      issueTypeLabel: null,
       title: "",
       description: "",
       note: "",
@@ -49,17 +49,14 @@ class NewIssue extends Component {
   };
 
   handleVisibilityChange = ({ currentTarget: input }) => {
-    console.log("Check:", input.checked);
     const data = { ...this.state.data };
     data[input.name] = input.checked;
     this.setState({ data });
   };
 
-  handleIssueTypeChange = (issueType, issueTypeLabel) => {
-    console.log("issueType :", issueType);
+  handleIssueTypeChange = (issueType) => {
     const data = { ...this.state.data };
     data["issueType"] = issueType;
-    data["issueTypeLabel"] = issueTypeLabel;
     this.setState({ data });
   };
 
@@ -92,27 +89,45 @@ class NewIssue extends Component {
       transmission,
     } = this.state.data;
 
-    if (
-      brand === null ||
-      model === null ||
-      year === null ||
-      version === null ||
-      fuelType === null ||
-      transmission === null
-    )
+    if (brand === null) {
+      toast.warning("Information about car brand is required!");
       return false;
-
+    } else if (model === null) {
+      toast.warning("Information about car model is required!");
+      return false;
+    } else if (year === null) {
+      toast.warning("Information about car year is required!");
+      return false;
+    } else if (version === null) {
+      toast.warning("Information about car version is required!");
+      return false;
+    } else if (fuelType === null) {
+      toast.warning("Information about car fuel type is required!");
+      return false;
+    } else if (transmission === null) {
+      toast.warning("Information about car transmission is required!");
+      return false;
+    }
     return true;
   };
 
   issueTypeValidation = () => {
-    if (this.state.data.issueType === null) return false;
+    if (this.state.data.issueType === null) {
+      toast.warning("Information about issue type is required!");
+      return false;
+    }
     return true;
   };
 
   descriptionValidation = () => {
     const { title, description } = this.state.data;
-    if (title === "" || description === "") return false;
+    if (title === "") {
+      toast.warning("Issue title is required!");
+      return false;
+    } else if (description === "") {
+      toast.warning("Issue description is required!");
+      return false;
+    }
     return true;
   };
 
@@ -169,7 +184,7 @@ class NewIssue extends Component {
           />
         );
       case 5:
-        return <Review />;
+        return <Review data={this.state.data} />;
       default:
         return <Attachments />;
     }
@@ -193,24 +208,22 @@ class NewIssue extends Component {
           <Steps.Item title="Review" />
         </Steps>
         {this.getComponent(step)}
-        <button
-          className="btn btn-primary ml-0 mr-1"
-          onClick={this.onPrevious}
-          disabled={step === 0}
-        >
-          Previous
-        </button>
-        <button
-          className={
-            !this.stepValidation(step) === true && status === "error"
-              ? "btn btn-danger m-1"
-              : "btn btn-primary m-1"
-          }
-          onClick={this.onNext}
-          disabled={step === 7}
-        >
-          Next
-        </button>
+        <div className="d-flex justify-content-center">
+          <button
+            className="btn btn-lg btn-primary m-1"
+            onClick={this.onPrevious}
+            disabled={step === 0}
+          >
+            Previous
+          </button>
+          <button
+            className="btn btn-lg btn-primary m-1"
+            onClick={this.onNext}
+            disabled={step === 7}
+          >
+            Next
+          </button>
+        </div>
       </div>
     );
   }
