@@ -3,12 +3,12 @@ import Radio from "./../../common/radio";
 
 const EnergySystem = ({ issueType, onChange }) => {
   const options = [
-    { value: 51, label: "Heather" },
-    { value: 52, label: "Air Conditioner" },
-    { value: 53, label: "Fuel cell system" },
-    { value: 54, label: "Battery/Capacitor" },
-    { value: 55, label: "Power control system" },
-    { value: 56, label: "Drive train system" },
+    "Heather",
+    "Air Conditioner",
+    "Fuel cell system",
+    "Battery/Capacitor",
+    "Power control system",
+    "Drive train system",
   ];
 
   return (
@@ -17,12 +17,12 @@ const EnergySystem = ({ issueType, onChange }) => {
       <div className="card-body row justify-content-start px-5">
         {options.map((option) => (
           <Radio
-            key={"issue-type-" + option.value}
-            id={"issueType" + option.value}
+            key={"issue-type-" + option}
+            id={"issueType" + option}
             name="issueType"
-            label={option.label}
-            value={option.value}
-            checked={issueType == option.value ? true : false}
+            label={option}
+            value={option}
+            checked={issueType == option ? true : false}
             onChange={onChange}
           />
         ))}

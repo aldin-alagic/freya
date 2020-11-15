@@ -3,14 +3,14 @@ import Radio from "./../../common/radio";
 
 const AdditionalElectricParts = ({ issueType, onChange }) => {
   const options = [
-    { value: 67, label: "Various motors" },
-    { value: 68, label: "Electric cable" },
-    { value: 69, label: "Actuator" },
-    { value: 70, label: "Semiconductor" },
-    { value: 71, label: "Wire harness" },
-    { value: 72, label: "Relay" },
-    { value: 73, label: "Hidden switch" },
-    { value: 74, label: "Electric connector" },
+    "Various motors",
+    "Electric cable",
+    "Actuator",
+    "Semiconductor",
+    "Wire harness",
+    "Relay",
+    "Hidden switch",
+    "Electric connector",
   ];
 
   return (
@@ -19,12 +19,12 @@ const AdditionalElectricParts = ({ issueType, onChange }) => {
       <div className="card-body row justify-content-start px-5">
         {options.map((option) => (
           <Radio
-            key={"issue-type-" + option.value}
-            id={"issueType" + option.value}
+            key={"issue-type-" + option}
+            id={"issueType" + option}
             name="issueType"
-            label={option.label}
-            value={option.value}
-            checked={issueType == option.value ? true : false}
+            label={option}
+            value={option}
+            checked={issueType == option ? true : false}
             onChange={onChange}
           />
         ))}

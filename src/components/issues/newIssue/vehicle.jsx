@@ -6,21 +6,17 @@ import Radio from "../../common/radio";
 const Vehicle = ({ values, onChange, onSelectChange }) => {
   const animatedComponents = makeAnimated();
   const fuelTypeOptions = [
-    { value: 1, label: "Petrol" },
-    { value: 2, label: "Diesel" },
-    { value: 3, label: "Electric" },
-    { value: 4, label: "Ethanol (FFV, E85, etc.)" },
-    { value: 5, label: "Hybrid (Petrol/Electric)" },
-    { value: 6, label: "Hybrid (Diesel/Electric)" },
-    { value: 7, label: "Hydrogen" },
-    { value: 8, label: "Natural gas" },
-    { value: 9, label: "Other" },
+    "Petrol",
+    "Diesel",
+    "Electric",
+    "Ethanol (FFV, E85, etc.)",
+    "Hybrid (Petrol/Electric)",
+    "Hybrid (Diesel/Electric)",
+    "Hydrogen",
+    "Natural gas",
+    "Other",
   ];
-  const transmitionOptions = [
-    { value: 1, label: "Manual" },
-    { value: 2, label: "Semi-automatic" },
-    { value: 3, label: "Automatic" },
-  ];
+  const transmitionOptions = ["Manual", "Semi-automatic", "Automatic"];
   return (
     <div className="animate__animated animate__fadeIn">
       <div className="card mb-4">
@@ -33,9 +29,9 @@ const Vehicle = ({ values, onChange, onSelectChange }) => {
               placeholder="Brand"
               label="Brand"
               options={[
-                { value: 1, label: "Mercedes" },
-                { value: 2, label: "BMW" },
-                { value: 3, label: "Audi" },
+                { value: "Mercedes", label: "Mercedes" },
+                { value: "BMW", label: "BMW" },
+                { value: "Audi", label: "Audi" },
               ]}
               value={values.brand}
               isSearchable={true}
@@ -52,9 +48,9 @@ const Vehicle = ({ values, onChange, onSelectChange }) => {
               placeholder="Model"
               label="Model"
               options={[
-                { value: 1, label: "C200" },
-                { value: 2, label: "E220" },
-                { value: 3, label: "S230" },
+                { value: "C200", label: "C200" },
+                { value: "E220", label: "E220" },
+                { value: "S230", label: "S230" },
               ]}
               value={values.model}
               isSearchable={true}
@@ -71,9 +67,9 @@ const Vehicle = ({ values, onChange, onSelectChange }) => {
               placeholder="Year"
               label="Year"
               options={[
-                { value: 2010, label: "2010" },
-                { value: 2011, label: "2011" },
-                { value: 2012, label: "2012" },
+                { value: "2010", label: "2010" },
+                { value: "2011", label: "2011" },
+                { value: "2012", label: "2012" },
               ]}
               value={values.year}
               isSearchable={true}
@@ -89,7 +85,7 @@ const Vehicle = ({ values, onChange, onSelectChange }) => {
               name="version"
               placeholder="Version"
               label="Version"
-              options={[{ value: 1, label: "AMG" }]}
+              options={[{ value: "AMG", label: "AMG" }]}
               value={values.version}
               isSearchable={true}
               isClearable={true}
@@ -105,12 +101,12 @@ const Vehicle = ({ values, onChange, onSelectChange }) => {
         <div className="card-body row justify-content-start px-5">
           {fuelTypeOptions.map((option) => (
             <Radio
-              key={"fuel-type-" + option.value}
-              id={"fuelType-" + option.value}
+              key={"fuel-type-" + option}
+              id={"fuelType-" + option}
               name="fuelType"
-              label={option.label}
-              value={option.value}
-              checked={values.fuelType == option.value ? true : false}
+              label={option}
+              value={option}
+              checked={values.fuelType == option ? true : false}
               onChange={onChange}
             />
           ))}
@@ -122,12 +118,12 @@ const Vehicle = ({ values, onChange, onSelectChange }) => {
         <div className="card-body row justify-content-around px-5">
           {transmitionOptions.map((option) => (
             <Radio
-              key={"transmission-type-" + option.value}
-              id={"transmission-" + option.value}
+              key={"transmission-type-" + option}
+              id={"transmission-" + option}
               name="transmission"
-              label={option.label}
-              value={option.value}
-              checked={values.transmission == option.value ? true : false}
+              label={option}
+              value={option}
+              checked={values.transmission == option ? true : false}
               onChange={onChange}
             />
           ))}

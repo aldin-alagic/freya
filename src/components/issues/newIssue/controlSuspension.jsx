@@ -3,18 +3,18 @@ import Radio from "./../../common/radio";
 
 const ControlSuspension = ({ issueType, onChange }) => {
   const options = [
-    { value: 34, label: "Axle" },
-    { value: 35, label: "Sub brake" },
-    { value: 36, label: "Brake by wire" },
-    { value: 37, label: "Air brake" },
-    { value: 38, label: "Vehicle Dynamic Control system" },
-    { value: 39, label: "Weather strip" },
-    { value: 40, label: "Frame" },
-    { value: 41, label: "Bumper" },
-    { value: 42, label: "Lamp" },
-    { value: 43, label: "Fuel tank" },
-    { value: 44, label: "Key set" },
-    { value: 45, label: "Pedal" },
+    "Axle",
+    "Sub brake",
+    "Brake by wire",
+    "Air brake",
+    "Vehicle Dynamic Control system",
+    "Weather strip",
+    "Frame",
+    "Bumper",
+    "Lamp",
+    "Fuel tank",
+    "Key set",
+    "Pedal",
   ];
 
   return (
@@ -23,12 +23,12 @@ const ControlSuspension = ({ issueType, onChange }) => {
       <div className="card-body row justify-content-start px-5">
         {options.map((option) => (
           <Radio
-            key={"issue-type-" + option.value}
-            id={"issueType" + option.value}
+            key={"issue-type-" + option}
+            id={"issueType" + option}
             name="issueType"
-            label={option.label}
-            value={option.value}
-            checked={issueType == option.value ? true : false}
+            label={option}
+            value={option}
+            checked={issueType == option ? true : false}
             onChange={onChange}
           />
         ))}
