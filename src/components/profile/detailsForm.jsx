@@ -203,7 +203,7 @@ class DetailsForm extends Form {
                   100,
                   4,
                   "text-dark font-weight-bold",
-                  "form-control w-100"
+                  "form-control"
                 )}
               </div>
 
