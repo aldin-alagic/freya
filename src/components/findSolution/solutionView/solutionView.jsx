@@ -7,21 +7,17 @@ import Description from "./../../common/description";
 import Attachments from "./../../common/attachments";
 import Expert from "./../../common/expert";
 import SolutionPackages from "./../../common/solutionPackages";
-import Solution from "../../data/solution";
 
 const SolutionView = () => {
-  const solution = new Solution(
-    "Transmission problem",
-    "We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ....",
-    "We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ....",
-    "No side effects",
-    "250",
-    "300",
-    "10",
-    "2",
-    "100",
-    "404"
-  );
+  const solution = {
+    title: "Transmission problem",
+    description:
+      "We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ....",
+    likes: "10",
+    dislikes: "2",
+    sales: "100",
+    views: "404",
+  };
   return (
     <div className="row">
       <div className="col-md-12 col-xl-9">
