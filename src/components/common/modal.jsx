@@ -8,11 +8,11 @@ const Modal = ({ id, title, children: content, button, small = true }) => {
 
   return (
     <div
-      className="modal fade"
+      className="modal animate__animated animate__fadeInDown"
       id={id}
       tabIndex="-1"
       role="dialog"
-      aria-labelledby="modalWindowTitle"
+      aria-labelledby={id + "Label"}
       aria-hidden="true"
     >
       <div className={dialogClasses} role="document">
