@@ -212,3 +212,10 @@
   left: 20px;
 }
 /* END Toggle Switch */
+
+.btn-xs {
+  padding: 1px 8px !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  border-radius: 3px !important;
+}
