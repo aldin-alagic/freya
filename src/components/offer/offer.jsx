@@ -20,7 +20,9 @@ const Offer = () => {
     <div className="row">
       <div className="col-md-12 col-xl-9">
         <div className="row pl-3 px-md-3 ">
-          <h4 className="mr-auto">{solution.title}</h4>
+          <h4 className="mr-auto">
+            <a href="/issues/test/">{solution.title}</a>
+          </h4>
         </div>
         <h6 className="mt-4 mb-3 ml-2">Offer from Expert XYZ</h6>
         <hr className="mb-0" />
