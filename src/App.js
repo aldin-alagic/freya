@@ -23,6 +23,8 @@ import ReactTooltip from "react-tooltip";
 import Report from "./components/report";
 import Profile from "./components/profile/profile";
 import Issues from "./components/issues/issues";
+import ViewIssue from "./components/issues/viewIssue/viewIssue";
+import Offer from "./components/offer/offer";
 import NewIssue from "./components/issues/newIssue/newIssue";
 import "rsuite/dist/styles/rsuite-default.css";
 
@@ -64,8 +66,10 @@ class App extends Component {
             <Route path="/become-an-expert" component={BecomeExpert} />
             <Route path="/find-solution" component={FindSolution} />
             <Route path="/solution/test" component={SolutionView} />
+            <Route path="/issues/test/" component={ViewIssue} />
             <Route path="/issues/new/" component={NewIssue} />
             <Route path="/issues" component={Issues} />
+            <Route path="/offers/test/" component={Offer} />
             <Route path="/profile" component={Profile} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
