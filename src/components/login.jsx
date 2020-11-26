@@ -1,6 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
+import userService from "../services/userService";
+import { toast } from "react-toastify";
 
 class Login extends Form {
   state = {
@@ -14,13 +16,21 @@ class Login extends Form {
   };
 
   doSubmit = async () => {
-    console.log("Submitted");
+    const { data: response } = await userService.login(this.state.data);
+    if (response.status == 200) {
+      localStorage.setItem("user", response.data);
+      toast.success(response.message, { className: "alert-success" });
+      const { state } = this.props.location;
+      window.location = state ? state.from.pathname : "/profile/details";
+    } else {
+      toast.error(response.message, { className: "alert-danger" });
+    }
   };
 
   render() {
     return (
       <div className="col-md-4 mx-auto">
-        <h1 className="mb-5">Login</h1>
+        <h1 className="mb-5 text-center">Login</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput(
             "email",
