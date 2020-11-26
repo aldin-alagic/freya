@@ -30,6 +30,7 @@ import "rsuite/dist/styles/rsuite-default.css";
 import Login from "./components/login";
 import Logout from "./components/logout";
 import auth from "./services/userService";
+import ProtectedRoute from "./components/common/protectedRoute";
 
 class App extends Component {
   state = {};
@@ -78,7 +79,7 @@ class App extends Component {
             <Route path="/issues/new/" component={NewIssue} />
             <Route path="/issues" component={Issues} />
             <Route path="/offers/test/" component={Offer} />
-            <Route path="/profile" component={Profile} />
+            <ProtectedRoute path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/" component={Home} />
