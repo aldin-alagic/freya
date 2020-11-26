@@ -18,7 +18,7 @@ class Login extends Form {
   doSubmit = async () => {
     const { data: response } = await userService.login(this.state.data);
     if (response.status == 200) {
-      localStorage.setItem("user", response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
       toast.success(response.message, { className: "alert-success" });
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : "/profile/details";
