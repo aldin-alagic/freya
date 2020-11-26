@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light mb-10">
       <Link className="navbar-brand" to="/home">
@@ -45,10 +45,24 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className="navbar-nav">
-          <NavLink className="nav-item nav-link" to="/login">
-            Login
-            <FontAwesomeIcon className="ml-2" icon={faSignInAlt} size="lg" />
-          </NavLink>
+          {user ? (
+            <React.Fragment>
+              <NavLink className="nav-item nav-link" to="/logout">
+                Logout
+              </NavLink>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <NavLink className="nav-item nav-link" to="/login">
+                Login
+                <FontAwesomeIcon
+                  className="ml-2"
+                  icon={faSignInAlt}
+                  size="lg"
+                />
+              </NavLink>
+            </React.Fragment>
+          )}
         </div>
       </div>
     </nav>
