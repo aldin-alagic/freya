@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./components/home";
 import Spinner from "./components/spinner";
 import NavBar from "./components/navbar";
@@ -27,13 +27,21 @@ import ViewIssue from "./components/issues/viewIssue/viewIssue";
 import Offer from "./components/offer/offer";
 import NewIssue from "./components/issues/newIssue/newIssue";
 import "rsuite/dist/styles/rsuite-default.css";
+import Login from "./components/login";
+import Logout from "./components/logout";
+import auth from "./services/userService";
 
 class App extends Component {
   state = {};
 
-  componentDidMount() {}
+  componentDidMount() {
+    const user = auth.getCurrentUser();
+    this.setState({ user });
+  }
 
   render() {
+    const { user } = this.state;
+
     return (
       <div className="main-container">
         <ReactTooltip place="right" type="dark" effect="solid" />
@@ -51,7 +59,7 @@ class App extends Component {
           bodyClassName="p-3 text-justify"
         />
         <Report />
-        <NavBar />
+        <NavBar user={user} />
         <main className="container col-9">
           <Switch>
             <Route path="/help-and-support" component={HelpAndSupport} />
@@ -71,6 +79,8 @@ class App extends Component {
             <Route path="/issues" component={Issues} />
             <Route path="/offers/test/" component={Offer} />
             <Route path="/profile" component={Profile} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
