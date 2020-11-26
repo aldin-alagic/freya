@@ -16,6 +16,18 @@ export function logout() {
   localStorage.removeItem("user");
 }
 
+export function getUserDetails() {
+  const api = API + "user-details";
+  const user = JSON.parse(localStorage.getItem("user"));
+  return trackPromise(
+    http.get(api, {
+      headers: {
+        "Auth-Token": user.auth_token,
+      },
+    })
+  );
+}
+
 export function getCurrentUser() {
   try {
     const user = localStorage.getItem("user");
@@ -29,4 +41,5 @@ export default {
   login,
   logout,
   getCurrentUser,
+  getUserDetails,
 };
