@@ -10,6 +10,7 @@ import Message from "./message";
 
 const Offer = () => {
   const solution = {
+    id: 1,
     title: "Transmission problem",
     description:
       "We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ....",
@@ -28,11 +29,20 @@ const Offer = () => {
         <hr className="mb-0" />
         <Menu />
         <hr className="mt-0 mb-4" />
-        <Route path="/offers/:id/overview" component={Overview} />
-        <Route path="/offers/:id/attachments/" component={Attachments} />
-        <Route path="/offers/:id/expert/" component={Expert} />
-        <Route path="/offers/:id/message/" component={Message} />
-        <Redirect to="/offers/:id/overview" />
+        <Route
+          path={"/offers/" + solution.id + "/overview"}
+          component={Overview}
+        />
+        <Route
+          path={"/offers/" + solution.id + "/attachments"}
+          component={Attachments}
+        />
+        <Route path={"/offers/" + solution.id + "/expert"} component={Expert} />
+        <Route
+          path={"/offers/" + solution.id + "/message"}
+          component={Message}
+        />
+        <Redirect to={"/offers/" + solution.id + "/overview"} />
       </div>
       <SolutionPackages />
       <Modal
