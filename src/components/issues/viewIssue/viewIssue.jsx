@@ -4,7 +4,6 @@ import Overview from "./overview";
 import Menu from "./menu";
 import Offers from "./offers";
 import SwitchBox from "../../common/switchBox";
-import OffersWidget from "./offersWidget";
 import Attachments from "../../common/attachments";
 import Description from "./description";
 import Activities from "./activities";
@@ -21,10 +20,10 @@ class ViewIssue extends Component {
     };
     return (
       <div className="row">
-        <div className="col-md-8">
-          <div className="row pl-3 px-md-3 ">
-            <h4 className="mr-auto">{solution.title}</h4>
-            <div className="text-secondary">
+        <div className="col-12">
+          <div className="row px-0">
+            <h4 className="mx-3 mr-auto">{solution.title}</h4>
+            <div className="d-flex text-secondary align-content-center mx-3">
               <span className="m-1">{solution.views} views</span>
               <span className="m-1">{solution.offers} offers</span>
             </div>
@@ -50,7 +49,6 @@ class ViewIssue extends Component {
           <Route path="/issues/test/advertise" component={Advertise} />
           <Redirect to="/issues/test/overview" />
         </div>
-        <OffersWidget />
       </div>
     );
   }
