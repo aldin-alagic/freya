@@ -57,7 +57,12 @@ class TicketForm extends Form {
               )}
             </div>
             <div>
-              {this.renderSelect("category", "Category", this.state.categories)}
+              {this.renderSelect(
+                "category",
+                "Category",
+                "",
+                this.state.categories
+              )}
             </div>
             <div>
               {this.renderTextArea(
