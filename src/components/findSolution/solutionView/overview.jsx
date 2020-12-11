@@ -9,7 +9,16 @@ import Expert from "./../../common/expert";
 const Overview = () => {
   return (
     <div>
-      <VehicleDescription />
+      <VehicleDescription
+        data={{
+          brand: "Mercedes",
+          model: "C200",
+          year: "2019",
+          version: "AMG",
+          fuelType: "Hybrid",
+          transmission: "Manual",
+        }}
+      />
       <IssueType />
       <ShortDescription />
       <SideEffects />
