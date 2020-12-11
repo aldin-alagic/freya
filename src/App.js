@@ -65,7 +65,7 @@ class App extends Component {
           <Switch>
             <Route path="/help-and-support" component={HelpAndSupport} />
             <Route path="/faq" component={FAQ} />
-            <Route path="/submit-ticket" component={SubmitTicket} />
+            <ProtectedRoute path="/submit-ticket" component={SubmitTicket} />
             <Route path="/contact-us" component={ContactUs} />
             <Route path="/user-agreement" component={UserAgreement} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
