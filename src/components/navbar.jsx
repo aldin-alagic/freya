@@ -34,7 +34,7 @@ const NavBar = ({ user }) => {
           <NavLink className="nav-item nav-link" to="/how-it-works/customer">
             How it works
           </NavLink>
-          <NavLink className="nav-item nav-link" to="/find-solution/basic">
+          <NavLink className="nav-item nav-link" to="/solutions/basic">
             Solutions
           </NavLink>
           <NavLink className="nav-item nav-link" to="/issues">

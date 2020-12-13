@@ -16,47 +16,44 @@ const IssueType = () => {
       <IssueTypeMenu />
       <hr className="mt-3 mb-4" />
       <Route
-        path="/find-solution/advanced/issue-type/interior"
+        path="/solutions/advanced/issue-type/interior"
         component={Interior}
       />
+      <Route path="/solutions/advanced/issue-type/engine" component={Engine} />
       <Route
-        path="/find-solution/advanced/issue-type/engine"
-        component={Engine}
-      />
-      <Route
-        path="/find-solution/advanced/issue-type/body-and-exterior"
+        path="/solutions/advanced/issue-type/body-and-exterior"
         component={BodyExterior}
       />
       <Route
-        path="/find-solution/advanced/issue-type/control-and-suspension"
+        path="/solutions/advanced/issue-type/control-and-suspension"
         component={ControlSuspension}
       />
       <Route
-        path="/find-solution/advanced/issue-type/driving-support-and-security"
+        path="/solutions/advanced/issue-type/driving-support-and-security"
         component={DrivingSupportSecurity}
       />
       <Route
-        path="/find-solution/advanced/issue-type/energy-system"
+        path="/solutions/advanced/issue-type/energy-system"
         component={EnergySystem}
       />
       <Route
-        path="/find-solution/advanced/issue-type/sensors"
+        path="/solutions/advanced/issue-type/sensors"
         component={Sensors}
       />
       <Route
-        path="/find-solution/advanced/issue-type/additional-electric-parts"
+        path="/solutions/advanced/issue-type/additional-electric-parts"
         component={AdditionalElectricParts}
       />
-      <Redirect to="/find-solution/advanced/issue-type/" />
+      <Redirect to="/solutions/advanced/issue-type/" />
       <Link
         className="btn btn-primary col-2 m-1"
-        to="/find-solution/advanced/vehicle"
+        to="/solutions/advanced/vehicle"
       >
         Back
       </Link>
       <Link
         className="btn btn-primary col-2 m-1"
-        to="/find-solution/advanced/additional-filters"
+        to="/solutions/advanced/additional-filters"
       >
         Next
       </Link>

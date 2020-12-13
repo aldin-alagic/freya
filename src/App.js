@@ -16,9 +16,9 @@ import PrivacyPolicy from "./components/privacyPolicy";
 import AboutUs from "./components/aboutUs";
 import Pricing from "./components/pricing";
 import HowItWorks from "./components/howItWorks";
-import FindSolution from "./components/findSolution/findSolution";
 import BecomeExpert from "./components/becomeExpert";
-import SolutionView from "./components/findSolution/solutionView/solutionView";
+import Solutions from "./components/solutions/solutions";
+import SolutionView from "./components/solutions/solutionView/solutionView";
 import ReactTooltip from "react-tooltip";
 import Report from "./components/report";
 import Profile from "./components/profile/profile";
@@ -73,7 +73,7 @@ class App extends Component {
             <Route path="/pricing" component={Pricing} />
             <Route path="/how-it-works" component={HowItWorks} />
             <Route path="/become-an-expert" component={BecomeExpert} />
-            <Route path="/find-solution" component={FindSolution} />
+            <Route path="/solutions" component={Solutions} />
             <Route path="/solution/test" component={SolutionView} />
             <Route path="/issues/test/" component={ViewIssue} />
             <Route path="/issues/new/" component={NewIssue} />

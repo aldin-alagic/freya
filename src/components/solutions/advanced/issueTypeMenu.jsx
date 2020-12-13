@@ -7,7 +7,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/interior"
+          to="/solutions/advanced/issue-type/interior"
         >
           Interior
         </NavLink>
@@ -16,7 +16,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/engine"
+          to="/solutions/advanced/issue-type/engine"
         >
           Engine
         </NavLink>
@@ -25,7 +25,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/body-and-exterior"
+          to="/solutions/advanced/issue-type/body-and-exterior"
         >
           Body and exterior
         </NavLink>
@@ -34,7 +34,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/control-and-suspension"
+          to="/solutions/advanced/issue-type/control-and-suspension"
         >
           Control and suspension
         </NavLink>
@@ -43,7 +43,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/driving-support-and-security"
+          to="/solutions/advanced/issue-type/driving-support-and-security"
         >
           Driving support and security
         </NavLink>
@@ -52,7 +52,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/energy-system"
+          to="/solutions/advanced/issue-type/energy-system"
         >
           Energy system
         </NavLink>
@@ -61,7 +61,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/sensors"
+          to="/solutions/advanced/issue-type/sensors"
         >
           Sensors
         </NavLink>
@@ -70,7 +70,7 @@ const IssueTypeMenu = () => {
       <div className="col-md-3 col-sm-6 p-1">
         <NavLink
           className="btn btn-outline-primary col-12"
-          to="/find-solution/advanced/issue-type/additional-electric-parts"
+          to="/solutions/advanced/issue-type/additional-electric-parts"
         >
           Additional electric parts
         </NavLink>

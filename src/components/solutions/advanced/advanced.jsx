@@ -10,13 +10,13 @@ const FindSolutionAdvanced = () => {
     <div>
       <Menu />
       <hr className="my-4" />
-      <Route path="/find-solution/advanced/vehicle" component={Vehicle} />
-      <Route path="/find-solution/advanced/issue-type" component={IssueType} />
+      <Route path="/solutions/advanced/vehicle" component={Vehicle} />
+      <Route path="/solutions/advanced/issue-type" component={IssueType} />
       <Route
-        path="/find-solution/advanced/additional-filters"
+        path="/solutions/advanced/additional-filters"
         component={AdditionalFilters}
       />
-      <Redirect to="/find-solution/advanced/vehicle" />
+      <Redirect to="/solutions/advanced/vehicle" />
     </div>
   );
 };
