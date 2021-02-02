@@ -1,65 +1,101 @@
-import React from "react";
+import React, { Component } from "react";
 import SolutionCard from "../solutionCard";
 import SearchBox from "../../common/searchBox";
 import SelectBox from "../../common/selectBox";
 import { NavLink } from "react-router-dom";
+import solutionService from "../../../services/solutionService";
+import userService from "../../../services/userService";
+import { toast } from "react-toastify";
 
-const Main = () => {
-  return (
-    <div className="col-md-6 mt-23">
-      <div className="d-flex mb-2">
-        <div className="col-6 p-0">
-          <NavLink
-            className="btn btn-outline-secondary col-12 selection-left-option"
-            to="#"
-          >
-            All solutions
-          </NavLink>
+class Main extends Component {
+  state = {
+    data: {
+      publicSolutions: [],
+      userSolutions: [],
+    },
+  };
+
+  componentDidMount() {
+    this.getSolutions();
+  }
+
+  getSolutions = async () => {
+    const { data: response } = await solutionService.getSolutions();
+    if (response.status == 200) {
+      toast.success(response.message, { className: "alert-success" });
+      const solutions = response.data;
+      const data = {
+        publicSolutions: solutions.public_solutions,
+        userSolutions: solutions.user_solutions,
+      };
+      this.setState({ data: data });
+    } else {
+      userService.logout();
+      toast.error(response.message, { className: "alert-danger" }); //Dodaj code check ako je unauth, tako da zbog ostalih grešaka ne rad logout
+    }
+  };
+
+  render() {
+    const { publicSolutions, userSolutions } = this.state.data;
+    return (
+      <div className="col-md-6 mt-23">
+        <div className="d-flex mb-2">
+          <div className="col-6 p-0">
+            <NavLink
+              className="btn btn-outline-secondary col-12 selection-left-option"
+              to="#"
+            >
+              All solutions
+            </NavLink>
+          </div>
+          <div className="col-6 p-0">
+            <NavLink
+              className="btn btn-outline-secondary col-12 selection-right-option"
+              to="/home"
+            >
+              Purchased solutions
+            </NavLink>
+          </div>
         </div>
-        <div className="col-6 p-0">
-          <NavLink
-            className="btn btn-outline-secondary col-12 selection-right-option"
-            to="/home"
-          >
-            Purchased solutions
-          </NavLink>
+        <SearchBox />
+        <div className="row mx-0">
+          <div className="col-sm-12 col-md-5 px-0 mr-auto">
+            <SelectBox
+              name="sort"
+              label=""
+              placeholder="Filter"
+              options={[
+                { value: 0, label: "Price (from high to low)" },
+                { value: 1, label: "Price (from low to high)" },
+              ]}
+            />
+          </div>
+          <span className="text-primary col-sm-12 col-md-2 text-right mb-2 mx-0 px-0">
+            {userSolutions.length + publicSolutions.length} results
+          </span>
         </div>
-      </div>
-      <SearchBox />
-      <div className="row mx-0">
-        <div className="col-sm-12 col-md-5 px-0 mr-auto">
-          <SelectBox
-            name="sort"
-            label=""
-            placeholder="Filter"
-            options={[
-              { value: 0, label: "Price (from high to low)" },
-              { value: 1, label: "Price (from low to high)" },
-            ]}
+        {userSolutions.map((solution) => (
+          <SolutionCard
+            title={solution.preview_json.title}
+            description={solution.preview_json.short_description}
+            company={solution.preview_json.user_name}
+            offer={solution.preview_json.offer}
+            keywords={solution.preview_json.keywords}
+            solutionUrl={`/solution/${solution.preview_json.solution_id}/overview`}
           />
-        </div>
-        <span className="text-primary col-sm-12 col-md-2 text-right mb-2 mx-0 px-0">
-          2 results
-        </span>
+        ))}
+        {publicSolutions.map((solution) => {
+          <SolutionCard
+            title={solution.preview_json.title}
+            description={solution.preview_json.short_description}
+            company={solution.preview_json.user_name}
+            offer={solution.preview_json.offer}
+            keywords={solution.preview_json.keywords}
+          />;
+        })}
       </div>
-      <SolutionCard
-        title="Transmission problem"
-        description="We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ...."
-        company="Company XYZ"
-        price="250"
-        tags={["Mercedes", "C200", "AMG"]}
-        solutionUrl="/solution/test/"
-      />
-      <SolutionCard
-        title="Brake problem"
-        description="We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ...."
-        company="Company ABC"
-        price="200"
-        tags={["BMW", "M5"]}
-        solutionUrl="/solution/test/"
-      />
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Main;
