@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBan,
   faCheckCircle,
+  faCoins,
   faHeart,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -12,8 +13,8 @@ const SolutionCard = ({
   title,
   description,
   company,
-  price,
-  tags,
+  offer,
+  keywords,
   solutionUrl,
 }) => {
   return (
@@ -28,8 +29,13 @@ const SolutionCard = ({
             <FontAwesomeIcon className="ml-1" icon={faCheckCircle} />
           </div>
         </div>
-        <div className="badge badge-secondary text-center p-3 my-auto">
-          {price} Tokens
+        <div className="text-center p-3 font-weight-bold my-auto">
+          <span className="text-secondary col-12">
+            {offer[0].price} <FontAwesomeIcon icon={faCoins} />
+          </span>
+          <span className="text-warning col-12">
+            {offer[1].price} <FontAwesomeIcon icon={faCoins} />
+          </span>
         </div>
       </div>
       <Link to={solutionUrl}>
@@ -37,13 +43,13 @@ const SolutionCard = ({
       </Link>
       <p className="text-justify">{description}</p>
       <div>
-        {tags.map(function (tag, index) {
+        {keywords.map(function (keyword, index) {
           return (
             <span
-              key={"tag-" + index}
+              key={"keyword-" + index}
               className="badge badge-pill badge-secondary px-2 m-1"
             >
-              {tag}
+              {keyword}
             </span>
           );
         })}
@@ -57,17 +63,21 @@ const SolutionCard = ({
           size="2x"
         />
         <Link className="btn btn-primary m-1" to="/home">
-          View profile
+          Expert
         </Link>
-        <Link className="btn btn-primary m-1" to={solutionUrl}>
-          View
-        </Link>
+        {solutionUrl ? (
+          <Link className="btn btn-primary m-1" to={solutionUrl}>
+            Solution
+          </Link>
+        ) : null}
         <Link className="btn btn-primary m-1" to="/home">
           Send a message
         </Link>
-        <Link className="btn btn-primary m-1" to="/home">
-          Purchase
-        </Link>
+        {solutionUrl ? null : (
+          <Link className="btn btn-primary m-1" to="/home">
+            Purchase
+          </Link>
+        )}
       </div>
     </div>
   );
