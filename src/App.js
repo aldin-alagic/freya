@@ -80,7 +80,7 @@ class App extends Component {
             <Route path="/issues/test/" component={Issue} />
             <Route path="/issues/new/" component={NewIssue} />
             <Route path="/issues" component={Issues} />
-
+            <Route path="/offers/:id" component={Offer} />
             <ProtectedRoute path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
