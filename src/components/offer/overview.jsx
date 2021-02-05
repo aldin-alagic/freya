@@ -1,18 +1,19 @@
 import React from "react";
-import Message from "./message";
-import Expert from "../common/Expert";
-import Attachments from "../common/Attachments";
-import Details from "./details";
 
-const Overview = () => {
-  return (
-    <div>
-      <Details />
-      <Message />
-      <Attachments />
-      <Expert />
-    </div>
-  );
-};
+import { Message } from "./Message";
+import { Expert } from "../common/Expert";
+import { Attachments } from "../common/Attachments";
+import { Details } from "./Details";
 
-export default Overview;
+export class Overview extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Details />
+        <Message />
+        <Attachments />
+        <Expert />
+      </React.Fragment>
+    );
+  }
+}
