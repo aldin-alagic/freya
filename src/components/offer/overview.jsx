@@ -1,7 +1,7 @@
 import React from "react";
 import Message from "./message";
-import Expert from "./../common/expert";
-import Attachments from "./../common/attachments";
+import Expert from "../common/Expert";
+import Attachments from "../common/Attachments";
 import Details from "./details";
 
 const Overview = () => {

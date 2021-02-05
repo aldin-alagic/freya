@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SwitchBox } from "../../common/switchBox";
+import { SwitchBox } from "../../common/SwitchBox";
 
 export class Visibility extends React.PureComponent {
   static propTypes = {

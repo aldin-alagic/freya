@@ -2,10 +2,10 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Overview from "./overview";
 import Menu from "./menu";
-import Expert from "./../common/expert";
-import Attachments from "./../common/attachments";
-import SolutionPackages from "./../common/solutionPackages";
-import Modal from "./../common/modal";
+import Expert from "../common/Expert";
+import Attachments from "../common/Attachments";
+import SolutionPackages from "../common/SolutionPackages";
+import Modal from "../common/Modal";
 import Message from "./message";
 
 const Offer = () => {

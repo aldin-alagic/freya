@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card } from "./../common/Card";
+import { Card } from "../common/Card";
 
 import imgAsk from "../../images/questions.svg";
 import imgHire from "../../images/interview.svg";
