@@ -6,7 +6,7 @@ import {
   faUsersCog,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { SmallCard } from "../components/common/SmallCard";
+import { SmallCard } from "./SmallCard";
 
 export class ExpertSmallCards extends React.PureComponent {
   render() {
