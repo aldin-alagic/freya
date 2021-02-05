@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { IssueTypeMenu } from "./IssueTypeMenu";
 import { IssueTypeCard } from "../../common/IssueTypeCard";
 import { PropTypes } from "prop-types";
 
-export class IssueType extends Component {
+export class IssueType extends React.Component {
   static propTypes = {
     issueType: PropTypes.string.isRequired,
     onIssueTypeChange: PropTypes.func.isRequired,

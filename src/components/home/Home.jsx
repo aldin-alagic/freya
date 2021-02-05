@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Cards } from "./Cards";
 import { SmallCards } from "./SmallCards";
-import { PricingCards } from "./../PricingCards";
+import { PricingCards } from "../PricingCards";
 
 export class Home extends React.PureComponent {
   render() {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ExpertSmallCards } from "../ExpertSmallCards";
+import { ExpertSmallCards } from "../common/ExpertSmallCards";
 
 import stock1 from "../../images/stock1.svg";
 import stock2 from "../../images/stock2.svg";

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { PricingCards } from "./../PricingCards";
-import { ExpertSmallCards } from "./../ExpertSmallCards";
+import { PricingCards } from "../PricingCards";
+import { ExpertSmallCards } from "../common/ExpertSmallCards";
 
 export class BecomeExpert extends React.PureComponent {
   render() {

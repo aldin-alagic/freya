@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ExpertSmallCards } from "./../ExpertSmallCards";
+import { ExpertSmallCards } from "../common/ExpertSmallCards";
 import { CustomerSmallCards } from "./../common/CustomerSmallCards";
 
 export class SmallCards extends React.PureComponent {
