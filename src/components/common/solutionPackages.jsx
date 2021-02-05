@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import PremiumPackage from "./premiumPackage";
-import StandardPackage from "./standardPackage";
 import { Link } from "react-router-dom";
 
-function SolutionPackages() {
+import { PremiumPackage } from "./PremiumPackage";
+import { StandardPackage } from "./StandardPackage";
+
+export function SolutionPackages() {
   const [packageType, setPackageType] = useState("standard");
 
   return (
@@ -56,5 +57,3 @@ function SolutionPackages() {
     </div>
   );
 }
-
-export default SolutionPackages;

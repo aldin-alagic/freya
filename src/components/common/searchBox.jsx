@@ -1,16 +1,26 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
-const SearchBox = ({ value, onChange }) => {
-  return (
-    <input
-      type="text"
-      name="query"
-      className="form-control mb-2"
-      placeholder="Quick search..."
-      value={value}
-      onChange={(e) => onChange(e.currentTarget.value)}
-    />
-  );
-};
+import { Input } from "./Input";
 
-export default SearchBox;
+export class SearchBox extends React.PureComponent {
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+  };
+
+  render() {
+    const { value, onChange } = this.props;
+
+    return (
+      <Input
+        type="text"
+        name="query"
+        styleInput="form-control mb-2"
+        placeholder="Quick search..."
+        value={value}
+        onChange={(e) => onChange(e.currentTarget.value)}
+      />
+    );
+  }
+}

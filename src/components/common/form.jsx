@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
-import Input from "./input";
-import File from "./file";
-import SelectBox from "./selectBox";
-import Radio from "./radio";
-import TextArea from "./textArea";
-import SwitchBox from "./switchBox";
-import Phone from "./phone";
 
-class Form extends Component {
+import { Input } from "./Input";
+import { File } from "./File";
+import { SelectBox } from "./SelectBox";
+import { Radio } from "./Radio";
+import { TextArea } from "./TextArea";
+import { SwitchBox } from "./SwitchBox";
+import { Phone } from "./Phone";
+
+export class Form extends React.Component {
   state = {
     data: {},
     errors: {},
@@ -114,14 +115,13 @@ class Form extends Component {
     );
   }
 
-  renderFile(name, label, type) {
+  renderFile(name, label) {
     const { data, errors } = this.state;
     return (
       <File
         name={name}
         value={data[name]}
         label={label}
-        type={type}
         onChange={this.handleChange}
         error={errors[name]}
       />
@@ -149,9 +149,9 @@ class Form extends Component {
     const { data, errors } = this.state;
     return (
       <Radio
+        id={id}
         name={name}
         label={label}
-        id={id}
         onChange={this.handleChange}
         error={errors[id]}
         value={value}
@@ -160,5 +160,3 @@ class Form extends Component {
     );
   }
 }
-
-export default Form;

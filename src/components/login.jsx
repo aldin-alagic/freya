@@ -1,10 +1,11 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "./common/form";
-import userService from "../services/userService";
 import { toast } from "react-toastify";
 
-class Login extends Form {
+import { Form } from "./common/Form";
+import userService from "../services/userService";
+
+export class Login extends Form {
   state = {
     data: { email: "", password: "" },
     errors: {},
@@ -52,4 +53,3 @@ class Login extends Form {
     );
   }
 }
-export default Login;

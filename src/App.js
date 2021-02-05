@@ -1,36 +1,37 @@
 import React, { Component } from "react";
-import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Home from "./components/home";
-import Spinner from "./components/spinner";
-import NavBar from "./components/navbar";
-import Footer from "./components/footer";
-import HelpAndSupport from "./components/helpAndSupport";
-import FAQ from "./components/faq";
-import SubmitTicket from "./components/submitTicket";
-import ContactUs from "./components/contactUs";
-import UserAgreement from "./components/userAgreement";
-import PrivacyPolicy from "./components/privacyPolicy";
-import AboutUs from "./components/aboutUs";
-import Pricing from "./components/pricing";
-import HowItWorks from "./components/howItWorks";
-import BecomeExpert from "./components/becomeExpert";
-import Solutions from "./components/solutions/solutions";
-import SolutionView from "./components/solutions/solutionView/solutionView";
 import ReactTooltip from "react-tooltip";
-import Report from "./components/report";
-import Profile from "./components/profile/profile";
-import Issues from "./components/issues/issues";
-import ViewIssue from "./components/issues/viewIssue/viewIssue";
-import Offer from "./components/offer/offer";
-import NewIssue from "./components/issues/newIssue/newIssue";
-import "rsuite/dist/styles/rsuite-default.css";
-import Login from "./components/login";
-import Logout from "./components/logout";
+
+import { Spinner } from "./components/Spinner";
+import { NavBar } from "./components/NavBar";
+import { Footer } from "./components/Footer";
+import { HelpAndSupport } from "./components/HelpAndSupport";
+import { Faq } from "./components/Faq";
+import { SubmitTicket } from "./components/SubmitTicket";
+import { ContactUs } from "./components/ContactUs";
+import { UserAgreement } from "./components/UserAgreement";
+import { PrivacyPolicy } from "./components/PrivacyPolicy";
+import { AboutUs } from "./components/AboutUs";
+import { Pricing } from "./components/pricing/Pricing";
+import { BecomeExpert } from "./components/becomeExpert/BecomeExpert";
+import { HowItWorks } from "./components/howItWorks/HowItWorks";
+import { Solutions } from "./components/solutions/Solutions";
+import { Solution } from "./components/solutions/solution/Solution";
+import { Report } from "./components/Report";
+import { Profile } from "./components/profile/Profile";
+import { Issues } from "./components/issues/Issues";
+import { Issue } from "./components/issues/issue/Issue";
+import { NewIssue } from "./components/issues/newIssue/NewIssue";
+import { Login } from "./components/Login";
+import { Logout } from "./components/Logout";
+import { ProtectedRoute } from "./components/common/ProtectedRoute";
+import { Home } from "./components/home/Home";
 import auth from "./services/userService";
-import ProtectedRoute from "./components/common/protectedRoute";
+
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import "rsuite/dist/styles/rsuite-default.css";
 
 class App extends Component {
   state = {};
@@ -64,7 +65,7 @@ class App extends Component {
         <main className="container col-9">
           <Switch>
             <Route path="/help-and-support" component={HelpAndSupport} />
-            <Route path="/faq" component={FAQ} />
+            <Route path="/faq" component={Faq} />
             <ProtectedRoute path="/submit-ticket" component={SubmitTicket} />
             <Route path="/contact-us" component={ContactUs} />
             <Route path="/user-agreement" component={UserAgreement} />
@@ -74,11 +75,11 @@ class App extends Component {
             <Route path="/how-it-works" component={HowItWorks} />
             <Route path="/become-an-expert" component={BecomeExpert} />
             <Route path="/solutions" component={Solutions} />
-            <Route path="/solution/test" component={SolutionView} />
-            <Route path="/issues/test/" component={ViewIssue} />
+            <Route path="/solution/test" component={Solution} />
+            <Route path="/issues/test/" component={Issue} />
             <Route path="/issues/new/" component={NewIssue} />
             <Route path="/issues" component={Issues} />
-            <Route path="/offers/:id" component={Offer} />
+
             <ProtectedRoute path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />

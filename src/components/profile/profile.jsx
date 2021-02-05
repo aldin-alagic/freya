@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import Sidebar from "./sidebar";
-import Details from "./details";
-import ChangePassword from "./changePassword";
 
-class Profile extends Component {
-  state = {};
+import { Sidebar } from "./Sidebar";
+import { Details } from "./Details";
+import { ChangePassword } from "./ChangePassword";
+
+export class Profile extends React.PureComponent {
   render() {
     return (
       <div className="container row">
@@ -17,5 +17,3 @@ class Profile extends Component {
     );
   }
 }
-
-export default Profile;

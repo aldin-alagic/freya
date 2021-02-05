@@ -1,31 +1,50 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
-const TextArea = ({
-  name,
-  label,
-  columns,
-  rows,
-  error,
-  styleLabel,
-  styleTextArea,
-  ...rest
-}) => {
-  return (
-    <div className="form-group row mx-0 px-0 mb-4 col-12">
-      <label htmlFor={name} className={styleLabel}>
-        {label}
-      </label>
-      <textarea
-        {...rest}
-        id={name}
-        name={name}
-        cols={columns}
-        rows={rows}
-        className={styleTextArea}
-      ></textarea>
-      {error && <div className="alert alert-danger mt-1">{error}</div>}
-    </div>
-  );
-};
+export class TextArea extends React.PureComponent {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    columns: PropTypes.number.isRequired,
+    rows: PropTypes.number.isRequired,
+    value: PropTypes.node,
+    label: PropTypes.string,
+    styleLabel: PropTypes.string,
+    styleTextArea: PropTypes.string,
+    error: PropTypes.string,
+  };
 
-export default TextArea;
+  render() {
+    const {
+      name,
+      label,
+      columns,
+      rows,
+      error,
+      styleLabel,
+      styleTextArea,
+      onChange,
+      value,
+    } = this.props;
+
+    return (
+      <div className="form-group row mx-0 px-0 mb-4 col-12">
+        {label && (
+          <label htmlFor={name} className={styleLabel}>
+            {label}
+          </label>
+        )}
+        <textarea
+          id={name}
+          name={name}
+          cols={columns}
+          rows={rows}
+          className={styleTextArea}
+          onChange={onChange}
+          value={value}
+        ></textarea>
+        {error && <div className="alert alert-danger mt-1">{error}</div>}
+      </div>
+    );
+  }
+}

@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
+import { PropTypes } from "prop-types";
 
-// columns: array
-// sortColumn: object
-// onSort: function
+export class TableHeader extends React.PureComponent {
+  static propTypes = {
+    columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+    sortColumn: PropTypes.object.isRequired,
+    onSort: PropTypes.func.isRequired,
+  };
 
-class TableHeader extends Component {
   raiseSort = (path) => {
     const sortColumn = { ...this.props.sortColumn };
     if (sortColumn.path === path)
@@ -42,5 +45,3 @@ class TableHeader extends Component {
     );
   }
 }
-
-export default TableHeader;

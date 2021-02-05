@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
-import Joi from "joi-browser";
-import Form from "./common/form";
+import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import Joi from "joi-browser";
 
-class TicketForm extends Form {
+import { Form } from "./common/Form";
+
+export class TicketForm extends Form {
   state = {
     data: {
       subject: "",
@@ -44,7 +45,7 @@ class TicketForm extends Form {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="row d-flex justify-content-center">
           <form className="w-50" onSubmit={this.handleSubmit}>
             <div>
@@ -74,7 +75,7 @@ class TicketForm extends Form {
                 "form-control"
               )}
             </div>
-            <div>{this.renderFile("file", "Attach files", "file")}</div>
+            <div>{this.renderFile("file", "Attach files")}</div>
             <ReCAPTCHA
               size="normal"
               render="explicit"
@@ -84,8 +85,7 @@ class TicketForm extends Form {
             <div>{this.renderButton("Submit")}</div>
           </form>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-export default TicketForm;

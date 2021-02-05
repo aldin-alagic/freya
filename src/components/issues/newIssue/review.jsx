@@ -1,73 +1,79 @@
-import React, { Fragment } from "react";
-import VehicleDescription from "./../../common/vehicleDescription";
-import Attachments from "./../../common/attachments";
-import SwitchBox from "./../../common/switchBox";
+import React from "react";
+import { PropTypes } from "prop-types";
 
-const Review = ({ data }) => {
-  const {
-    brand,
-    model,
-    year,
-    version,
-    fuelType,
-    transmission,
-    issueType,
-    title,
-    description,
-    note,
-    published,
-  } = data;
+import { VehicleDescription } from "../../common/VehicleDescription";
+import { SwitchBox } from "../../common/SwitchBox";
+import { Attachments } from "./../../common/Attachments";
 
-  return (
-    <Fragment>
-      <VehicleDescription
-        data={{
-          brand: brand.value,
-          model: model.value,
-          year: year.value,
-          version: version.value,
-          fuelType,
-          transmission,
-        }}
-      />
-      <h5 className="text-primary bg-light p-2">Issue type</h5>
-      <div className="row justify-content-start px-4 my-3">
-        <span className="badge badge-pill badge-secondary px-2 m-1">
-          {issueType}
-        </span>
-      </div>
-      <div>
-        <h5 className="text-primary bg-light p-2">Title</h5>
-        <p className="text-justify px-3">{title}</p>
-      </div>
-      <div>
-        <h5 className="text-primary bg-light p-2">Description</h5>
-        <p className="text-justify px-3">{description}</p>
-      </div>
-      <div>
-        <h5 className="text-primary bg-light p-2">Note</h5>
-        <p className="text-justify px-3">{note}</p>
-      </div>
-      <h5 className="text-primary bg-light p-2">Keywords</h5>
-      <div className="row justify-content-start px-4 my-3">
-        <span className="badge badge-pill badge-secondary px-2 m-1">
-          Gear box
-        </span>
-        <span className="badge badge-pill badge-secondary px-2 m-1">
-          Mercedes
-        </span>
-      </div>
-      <Attachments />
-      <h5 className="text-primary bg-light p-2">Visibility</h5>
-      <div className="row justify-content-start px-4 my-3">
-        {published ? (
-          <SwitchBox name="published" checked="checked" readOnly />
-        ) : (
-          <SwitchBox name="published" readOnly />
-        )}
-      </div>
-    </Fragment>
-  );
-};
+export class Review extends React.Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+  };
 
-export default Review;
+  render() {
+    const {
+      brand,
+      model,
+      year,
+      version,
+      fuelType,
+      transmission,
+      issueType,
+      title,
+      description,
+      note,
+      published,
+    } = this.props.data;
+
+    return (
+      <React.Fragment>
+        <VehicleDescription
+          data={{
+            brand: brand.value,
+            model: model.value,
+            year: year.value,
+            version: version.value,
+            fuelType,
+            transmission,
+          }}
+        />
+        <h5 className="text-primary bg-light p-2">Issue type</h5>
+        <div className="row justify-content-start px-4 my-3">
+          <span className="badge badge-pill badge-secondary px-2 m-1">
+            {issueType}
+          </span>
+        </div>
+        <div>
+          <h5 className="text-primary bg-light p-2">Title</h5>
+          <p className="text-justify px-3">{title}</p>
+        </div>
+        <div>
+          <h5 className="text-primary bg-light p-2">Description</h5>
+          <p className="text-justify px-3">{description}</p>
+        </div>
+        <div>
+          <h5 className="text-primary bg-light p-2">Note</h5>
+          <p className="text-justify px-3">{note}</p>
+        </div>
+        <h5 className="text-primary bg-light p-2">Keywords</h5>
+        <div className="row justify-content-start px-4 my-3">
+          <span className="badge badge-pill badge-secondary px-2 m-1">
+            Gear box
+          </span>
+          <span className="badge badge-pill badge-secondary px-2 m-1">
+            Mercedes
+          </span>
+        </div>
+        <Attachments />
+        <h5 className="text-primary bg-light p-2">Visibility</h5>
+        <div className="row justify-content-start px-4 my-3">
+          {published ? (
+            <SwitchBox name="published" checked="checked" readOnly />
+          ) : (
+            <SwitchBox name="published" readOnly />
+          )}
+        </div>
+      </React.Fragment>
+    );
+  }
+}

@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Joi from "joi-browser";
-import Form from "../common/form";
-import userService from "../../services/userService";
 import { toast } from "react-toastify";
-import { data } from "jquery";
 
-class DetailsForm extends Form {
+import { Form } from "../common/Form";
+import userService from "../../services/userService";
+
+export class DetailsForm extends Form {
   state = {
     data: {
       firstName: "",
@@ -67,7 +67,7 @@ class DetailsForm extends Form {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="row">
           <div className="col-md-12 ml-3">
             <h4>Update your profile</h4>
@@ -233,8 +233,7 @@ class DetailsForm extends Form {
             </form>
           </div>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-export default DetailsForm;

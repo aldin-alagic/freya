@@ -1,11 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import _ from "lodash";
 import { withRouter } from "react-router-dom";
+import { PropTypes } from "prop-types";
 
-class TableBody extends Component {
+class TableBody extends React.PureComponent {
+  static propTypes = {
+    columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    baseUrl: PropTypes.string.isRequired,
+  };
+
   renderCell = (item, column) => {
     if (column.content) return column.content(item);
-
     return _.get(item, column.path);
   };
 

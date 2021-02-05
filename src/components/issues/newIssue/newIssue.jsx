@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import Vehicle from "./vehicle";
-import IssueType from "./issueType";
-import Description from "./description";
-import { Steps } from "rsuite";
-import Attachments from "./attachments";
-import Visibility from "./visibility";
-import Review from "./review";
+import React from "react";
 import { toast } from "react-toastify";
+import { Steps } from "rsuite";
 
-class NewIssue extends Component {
+import { Vehicle } from "./Vehicle";
+import { IssueType } from "./IssueType";
+import { Description } from "./Description";
+import { Visibility } from "./Visibility";
+import { Review } from "./Review";
+import { Attachments } from "../../common/Attachments";
+
+export class NewIssue extends React.Component {
   state = {
     step: 0,
     status: "process",
@@ -23,7 +24,7 @@ class NewIssue extends Component {
       title: "",
       description: "",
       note: "",
-      published: true,
+      published: false,
     },
     errors: {},
   };
@@ -142,7 +143,6 @@ class NewIssue extends Component {
       fuelType,
       transmission,
       issueType,
-      issueTypeLabel,
       title,
       description,
       note,
@@ -161,10 +161,8 @@ class NewIssue extends Component {
       case 1:
         return (
           <IssueType
-            handleChange={this.handleChange}
             onIssueTypeChange={this.handleIssueTypeChange}
             issueType={issueType}
-            issueTypeLabel={issueTypeLabel}
           />
         );
       case 2:
@@ -228,5 +226,3 @@ class NewIssue extends Component {
     );
   }
 }
-
-export default NewIssue;

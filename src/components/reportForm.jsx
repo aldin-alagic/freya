@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Joi from "joi-browser";
-import Form from "./common/form";
 import ReCAPTCHA from "react-google-recaptcha";
 
-class ReportForm extends Form {
+import { Form } from "./common/Form";
+
+export class ReportForm extends Form {
   state = {
     data: {
       email: "",
@@ -29,7 +30,7 @@ class ReportForm extends Form {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="d-flex justify-content-center">
           <form onSubmit={this.handleSubmit}>
             <div>
@@ -45,7 +46,7 @@ class ReportForm extends Form {
                 "form-control"
               )}
             </div>
-            <div>{this.renderFile("file", "Attach files", "file")}</div>
+            <div>{this.renderFile("file", "Attach files")}</div>
             <ReCAPTCHA
               size="normal"
               render="explicit"
@@ -54,8 +55,7 @@ class ReportForm extends Form {
             />
           </form>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-export default ReportForm;

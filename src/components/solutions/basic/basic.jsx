@@ -1,16 +1,17 @@
 import React from "react";
-import Sidebar from "./sidebar";
-import Main from "./main";
-import Widgets from "./widgets";
 
-const FindSolutionBasic = () => {
-  return (
-    <div className="row">
-      <Sidebar />
-      <Main />
-      <Widgets />
-    </div>
-  );
-};
+import { Sidebar } from "./Sidebar";
+import { Main } from "./Main";
+import { Widgets } from "./Widgets";
 
-export default FindSolutionBasic;
+export class Basic extends React.PureComponent {
+  render() {
+    return (
+      <div className="row">
+        <Sidebar />
+        <Main />
+        <Widgets />
+      </div>
+    );
+  }
+}

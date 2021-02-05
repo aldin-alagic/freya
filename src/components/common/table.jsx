@@ -1,20 +1,31 @@
 import React from "react";
-import TableHeader from "./tableHeader";
-import TableBody from "./tableBody";
+import { PropTypes } from "prop-types";
 
-const Table = ({ columns, sortColumn, onSort, baseUrl, data }) => {
-  return (
-    <div className="table-responsive">
-      <table className="table table-hover">
-        <TableHeader
-          columns={columns}
-          sortColumn={sortColumn}
-          onSort={onSort}
-        />
-        <TableBody columns={columns} data={data} baseUrl={baseUrl} />
-      </table>
-    </div>
-  );
-};
+import { TableHeader } from "./TableHeader";
+import TableBody from "./TableBody";
 
-export default Table;
+export class Table extends React.PureComponent {
+  static propTypes = {
+    columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    sortColumn: PropTypes.object.isRequired,
+    onSort: PropTypes.func.isRequired,
+    baseUrl: PropTypes.string.isRequired,
+  };
+
+  render() {
+    const { columns, sortColumn, onSort, baseUrl, data } = this.props;
+    return (
+      <div className="table-responsive">
+        <table className="table table-hover">
+          <TableHeader
+            columns={columns}
+            sortColumn={sortColumn}
+            onSort={onSort}
+          />
+          <TableBody columns={columns} data={data} baseUrl={baseUrl} />
+        </table>
+      </div>
+    );
+  }
+}

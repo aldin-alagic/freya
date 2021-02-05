@@ -1,16 +1,17 @@
 import React from "react";
-import IssueType from "./issueType";
-import ShortDescription from "./shortDescription";
-import VehicleDescription from "./vehicleDescription";
 
-const Description = () => {
-  return (
-    <div>
-      <VehicleDescription />
-      <IssueType />
-      <ShortDescription />
-    </div>
-  );
-};
+import { IssueType } from "./IssueType";
+import { ShortDescription } from "./ShortDescription";
+import { VehicleDescription } from "./VehicleDescription";
 
-export default Description;
+export class Description extends React.PureComponent {
+  render() {
+    return (
+      <React.Fragment>
+        <VehicleDescription />
+        <IssueType />
+        <ShortDescription />
+      </React.Fragment>
+    );
+  }
+}

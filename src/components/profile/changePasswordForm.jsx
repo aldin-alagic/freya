@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Joi from "joi-browser";
-import Form from "../common/form";
 
-class ChangePasswordForm extends Form {
+import { Form } from "../common/Form";
+
+export class ChangePasswordForm extends Form {
   state = {
     data: {
       currentPassword: "",
@@ -32,7 +33,7 @@ class ChangePasswordForm extends Form {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="row">
           <div className="col-md-12 ml-3">
             <h4>Change your password</h4>
@@ -73,8 +74,7 @@ class ChangePasswordForm extends Form {
             </form>
           </div>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-export default ChangePasswordForm;

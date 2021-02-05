@@ -1,9 +1,10 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "./common/form";
 import ReCAPTCHA from "react-google-recaptcha";
 
-class ContactForm extends Form {
+import { Form } from "./common/Form";
+
+export class ContactForm extends Form {
   state = {
     data: {
       subject: "",
@@ -52,7 +53,7 @@ class ContactForm extends Form {
               "form-control"
             )}
           </div>
-          <div>{this.renderFile("file", "Attach files", "file")}</div>
+          <div>{this.renderFile("file", "Attach files")}</div>
           <ReCAPTCHA
             size="normal"
             render="explicit"
@@ -65,4 +66,3 @@ class ContactForm extends Form {
     );
   }
 }
-export default ContactForm;
