@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 
 import { Spinner } from "./components/Spinner";
-import { NavBar } from "./components/NavBar";
+import { NavBar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { HelpAndSupport } from "./components/HelpAndSupport";
 import { Faq } from "./components/Faq";
