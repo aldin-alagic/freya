@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { Overview } from "./Overview";
 import { Menu } from "./Menu";
@@ -56,10 +57,10 @@ export class Solution extends React.Component {
           <hr className="mt-3 mb-0" />
           <Menu likes={solution.likes} dislikes={solution.dislikes} />
           <hr className="mt-0 mb-4" />
-          <Route path={`/solution/:id/overview`} component={Overview} />
-          <Route path={`/solution/:id/description`} component={Description} />
-          <Route path={`/solution/:id/attachments`} component={Attachments} />
-          <Route path={`/solution/:id/expert`} component={Expert} />
+          <Route path={"/solution/:id/overview"} component={Overview} />
+          <Route path={"/solution/:id/description"} component={Description} />
+          <Route path={"/solution/:id/attachments"} component={Attachments} />
+          <Route path={"/solution/:id/expert"} component={Expert} />
         </div>
         <SolutionPackages />
         <Modal
