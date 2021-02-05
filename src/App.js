@@ -28,6 +28,7 @@ import { Logout } from "./components/Logout";
 import { ProtectedRoute } from "./components/common/ProtectedRoute";
 import { Home } from "./components/home/Home";
 import auth from "./services/userService";
+import { Offer } from "./components/offer/Offer";
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
