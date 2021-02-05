@@ -10,7 +10,11 @@ export class Solutions extends React.PureComponent {
     return (
       <React.Fragment>
         <h1>Solutions</h1>
-        <h4 className="mt-4">Select a filter option</h4>
+        <hr className="mt-5 mb-4" />
+        <Link className="btn btn-primary" to="/solution/new">
+          New solution
+        </Link>
+        <hr className="my-4" />
         <Menu />
         <hr className="my-4" />
         <Route path="/solutions/basic" component={Basic} />

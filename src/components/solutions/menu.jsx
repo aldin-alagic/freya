@@ -10,13 +10,13 @@ export class Menu extends React.PureComponent {
             className="btn btn-outline-primary selection-left-option col-2"
             to="/solutions/basic"
           >
-            Basic
+            Basic search
           </NavLink>
           <NavLink
             className="btn btn-outline-primary selection-right-option col-2"
             to="/solutions/advanced"
           >
-            Advanced
+            Advanced search
           </NavLink>
         </div>
       </React.Fragment>

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBan,
   faCheckCircle,
+  faCoins,
   faHeart,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,8 +15,8 @@ export class SolutionCard extends React.PureComponent {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     company: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    offer: PropTypes.arrayOf(PropTypes.number).isRequired,
+    keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
     solutionUrl: PropTypes.string.isRequired,
   };
 
@@ -24,8 +25,8 @@ export class SolutionCard extends React.PureComponent {
       title,
       description,
       company,
-      price,
-      tags,
+      offer,
+      keywords,
       solutionUrl,
     } = this.props;
 
@@ -41,8 +42,13 @@ export class SolutionCard extends React.PureComponent {
               <FontAwesomeIcon className="ml-1" icon={faCheckCircle} />
             </div>
           </div>
-          <div className="badge badge-secondary text-center p-3 my-auto">
-            {price} Tokens
+          <div className="text-center p-3 font-weight-bold my-auto">
+            <span className="text-secondary col-12">
+              {offer[0].price} <FontAwesomeIcon icon={faCoins} />
+            </span>
+            <span className="text-warning col-12">
+              {offer[1].price} <FontAwesomeIcon icon={faCoins} />
+            </span>
           </div>
         </div>
         <Link to={solutionUrl}>
@@ -50,13 +56,13 @@ export class SolutionCard extends React.PureComponent {
         </Link>
         <p className="text-justify">{description}</p>
         <div>
-          {tags.map(function (tag, index) {
+          {keywords.map(function (keyword, index) {
             return (
               <span
-                key={`tag-${index}`}
+                key={"keyword-" + index}
                 className="badge badge-pill badge-secondary px-2 m-1"
               >
-                {tag}
+                {keyword}
               </span>
             );
           })}
@@ -70,17 +76,21 @@ export class SolutionCard extends React.PureComponent {
             size="2x"
           />
           <Link className="btn btn-primary m-1" to="/home">
-            View profile
+            Expert
           </Link>
-          <Link className="btn btn-primary m-1" to={solutionUrl}>
-            View
-          </Link>
+          {solutionUrl ? (
+            <Link className="btn btn-primary m-1" to={solutionUrl}>
+              Solution
+            </Link>
+          ) : null}
           <Link className="btn btn-primary m-1" to="/home">
             Send a message
           </Link>
-          <Link className="btn btn-primary m-1" to="/home">
-            Purchase
-          </Link>
+          {solutionUrl ? null : (
+            <Link className="btn btn-primary m-1" to="/home">
+              Purchase
+            </Link>
+          )}
         </div>
       </div>
     );
