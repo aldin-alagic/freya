@@ -12,7 +12,6 @@ export class IssueType extends React.Component {
 
   state = {
     issueTypeIndex: -1,
-    issueType: null,
   };
 
   issueTypes = [

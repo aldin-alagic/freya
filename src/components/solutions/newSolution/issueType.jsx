@@ -2,6 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 
 import { IssueTypeMenu } from "./IssueTypeMenu";
+import { IssueTypeCard } from "./../../common/IssueTypeCard";
 
 export class IssueType extends React.Component {
   static propTypes = {
@@ -11,7 +12,6 @@ export class IssueType extends React.Component {
 
   state = {
     issueTypeIndex: -1,
-    issueType: null,
   };
 
   issueTypes = [
@@ -155,19 +155,17 @@ export class IssueType extends React.Component {
   };
 
   render() {
+    const { issueTypeIndex } = this.state;
+    const { issueType } = this.props;
+
     return (
       <div className="animate__animated animate__fadeIn">
-        <IssueTypeMenu
-          onClick={this.handleClick}
-          active={this.state.issueCategory}
-        />
+        <IssueTypeMenu onClick={this.handleClick} active={issueTypeIndex} />
         <hr className="mt-3 mb-4" />
         <div className="mb-3">
           Selected issue:
-          {this.props.issueTypeOption != null ? (
-            <span className="text-primary ml-2">
-              {this.props.issueTypeOption}
-            </span>
+          {issueType != null ? (
+            <span className="text-primary ml-2">{issueType}</span>
           ) : (
             <span className="text-danger ml-2">None</span>
           )}
