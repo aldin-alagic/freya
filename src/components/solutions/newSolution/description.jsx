@@ -1,10 +1,18 @@
-import React, { Component, Fragment } from "react";
-import TextArea from "../../common/textArea";
-import Input from "./../../common/input";
+import React from "react";
+import { PropTypes } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
-class Description extends Component {
+import { TextArea } from "../../common/TextArea";
+import { Input } from "../../common/Input";
+
+export class Description extends React.Component {
+  static propTypes = {
+    values: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onKeywordsChange: PropTypes.func.isRequired,
+  };
+
   state = { keyword: "" };
 
   handleClick = (issueCategory) => {
@@ -14,8 +22,9 @@ class Description extends Component {
   render() {
     const { values, onChange, onKeywordsChange } = this.props;
     let keywords = [...values.keywords];
+
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="card mb-4">
           <div className="card-header bg-light">Description</div>
           <div className="card-body row justify-content-start px-5">
@@ -103,9 +112,7 @@ class Description extends Component {
             </div>
           </div>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-
-export default Description;

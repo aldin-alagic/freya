@@ -1,11 +1,5 @@
-import React, { Component } from "react";
-import Vehicle from "./vehicle";
-import IssueType from "./issueType";
-import Description from "./description";
+import React from "react";
 import { Steps } from "rsuite";
-import Attachments from "./attachments";
-import Visibility from "./visibility";
-import Review from "./review";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,7 +7,14 @@ import {
   faLongArrowAltRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-class NewSolution extends Component {
+import { Vehicle } from "./Vehicle";
+import { IssueType } from "./IssueType";
+import { Description } from "./Description";
+import { Visibility } from "./Visibility";
+import { Review } from "./Review";
+import { Attachments } from "./Attachments";
+
+export class NewSolution extends React.Component {
   state = {
     step: 0,
     status: "process",
@@ -60,24 +61,24 @@ class NewSolution extends Component {
     this.setState({ data });
   };
 
-  handleAddVehicle = (e) => {
+  handleChangeVehicles = (action) => {
     const data = { ...this.state.data };
-    data.vehicles = [
-      ...data.vehicles,
-      {
-        brand: null,
-        model: null,
-        year: null,
-        variant: null,
-      },
-    ];
-    this.setState({ data });
-  };
 
-  handleRemoveVehicle = (e) => {
-    const data = { ...this.state.data };
-    if (data.vehicles.length > 1) data.vehicles.pop();
-    this.setState({ data });
+    if (action === "add") {
+      data.vehicles = [
+        ...data.vehicles,
+        {
+          brand: null,
+          model: null,
+          year: null,
+          variant: null,
+        },
+      ];
+      this.setState({ data });
+    } else if (action === "remove" && data.vehicles.length > 1) {
+      data.vehicles.pop();
+      this.setState({ data });
+    }
   };
 
   handleKeywordsChange = (keyword, action) => {
@@ -193,8 +194,7 @@ class NewSolution extends Component {
       case 0:
         return (
           <Vehicle
-            onAddVehicle={this.handleAddVehicle}
-            onRemoveVehicle={this.handleRemoveVehicle}
+            onChangeVehicles={this.handleChangeVehicles}
             onChange={this.handleChange}
             onSelectChange={this.handleSelectChange}
             values={{ vehicles, fuelType, transmission }}
@@ -277,5 +277,3 @@ class NewSolution extends Component {
     );
   }
 }
-
-export default NewSolution;
