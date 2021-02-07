@@ -1,9 +1,9 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-import { Sidebar } from "./Sidebar";
-import { Details } from "./Details";
-import { ChangePassword } from "./ChangePassword";
+import { Sidebar } from "./sidebar/Sidebar";
+import { Details } from "./details/Details";
+import { ChangePassword } from "./changePassword/ChangePassword";
 
 export class Profile extends React.PureComponent {
   render() {

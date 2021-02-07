@@ -1,7 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import { SwitchBox } from "../../common/SwitchBox";
+import { SwitchBox } from "../../common/form/switchBox/SwitchBox";
 
 export class Visibility extends React.PureComponent {
   static propTypes = {

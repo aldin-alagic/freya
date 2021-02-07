@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import { Overview } from "./Overview";
-import { Menu } from "./Menu";
-import { Expert } from "../common/Expert";
-import { Attachments } from "../common/Attachments";
-import { SolutionPackages } from "../common/SolutionPackages";
-import { Modal } from "../common/Modal";
-import { Message } from "./Message";
+import { Overview } from "./overview/Overview";
+import { Menu } from "./menu/Menu";
+import { Expert } from "../common/expert/Expert";
+import { Attachments } from "../common/attachments/Attachments";
+import { SolutionPackages } from "../common/solutionPackages/SolutionPackages";
+import { Modal } from "../common/modal/Modal";
+import { Message } from "./message/Message";
 
 export class Offer extends React.PureComponent {
   render() {

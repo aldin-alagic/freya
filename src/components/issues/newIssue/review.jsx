@@ -1,9 +1,9 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import { VehicleDescription } from "../../common/VehicleDescription";
-import { SwitchBox } from "../../common/SwitchBox";
-import { Attachments } from "../../common/Attachments";
+import { VehicleDescription } from "../../common/vehicleDescription/VehicleDescription";
+import { SwitchBox } from "../../common/form/switchBox/SwitchBox";
+import { Attachments } from "../../common/attachments/Attachments";
 
 export class Review extends React.Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { TokensCard } from "./TokensCard";
-import { PricingCards } from "../PricingCards";
+import { TokensCard } from "./tokensCard/TokensCard";
+import { PricingCards } from "../common/pricingCards/PricingCards";
 
 export class Pricing extends React.PureComponent {
   render() {

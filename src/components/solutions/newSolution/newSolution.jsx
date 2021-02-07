@@ -7,12 +7,12 @@ import {
   faLongArrowAltRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Vehicle } from "./Vehicle";
-import { IssueType } from "./IssueType";
-import { Description } from "./Description";
-import { Visibility } from "./Visibility";
-import { Review } from "./Review";
-import { Attachments } from "./Attachments";
+import { Vehicle } from "./vehicle/Vehicle";
+import { IssueType } from "./issueType/IssueType";
+import { Description } from "./description/Description";
+import { Visibility } from "./visibility/Visibility";
+import { Review } from "./review/Review";
+import { Attachments } from "./attachments/Attachments";
 
 export class NewSolution extends React.Component {
   state = {

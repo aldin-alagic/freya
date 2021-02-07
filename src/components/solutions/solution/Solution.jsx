@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 
 import { Overview } from "./Overview";
 import { Menu } from "./Menu";
-import { Modal } from "../../common/Modal";
-import { Description } from "../../common/Description";
-import { Attachments } from "../../common/Attachments";
-import { Expert } from "../../common/Expert";
-import { SolutionPackages } from "../../common/SolutionPackages";
+import { Modal } from "../../common/modal/Modal";
+import { Description } from "../../common/description/Description";
+import { Attachments } from "../../common/attachments/Attachments";
+import { Expert } from "../../common/expert/Expert";
+import { SolutionPackages } from "../../common/solutionPackages/SolutionPackages";
 import solutionService from "../../../services/solutionService";
 import userService from "../../../services/userService";
 

@@ -3,7 +3,7 @@ import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import { PropTypes } from "prop-types";
 
-import { Radio } from "../../common/Radio";
+import { Radio } from "../../common/form/radio/Radio";
 
 export class Vehicle extends React.Component {
   static propTypes = {

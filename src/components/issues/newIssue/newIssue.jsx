@@ -7,7 +7,7 @@ import { IssueType } from "./IssueType";
 import { Description } from "./Description";
 import { Visibility } from "./Visibility";
 import { Review } from "./Review";
-import { Attachments } from "../../common/Attachments";
+import { Attachments } from "../../common/attachments/Attachments";
 
 export class NewIssue extends React.Component {
   state = {

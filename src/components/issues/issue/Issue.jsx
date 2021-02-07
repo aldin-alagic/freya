@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, Redirect, Route } from "react-router-dom";
 
-import { Overview } from "./Overview";
-import { Menu } from "./Menu";
-import { Offers } from "./Offers";
-import { SwitchBox } from "../../common/SwitchBox";
-import { Attachments } from "../../common/Attachments";
-import { Description } from "./Description";
-import { Activities } from "./Activities";
-import { Advertise } from "./Advertise";
+import { Overview } from "./overview/Overview";
+import { Menu } from "./menu/Menu";
+import { Offers } from "./offers/Offers";
+import { SwitchBox } from "../../common/form/switchBox/SwitchBox";
+import { Attachments } from "../../common/attachments/Attachments";
+import { Description } from "./description/Description";
+import { Activities } from "./activities/Activities";
+import { Advertise } from "./advertise/Advertise";
 
 export class Issue extends React.PureComponent {
   render() {

@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import { Vehicle } from "./Vehicle";
-import { IssueType } from "./IssueType";
-import { AdditionalFilters } from "./AdditionalFilters";
-import { Menu } from "./Menu";
+import { Vehicle } from "./vehicle/Vehicle";
+import { IssueType } from "./issueType/IssueType";
+import { AdditionalFilters } from "./additionalFilters/AdditionalFilters";
+import { Menu } from "./menu/Menu";
 
 export class Advanced extends React.PureComponent {
   render() {

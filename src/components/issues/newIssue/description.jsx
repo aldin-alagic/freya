@@ -1,8 +1,8 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import { TextArea } from "../../common/TextArea";
-import { Input } from "../../common/Input";
+import { TextArea } from "../../common/form/textArea/TextArea";
+import { Input } from "../../common/form/input/Input";
 
 export class Description extends React.PureComponent {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IssueTypeMenu } from "./IssueTypeMenu";
-import { IssueTypeCard } from "../../common/IssueTypeCard";
+import { IssueTypeCard } from "../../common/issueTypeCard/IssueTypeCard";
 import { PropTypes } from "prop-types";
 
 export class IssueType extends React.Component {

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Cards } from "./Cards";
-import { SmallCards } from "./SmallCards";
-import { PricingCards } from "../PricingCards";
+import { Cards } from "./cards/Cards";
+import { SmallCards } from "./smallCards/SmallCards";
+import { PricingCards } from "../common/pricingCards/PricingCards";
 
 export class Home extends React.PureComponent {
   render() {

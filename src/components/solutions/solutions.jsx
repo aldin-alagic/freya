@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Route, Redirect } from "react-router-dom";
 
-import { Menu } from "./Menu";
+import { Menu } from "./menu/Menu";
 import { Basic } from "./basic/Basic";
 import { Advanced } from "./advanced/Advanced";
 

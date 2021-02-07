@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import { Customer } from "./Customer";
-import { Expert } from "./Expert";
-import { Menu } from "./Menu";
+import { Customer } from "./customer/Customer";
+import { Expert } from "./expert/Expert";
+import { Menu } from "./menu/Menu";
 
 export class HowItWorks extends React.PureComponent {
   render() {
