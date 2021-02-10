@@ -1,11 +1,14 @@
 import React from "react";
 import Joi from "joi-browser";
-import { toast } from "react-toastify";
+import { connect } from "react-redux";
 
 import { Form } from "../common/form/Form";
-import userService from "../../services/userService";
+import { Spinner } from "./../spinner/Spinner";
+import { authenticateUser } from "./../../store/auth";
 
-export class Login extends Form {
+import { AUTH_TOKEN } from "../../config.json";
+
+class Login extends Form {
   state = {
     data: { email: "", password: "" },
     errors: {},
@@ -16,16 +19,19 @@ export class Login extends Form {
     password: Joi.string().required().min(8).label("Password"),
   };
 
-  doSubmit = async () => {
-    const { data: response } = await userService.login(this.state.data);
-    if (response.status == 200) {
-      localStorage.setItem("user", JSON.stringify(response.data));
-      toast.success(response.message, { className: "alert-success" });
-      const { state } = this.props.location;
-      window.location = state ? state.from.pathname : "/profile/details";
-    } else {
-      toast.error(response.message, { className: "alert-danger" });
+  componentDidUpdate() {
+    const { location, history, token } = this.props;
+    if (token) {
+      localStorage.setItem(AUTH_TOKEN, token);
+      history.push(
+        location.state ? location.state.from.pathname : "/profile/details"
+      );
     }
+  }
+
+  doSubmit = async () => {
+    const { email, password } = this.state.data;
+    this.props.authenticateUser(email, password);
   };
 
   render() {
@@ -49,7 +55,20 @@ export class Login extends Form {
           )}
           {this.renderButton("Login")}
         </form>
+        {this.props.loading && <Spinner />}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  loading: state.entities.auth.loading,
+  token: state.entities.auth.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  authenticateUser: (email, password) =>
+    dispatch(authenticateUser(email, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
