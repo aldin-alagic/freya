@@ -30,6 +30,7 @@
     "react-spinners": "^0.9.0",
     "react-toastify": "^6.0.8",
     "react-tooltip": "^4.2.10",
+    "redux-devtools-extension": "^2.13.8",
     "rsuite": "^4.8.4"
   },
   "scripts": {
