@@ -1,9 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
-import { toast } from "react-toastify";
 
 import { Form } from "../../common/form/Form";
-import userService from "../../../services/userService";
 
 export class DetailsForm extends Form {
   state = {
@@ -45,22 +43,6 @@ export class DetailsForm extends Form {
       .allow("")
       .label("Default billing contact"),
     description: Joi.string().allow("").label("Description"),
-  };
-
-  componentDidMount() {
-    this.getUser();
-  }
-
-  getUser = async () => {
-    const { data: response } = await userService.getUserDetails();
-    if (response.status == 200) {
-      toast.success(response.message, { className: "alert-success" });
-      const user = response.data;
-      const data = { firstName: user.firstname, lastName: user.lastname };
-      this.setState({ data: data });
-    } else {
-      toast.error(response.message, { className: "alert-danger" });
-    }
   };
 
   doSubmit = async () => {};

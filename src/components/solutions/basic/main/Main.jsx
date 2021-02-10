@@ -5,8 +5,6 @@ import { NavLink } from "react-router-dom";
 import { SolutionCard } from "../../solutionCard/SolutionCard";
 import { SearchBox } from "../../../common/form/searchBox/SearchBox";
 import { SelectBox } from "../../../common/form/selectBox/SelectBox";
-import solutionService from "../../../../services/solutionService";
-import userService from "../../../../services/userService";
 
 export class Main extends React.Component {
   state = {
@@ -14,26 +12,6 @@ export class Main extends React.Component {
       publicSolutions: [],
       userSolutions: [],
     },
-  };
-
-  componentDidMount() {
-    this.getSolutions();
-  }
-
-  getSolutions = async () => {
-    const { data: response } = await solutionService.getSolutions();
-    if (response.status == 200) {
-      toast.success(response.message, { className: "alert-success" });
-      const solutions = response.data;
-      const data = {
-        publicSolutions: solutions.public_solutions,
-        userSolutions: solutions.user_solutions,
-      };
-      this.setState({ data: data });
-    } else {
-      userService.logout();
-      toast.error(response.message, { className: "alert-danger" }); //Dodaj code check ako je unauth, tako da zbog ostalih grešaka ne rad logout
-    }
   };
 
   render() {
