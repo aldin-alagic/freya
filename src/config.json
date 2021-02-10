@@ -1,3 +1,5 @@
 {
-  "API": "http://api.findaskhire.com"
+  "API": "http://api.findaskhire.com",
+  "AUTH_URL": "/login",
+  "AUTH_TOKEN": "AUTH_TOKEN"
 }
