@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import ReactTooltip from "react-tooltip";
+import { Provider } from "react-redux";
 
 import Navbar from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
@@ -28,6 +29,7 @@ import ProtectedRoute from "./components/common/protectedRoute/ProtectedRoute";
 import { Home } from "./components/home/Home";
 import auth from "./services/userService";
 import { Offer } from "./components/offer/Offer";
+import configureStore from "./store/configureStore";
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,6 +37,8 @@ import "rsuite/dist/styles/rsuite-default.css";
 
 class App extends Component {
   state = {};
+
+  store = configureStore();
 
   componentDidMount() {
     const user = auth.getCurrentUser();
