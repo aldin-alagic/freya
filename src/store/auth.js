@@ -33,7 +33,6 @@ const slice = createSlice({
           firstname: data.firstname,
           lastname: data.lastname,
         };
-        auth.loading = false;
         auth.apiResult = {
           status,
           message,
