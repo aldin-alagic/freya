@@ -77,7 +77,7 @@ class Navbar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  token: state.entities.auth.token,
+  token: state.auth.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

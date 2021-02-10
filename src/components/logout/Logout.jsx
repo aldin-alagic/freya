@@ -19,8 +19,8 @@ class Logout extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  loading: state.entities.auth.loading,
-  token: state.entities.auth.token,
+  loading: state.auth.loading,
+  token: state.auth.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
