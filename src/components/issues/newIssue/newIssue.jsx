@@ -3,11 +3,11 @@ import { toast } from "react-toastify";
 import { Steps } from "rsuite";
 
 import { Vehicle } from "./Vehicle";
-import { IssueType } from "./IssueType";
 import { Description } from "./Description";
 import { Visibility } from "./Visibility";
 import { Review } from "./Review";
 import { Attachments } from "../../common/attachments/Attachments";
+import { IssueType } from "./IssueType";
 
 export class NewIssue extends React.Component {
   state = {
