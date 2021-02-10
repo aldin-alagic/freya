@@ -1,13 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import { PropTypes } from "prop-types";
 
-export class NavBar extends React.PureComponent {
-  static propTypes = {
-    user: PropTypes.object,
-  };
+class Navbar extends React.PureComponent {
+  componentDidUpdate() {
+    console.log("navbar", this.props.token);
+  }
 
   render() {
     return (
@@ -51,7 +51,7 @@ export class NavBar extends React.PureComponent {
             </NavLink>
           </div>
           <div className="navbar-nav">
-            {this.props.user ? (
+            {this.props.token ? (
               <React.Fragment>
                 <NavLink className="nav-item nav-link" to="/logout">
                   Logout
@@ -75,3 +75,11 @@ export class NavBar extends React.PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  token: state.entities.auth.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
