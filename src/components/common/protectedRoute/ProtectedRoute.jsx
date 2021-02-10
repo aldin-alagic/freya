@@ -37,7 +37,7 @@ class ProtectedRoute extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  authenticated: state.entities.auth.token,
+  authenticated: state.auth.token,
 });
 
 export default connect(mapStateToProps)(ProtectedRoute);
