@@ -26,6 +26,7 @@ const slice = createSlice({
       const { data, status, message } = action.payload;
 
       if (status === 200) {
+        solutions.list = data;
         solutions.apiResult = {
           status,
           message,
