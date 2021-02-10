@@ -27,7 +27,6 @@ import Login from "./components/login/Login";
 import Logout from "./components/logout/Logout";
 import ProtectedRoute from "./components/common/protectedRoute/ProtectedRoute";
 import { Home } from "./components/home/Home";
-import auth from "./services/userService";
 import { Offer } from "./components/offer/Offer";
 import configureStore from "./store/configureStore";
 
@@ -36,18 +35,9 @@ import "react-toastify/dist/ReactToastify.css";
 import "rsuite/dist/styles/rsuite-default.css";
 
 class App extends Component {
-  state = {};
-
   store = configureStore();
 
-  componentDidMount() {
-    const user = auth.getCurrentUser();
-    this.setState({ user });
-  }
-
   render() {
-    const { user } = this.state;
-
     return (
       <Provider store={this.store}>
         <div className="main-container">
