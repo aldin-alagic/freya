@@ -6,22 +6,15 @@ import { SolutionCard } from "../../solutionCard/SolutionCard";
 import { SearchBox } from "../../../common/form/searchBox/SearchBox";
 import { SelectBox } from "../../../common/form/selectBox/SelectBox";
 import { loadSolutions } from "./../../../../store/solutions";
-import { Spinner } from "./../../../spinner/Spinner";
+import { CardsLoader } from "./../../../common/cardsLoader/CardsLoader";
 
 class Main extends React.Component {
-  state = {
-    data: {
-      publicSolutions: [],
-      userSolutions: [],
-    },
-  };
-
   componentDidMount() {
     this.props.loadSolutions();
   }
 
   render() {
-    const { publicSolutions, userSolutions } = this.state.data;
+    const { solutions } = this.props;
     return (
       <div className="col-md-6 mt-23">
         <div className="d-flex mb-2">
@@ -69,23 +62,14 @@ class Main extends React.Component {
             solutionUrl={`/solution/${solution.preview_json.solution_id}/overview`}
           />
         ))}
-        {publicSolutions.map((solution) => {
-          <SolutionCard
-            title={solution.preview_json.title}
-            description={solution.preview_json.short_description}
-            company={solution.preview_json.user_name}
-            offer={solution.preview_json.offer}
-            keywords={solution.preview_json.keywords}
-          />;
-        })}
-        {this.props.loading && <Spinner />}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  loading: state.auth.loading,
+  loading: state.entities.solutions.loading,
+  solutions: state.entities.solutions.list,
 });
 
 const mapDispatchToProps = (dispatch) => ({
