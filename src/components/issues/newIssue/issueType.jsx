@@ -4,7 +4,7 @@ import { IssueTypeMenu } from "./IssueTypeMenu";
 import { IssueTypeCard } from "../../common/issueTypeCard/IssueTypeCard";
 import { PropTypes } from "prop-types";
 
-import { issueTypes } from "./../../../utils/staticData";
+import { issueTypes } from "../../../utils/staticData";
 
 export class IssueType extends React.Component {
   static propTypes = {
