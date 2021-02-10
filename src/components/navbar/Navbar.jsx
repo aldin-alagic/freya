@@ -5,10 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Navbar extends React.PureComponent {
-  componentDidUpdate() {
-    console.log("navbar", this.props.token);
-  }
-
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light mb-10">
