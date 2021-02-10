@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Sidebar } from "./sidebar/Sidebar";
-import { Main } from "./main/Main";
 import { Widgets } from "./widgets/Widgets";
+import Main from "./main/Main";
 
 export class Basic extends React.PureComponent {
   render() {
