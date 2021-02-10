@@ -49,10 +49,11 @@ class Main extends React.Component {
             />
           </div>
           <span className="text-primary col-sm-12 col-md-2 text-right mb-2 mx-0 px-0">
-            {userSolutions.length + publicSolutions.length} results
+            {solutions.length} results
           </span>
         </div>
-        {userSolutions.map((solution) => (
+        {this.props.loading && <CardsLoader />}
+        {solutions.map((solution) => (
           <SolutionCard
             title={solution.preview_json.title}
             description={solution.preview_json.short_description}
