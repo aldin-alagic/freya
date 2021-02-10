@@ -1,18 +1,24 @@
 import React from "react";
-import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { SolutionCard } from "../../solutionCard/SolutionCard";
 import { SearchBox } from "../../../common/form/searchBox/SearchBox";
 import { SelectBox } from "../../../common/form/selectBox/SelectBox";
+import { loadSolutions } from "./../../../../store/solutions";
+import { Spinner } from "./../../../spinner/Spinner";
 
-export class Main extends React.Component {
+class Main extends React.Component {
   state = {
     data: {
       publicSolutions: [],
       userSolutions: [],
     },
   };
+
+  componentDidMount() {
+    this.props.loadSolutions();
+  }
 
   render() {
     const { publicSolutions, userSolutions } = this.state.data;
@@ -72,7 +78,18 @@ export class Main extends React.Component {
             keywords={solution.preview_json.keywords}
           />;
         })}
+        {this.props.loading && <Spinner />}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  loading: state.auth.loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadSolutions: () => dispatch(loadSolutions()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
