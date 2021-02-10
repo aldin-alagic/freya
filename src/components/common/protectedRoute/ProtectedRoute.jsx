@@ -1,18 +1,23 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
+import { connect } from "react-redux";
 
-import auth from "../../../services/userService";
-
-export class ProtectedRoute extends React.PureComponent {
+class ProtectedRoute extends React.PureComponent {
   render() {
-    const { path, component: Component, render, ...rest } = this.props;
+    const {
+      path,
+      component: Component,
+      render,
+      authenticated,
+      ...rest
+    } = this.props;
 
     return (
       <Route
         {...rest}
         render={(props) => {
-          if (!auth.getCurrentUser()) {
+          if (!authenticated) {
             toast.warning("You first need to log in!");
             return (
               <Redirect
@@ -30,3 +35,9 @@ export class ProtectedRoute extends React.PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  authenticated: state.entities.auth.token,
+});
+
+export default connect(mapStateToProps)(ProtectedRoute);
