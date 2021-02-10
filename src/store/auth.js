@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { apiCallBegan } from "./api";
 
-import { AUTH_TOKEN, AUTH_URL } from "../config.json";
+import { AUTH_TOKEN, AUTH_URL, ERROR_MESSAGE } from "../config.json";
 
 const slice = createSlice({
   name: "auth",
@@ -52,6 +52,7 @@ const slice = createSlice({
 
     authenticationFailed: (auth, action) => {
       auth.loading = false;
+      toast.error(ERROR_MESSAGE, { className: "alert-danger" });
     },
   },
 });
