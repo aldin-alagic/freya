@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
 
-class ProtectedRoute extends React.PureComponent {
+class ProtectedRoute extends React.Component {
   render() {
     const {
       path,
