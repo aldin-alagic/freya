@@ -114,3 +114,32 @@ export const issueTypes = [
     ],
   },
 ];
+
+export const transmissionOptions = ["Manual", "Semi-automatic", "Automatic"];
+
+export const fuelTypeOptions = [
+  "Petrol",
+  "Diesel",
+  "Electric",
+  "Ethanol (FFV, E85, etc.)",
+  "Hybrid (Petrol/Electric)",
+  "Hybrid (Diesel/Electric)",
+  "Hydrogen",
+  "Natural gas",
+  "Other",
+];
+
+export const advertiseOptions = {
+  position: [
+    { value: 0, label: "No top position advertisements" },
+    { value: 5, label: "3 days for 5 tokens" },
+    { value: 10, label: "7 days for 10 tokens" },
+    { value: 15, label: "14 days for 15 tokens" },
+  ],
+  notifications: [
+    { value: 0, label: "No notification advertisements" },
+    { value: 5, label: "3 days for 5 tokens" },
+    { value: 10, label: "7 days for 10 tokens" },
+    { value: 15, label: "14 days for 15 tokens" },
+  ],
+};
