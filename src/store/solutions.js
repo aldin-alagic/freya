@@ -4,7 +4,7 @@ import moment from "moment";
 
 import { apiCallBegan } from "./api";
 
-import { ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
+import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 
 const slice = createSlice({
   name: "solutions",
@@ -38,7 +38,7 @@ const slice = createSlice({
 
     solutionsRequestFailed: (solutions, action) => {
       solutions.loading = false;
-      toast.error(ERROR_MESSAGE, { className: "alert-danger" });
+      toast.error(API_ERROR_MESSAGE, { className: "alert-danger" });
     },
   },
 });
