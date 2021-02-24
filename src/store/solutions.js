@@ -111,6 +111,10 @@ const slice = createSlice({
       for (const field in action.payload)
         solutions.newSolution[field] = action.payload[field];
     },
+
+    newSolutionReset: (solutions, action) => {
+      solutions.newSolution = initialNewSolutionState;
+    },
   },
 });
 
@@ -119,6 +123,7 @@ export const {
   solutionsReceived,
   solutionsRequestFailed,
   newSolutionUpdated,
+  newSolutionReset,
 } = slice.actions;
 
 export default slice.reducer;
