@@ -1,0 +1,33 @@
+.rounded-left-badge {
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  display: inline-block;
+  font-size: 75%;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: top;
+  padding: 0rem 1.5rem;
+  line-height: 2;
+}
+
+.remove-item-btn {
+  color: #dc3545;
+  border: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 100%;
+}
+
+.remove-item-btn:focus {
+  outline: 0;
+}
+
+.remove-item-btn:hover {
+  color: #efefef;
+  background-color: #dc3545;
+}
