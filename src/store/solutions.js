@@ -6,6 +6,8 @@ import { apiCallBegan } from "./api";
 
 import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 
+const solutionUrl = "/solution";
+
 const initialNewSolutionState = {
   vehicles: [
     {
@@ -56,8 +58,9 @@ const initialNewSolutionState = {
 const slice = createSlice({
   name: "solutions",
   initialState: {
-    list: [],
     newSolution: initialNewSolutionState,
+    public: [],
+    private: [],
     apiResult: {
       status: 0,
       message: "",
@@ -65,6 +68,7 @@ const slice = createSlice({
     loading: false,
     lastFetch: null,
   },
+
   reducers: {
     solutionsRequested: (solutions, action) => {
       solutions.loading = true;
@@ -74,7 +78,21 @@ const slice = createSlice({
       const { data, status, message } = action.payload;
 
       if (status === 200) {
-        solutions.list = data;
+        solutions.public = data.public_solutions;
+        solutions.private = data.user_solutions;
+        solutions.apiResult = {
+          status,
+          message,
+        };
+        toast.success(message, { className: "alert-success" });
+      } else toast.error(message, { className: "alert-danger" });
+      solutions.loading = false;
+    },
+
+    solutionCreated: (solutions, action) => {
+      const { status, message } = action.payload;
+
+      if (status === 200) {
         solutions.apiResult = {
           status,
           message,
@@ -108,9 +126,9 @@ export const loadSolutions = () => (dispatch, getState) => {
 
   return dispatch(
     apiCallBegan({
-      url: "/get-solutions",
+      url: `${solutionUrl}/all`,
       method: "GET",
-      headers: { Auth_Token: token },
+      headers: { Authorization: token },
       onStart: solutionsRequested.type,
       onSuccess: solutionsReceived.type,
       onError: solutionsRequestFailed.type,
