@@ -1,11 +1,5 @@
 import React from "react";
 import { Steps } from "rsuite";
-import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLongArrowAltLeft,
-  faLongArrowAltRight,
-} from "@fortawesome/free-solid-svg-icons";
 
 import { Vehicle } from "./vehicle/Vehicle";
 import { IssueType } from "./issueType/IssueType";
@@ -249,31 +243,6 @@ export class NewSolution extends React.Component {
           <Steps.Item title="Review" />
         </Steps>
         {this.getComponent(step)}
-        <div className="d-flex justify-content-center">
-          <button
-            className="btn btn-lg btn-primary m-1"
-            onClick={this.onPrevious}
-            disabled={step === 0}
-          >
-            <FontAwesomeIcon
-              className="text-white"
-              icon={faLongArrowAltLeft}
-              size="lg"
-            />
-          </button>
-          <button
-            className="btn btn-lg btn-primary m-1"
-            onClick={this.onNext}
-            disabled={step === 7}
-          >
-            <FontAwesomeIcon
-              className="text-white"
-              icon={faLongArrowAltRight}
-              size="lg"
-            />
-          </button>
-        </div>
-      </div>
     );
   }
 }
