@@ -106,6 +106,11 @@ const slice = createSlice({
       solutions.loading = false;
       toast.error(API_ERROR_MESSAGE, { className: "alert-danger" });
     },
+
+    newSolutionUpdated: (solutions, action) => {
+      for (const field in action.payload)
+        solutions.newSolution[field] = action.payload[field];
+    },
   },
 });
 
@@ -113,6 +118,7 @@ export const {
   solutionsRequested,
   solutionsReceived,
   solutionsRequestFailed,
+  newSolutionUpdated,
 } = slice.actions;
 
 export default slice.reducer;
