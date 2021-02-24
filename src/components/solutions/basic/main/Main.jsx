@@ -14,7 +14,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { solutions } = this.props;
+    const { publicSolutions } = this.props;
     return (
       <div className="col-md-6 mt-23">
         <div className="d-flex mb-2">
@@ -49,11 +49,11 @@ class Main extends React.Component {
             />
           </div>
           <span className="text-primary col-sm-12 col-md-2 text-right mb-2 mx-0 px-0">
-            {solutions.length} results
+            {publicSolutions.length} results
           </span>
         </div>
         {this.props.loading && <CardsLoader />}
-        {solutions.map((solution) => (
+        {publicSolutions.map((solution) => (
           <SolutionCard
             title={solution.preview_json.title}
             description={solution.preview_json.short_description}
@@ -70,7 +70,8 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => ({
   loading: state.entities.solutions.loading,
-  solutions: state.entities.solutions.list,
+  publicSolutions: state.entities.solutions.public,
+  privateSolutions: state.entities.solutions.private,
 });
 
 const mapDispatchToProps = (dispatch) => ({
