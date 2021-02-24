@@ -6,10 +6,58 @@ import { apiCallBegan } from "./api";
 
 import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 
+const initialNewSolutionState = {
+  vehicles: [
+    {
+      brand: null,
+      model: null,
+      yearFrom: null,
+      years: [],
+      variant: null,
+    },
+  ],
+  fuelType: null,
+  transmission: null,
+  issueTypeOption: null,
+  description: {
+    title: "",
+    shortDescription: "",
+    detailedDescription: "",
+    parts: [],
+    tools: [],
+    keywords: [],
+  },
+  attachments: [],
+  offers: {
+    standard: {
+      price: null,
+      options: ["Full solution", "All solution attachments"],
+    },
+    premium: {
+      price: null,
+      options: [
+        "Full solution",
+        "All solution attachments",
+        "Expert assistance",
+      ],
+      assistanceMinutes: null,
+    },
+  },
+  visibility: false,
+  note: "",
+  advertisements: {
+    position: { value: 0, label: "No top position advertisements" },
+    notifications: { value: 0, label: "No notification advertisements" },
+  },
+  step: 0,
+  status: "process",
+};
+
 const slice = createSlice({
   name: "solutions",
   initialState: {
     list: [],
+    newSolution: initialNewSolutionState,
     apiResult: {
       status: 0,
       message: "",
