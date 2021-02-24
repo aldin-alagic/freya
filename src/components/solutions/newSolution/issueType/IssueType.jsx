@@ -1,63 +1,95 @@
-import React from "react";
-import { PropTypes } from "prop-types";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 
+import { newSolutionUpdated } from "../../../../store/solutions";
 import { IssueTypeMenu } from "../issueTypeMenu/IssueTypeMenu";
-import { IssueTypeCard } from "../../../common/issueTypeCard/IssueTypeCard";
+import StepNavigator from "./../StepNavigator/StepNavigator";
+import { Options } from "../options/Options";
 
-import { issueTypes } from "./../../../../utils/staticData";
+import { issueTypes } from "../../../../utils/staticData";
+import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
 
-export class IssueType extends React.Component {
-  static propTypes = {
-    issueType: PropTypes.string.isRequired,
-    onIssueTypeOptionChange: PropTypes.func.isRequired,
-  };
+export function IssueType() {
+  const issueTypeOption = useSelector(
+    (state) => state.entities.solutions.newSolution.issueTypeOption
+  );
 
-  state = {
-    issueTypeIndex: -1,
-  };
+  const dispatch = useDispatch();
+  const {
+    register,
+    unregister,
+    handleSubmit,
+    watch,
+    getValues,
+    formState,
+    errors,
+  } = useForm({
+    defaultValues: { issueTypeOption },
+  });
 
-  getComponent = (index) => {
-    const { issueType } = this.props;
-    const issueTypeData = issueTypes[index];
+  const [issueTypeCategory, setIssueTypeCategory] = useState(0);
 
-    return (
-      <IssueTypeCard
-        issueType={issueType}
-        title={issueTypeData.title}
-        options={issueTypeData.options}
-        onChange={this.handleChange}
-      />
+  const onSubmit = (data) => {
+    console.log(data);
+    dispatch(
+      newSolutionUpdated({
+        status: "process",
+        step: 2,
+        issueTypeOption: data.issueTypeOption,
+      })
     );
   };
 
-  handleChange = ({ target: input }) => {
-    const issueTypeOption = input.value;
-    this.props.onIssueTypeOptionChange(issueTypeOption);
-    this.setState({ issueTypeOption });
-  };
-
-  handleClick = (issueCategory) => {
-    this.setState({ issueCategory });
-  };
-
-  render() {
-    const { issueTypeIndex } = this.state;
-    const { issueType } = this.props;
-
-    return (
-      <div className="animate__animated animate__fadeIn">
-        <IssueTypeMenu onClick={this.handleClick} active={issueTypeIndex} />
-        <hr className="mt-3 mb-4" />
-        <div className="mb-3">
-          Selected issue:
-          {issueType != null ? (
-            <span className="text-primary ml-2">{issueType}</span>
-          ) : (
-            <span className="text-danger ml-2">None</span>
-          )}
-        </div>
-        {issueTypeIndex !== -1 && this.getComponent(issueTypeIndex)}
+  const showIssueTypeCategory = issueTypeCategory !== -1 && (
+    <div className="card mb-4">
+      <div className="card-header bg-light">
+        {issueTypes[issueTypeCategory].title}
       </div>
+      <div className="card-body row px-5 pb-2">
+        <Options
+          type="issueTypeOption"
+          options={issueTypes[issueTypeCategory].options}
+          register={register({
+            required: FORM_REQUIRED_MESSAGE,
+          })}
+        />
+        <div className="ml-4 mb-2 text-danger">
+          {errors.issueTypeOption?.message}
+        </div>
+      </div>
+    </div>
+  );
+
+  !(Object.keys(formState.errors).length === 0) &&
+    dispatch(
+      newSolutionUpdated({
+        status: "error",
+      })
     );
-  }
+
+  return (
+    <form
+      className="animate__animated animate__fadeIn"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <IssueTypeMenu
+        unregister={unregister}
+        onClick={setIssueTypeCategory}
+        active={issueTypeCategory}
+      />
+
+      <hr className="mt-3 mb-4" />
+      <div className="mb-3">
+        Selected issue:
+        {watch("issueTypeOption") !== null ? (
+          <span className="text-primary ml-2">{watch("issueTypeOption")}</span>
+        ) : (
+          <span className="text-danger ml-2">None</span>
+        )}
+      </div>
+      {showIssueTypeCategory}
+      <StepNavigator currentStep={1} onNextStepClick={handleSubmit(onSubmit)} />
+    </form>
+  );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Redirect } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 import { Menu } from "./menu/Menu";
 import { Basic } from "./basic/Basic";
@@ -19,7 +19,6 @@ export class Solutions extends React.PureComponent {
         <hr className="my-4" />
         <Route path="/solutions/basic" component={Basic} />
         <Route path="/solutions/advanced" component={Advanced} />
-        <Redirect to="/solutions/basic" />
       </React.Fragment>
     );
   }

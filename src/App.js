@@ -28,6 +28,7 @@ import Logout from "./components/logout/Logout";
 import ProtectedRoute from "./components/common/protectedRoute/ProtectedRoute";
 import { Home } from "./components/home/Home";
 import { Offer } from "./components/offer/Offer";
+import NewSolution from "./components/solutions/newSolution/NewSolution";
 import configureStore from "./store/configureStore";
 
 import "./App.css";
@@ -71,6 +72,7 @@ class App extends Component {
               <Route path="/become-an-expert" component={BecomeExpert} />
               <Route path="/solutions" component={Solutions} />
               <Route path="/solution/test" component={Solution} />
+              <Route path="/solution/new/" component={NewSolution} />
               <Route path="/issues/test/" component={Issue} />
               <Route path="/issues/new/" component={NewIssue} />
               <Route path="/issues" component={Issues} />

@@ -1,279 +1,80 @@
 import React from "react";
 import { Steps } from "rsuite";
-import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLongArrowAltLeft,
-  faLongArrowAltRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
 
 import { Vehicle } from "./vehicle/Vehicle";
-import { IssueType } from "./issueType/IssueType";
 import { Description } from "./description/Description";
-import { Visibility } from "./visibility/Visibility";
-import { Review } from "./review/Review";
+import Review from "./review/Review";
 import { Attachments } from "./attachments/Attachments";
+import { newSolutionReset } from "./../../../store/solutions";
+import { loadVehicles } from "./../../../store/vehicles";
+import { IssueType } from "./issueType/IssueType";
+import { Spinner } from "./../../spinner/Spinner";
+import { Offers } from "./offers/Offers";
+import { Finish } from "./finish/Finish";
 
-export class NewSolution extends React.Component {
-  state = {
-    step: 0,
-    status: "process",
-    data: {
-      vehicles: [
-        {
-          brand: null,
-          model: null,
-          year: null,
-          variant: null,
-        },
-      ],
-      fuelType: null,
-      transmission: null,
-      issueTypeOption: null,
-      title: "",
-      shortDescription: "",
-      detailedDescription: "",
-      keywords: new Set(),
-      visibility: true,
-    },
-    errors: {},
-  };
+class NewSolution extends React.Component {
+  componentDidMount() {
+    this.props.loadVehicles();
+  }
 
-  onStepChange = (nextStep) => {
-    let status = "process";
-    const oldStep = this.state.step;
-    let newStep = nextStep < 0 ? 0 : nextStep > 7 ? 7 : nextStep;
-
-    if (newStep > oldStep && !this.stepValidation(oldStep)) {
-      status = "error";
-      newStep = oldStep;
-    }
-    this.setState({ step: newStep, status });
-  };
-  onNext = () => this.onStepChange(this.state.step + 1);
-  onPrevious = () => this.onStepChange(this.state.step - 1);
-
-  handleSelectChange = (e) => {};
-
-  handleChange = ({ currentTarget: input }) => {
-    const data = { ...this.state.data };
-    data[input.name] = input.value;
-    this.setState({ data });
-  };
-
-  handleChangeVehicles = (action) => {
-    const data = { ...this.state.data };
-
-    if (action === "add") {
-      data.vehicles = [
-        ...data.vehicles,
-        {
-          brand: null,
-          model: null,
-          year: null,
-          variant: null,
-        },
-      ];
-      this.setState({ data });
-    } else if (action === "remove" && data.vehicles.length > 1) {
-      data.vehicles.pop();
-      this.setState({ data });
-    }
-  };
-
-  handleKeywordsChange = (keyword, action) => {
-    const data = { ...this.state.data };
-    if (action === "add") data.keywords.add(keyword);
-    else if (action === "remove") data.keywords.delete(keyword);
-    console.log(data.keywords);
-    this.setState({ data });
-  };
-
-  handleVisibilityChange = ({ currentTarget: input }) => {
-    const data = { ...this.state.data };
-    data[input.name] = input.checked;
-    this.setState({ data });
-  };
-
-  handleIssueTypeChange = (issueTypeOption) => {
-    const data = { ...this.state.data };
-    data["issueTypeOption"] = issueTypeOption;
-    this.setState({ data });
-  };
-
-  handleSelectChange = (e, action) => {
-    console.log(e);
-    console.log(action);
-    let type = action.name.split("-")[0];
-    let index = parseInt(action.name.split("-")[1]);
-    const data = { ...this.state.data };
-    console.log(data.vehicles[index]);
-    data.vehicles[index][type] = e.value;
-    console.log(data);
-    this.setState({ data });
-  };
-
-  stepValidation = (newStep) => {
-    switch (newStep) {
-      case 0:
-        return this.vehicleValidation();
-      case 1:
-        return this.issueTypeValidation();
-      case 2:
-        return this.descriptionValidation();
-      default:
-        return true;
-    }
-  };
-
-  vehicleValidation = () => {
-    const { vehicles, fuelType, transmission } = this.state.data;
-
-    for (const vehicle of vehicles) {
-      if (vehicle.brand === null) {
-        toast.warning("Information about car brand is required!");
-        return false;
-      } else if (vehicle.model === null) {
-        toast.warning("Information about car model is required!");
-        return false;
-      } else if (vehicle.year === null) {
-        toast.warning("Information about car year is required!");
-        return false;
-      }
-    }
-
-    if (fuelType === null) {
-      toast.warning("Information about car fuel type is required!");
-      return false;
-    } else if (transmission === null) {
-      toast.warning("Information about car transmission is required!");
-      return false;
-    }
-    return true;
-  };
-
-  issueTypeValidation = () => {
-    if (this.state.data.issueTypeOption === null) {
-      toast.warning("Information about issue type is required!");
-      return false;
-    }
-    return true;
-  };
-
-  descriptionValidation = () => {
-    const { title, shortDescription, detailedDescription } = this.state.data;
-    if (title === "") {
-      toast.warning("Solution title is required!");
-      return false;
-    } else if (shortDescription === "") {
-      toast.warning("Short solution description is required!");
-      return false;
-    } else if (detailedDescription === "") {
-      toast.warning("Detailed slution description is required!");
-      return false;
-    }
-    return true;
-  };
-
-  handleSubmit = () => {};
+  componentWillUnmount() {
+    this.props.resetNewSolution();
+  }
 
   getComponent = (step) => {
-    const {
-      vehicles,
-      fuelType,
-      transmission,
-      issueTypeOption,
-      title,
-      shortDescription,
-      detailedDescription,
-      keywords,
-      published,
-    } = this.state.data;
-
     switch (step) {
       case 0:
-        return (
-          <Vehicle
-            onChangeVehicles={this.handleChangeVehicles}
-            onChange={this.handleChange}
-            onSelectChange={this.handleSelectChange}
-            values={{ vehicles, fuelType, transmission }}
-          />
-        );
+        return <Vehicle />;
       case 1:
-        return (
-          <IssueType
-            onIssueTypeOptionChange={this.handleIssueTypeChange}
-            issueTypeOption={issueTypeOption}
-          />
-        );
+        return <IssueType />;
       case 2:
-        return (
-          <Description
-            onChange={this.handleChange}
-            onKeywordsChange={this.handleKeywordsChange}
-            values={{ title, shortDescription, detailedDescription, keywords }}
-          />
-        );
+        return <Description />;
       case 3:
         return <Attachments />;
       case 4:
-        return (
-          <Visibility
-            onChange={this.handleVisibilityChange}
-            published={published}
-          />
-        );
+        return <Offers />;
       case 5:
-        return <Review values={this.state.data} />;
-      default:
-        return <Attachments />;
+        return <Review />;
+      case 6:
+        return <Finish />;
     }
   };
 
   render() {
-    const { step, status } = this.state;
+    const { loading, step, status } = this.props;
     return (
-      <div>
+      <React.Fragment>
         <Steps
-          className="mb-3"
+          className="justify-content-start mb-3"
           current={step}
           currentStatus={status}
-          small={true}
+          small
         >
           <Steps.Item title="Vehicle" />
-          <Steps.Item title="Issue type" />
+          <Steps.Item title="Issue" />
           <Steps.Item title="Description" />
           <Steps.Item title="Attachments" />
-          <Steps.Item title="Visibility" />
+          <Steps.Item title="Offers" />
           <Steps.Item title="Review" />
+          <Steps.Item title="Finish" />
         </Steps>
         {this.getComponent(step)}
-        <div className="d-flex justify-content-center">
-          <button
-            className="btn btn-lg btn-primary m-1"
-            onClick={this.onPrevious}
-            disabled={step === 0}
-          >
-            <FontAwesomeIcon
-              className="text-white"
-              icon={faLongArrowAltLeft}
-              size="lg"
-            />
-          </button>
-          <button
-            className="btn btn-lg btn-primary m-1"
-            onClick={this.onNext}
-            disabled={step === 7}
-          >
-            <FontAwesomeIcon
-              className="text-white"
-              icon={faLongArrowAltRight}
-              size="lg"
-            />
-          </button>
-        </div>
-      </div>
+        {loading && <Spinner />}
+      </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  loading: state.vehicles.loading,
+  step: state.entities.solutions.newSolution.step,
+  status: state.entities.solutions.newSolution.status,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadVehicles: () => dispatch(loadVehicles()),
+  resetNewSolution: () => dispatch(newSolutionReset()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewSolution);

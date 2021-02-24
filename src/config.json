@@ -2,6 +2,7 @@
   "API": "http://api.findaskhire.com",
   "AUTH_URL": "/login",
   "AUTH_TOKEN": "AUTH_TOKEN",
-  "ERROR_MESSAGE": "There was a problem with your request. Please try again later.",
+  "API_ERROR_MESSAGE": "There was a problem with your request. Please try again later.",
+  "FORM_REQUIRED_MESSAGE": "This is a required field",
   "CACHE_PERIOD": 5
 }
