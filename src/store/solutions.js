@@ -124,6 +124,7 @@ export const {
   solutionsRequestFailed,
   newSolutionUpdated,
   newSolutionReset,
+  solutionCreated,
 } = slice.actions;
 
 export default slice.reducer;
@@ -142,6 +143,82 @@ export const loadSolutions = () => (dispatch, getState) => {
       headers: { Authorization: token },
       onStart: solutionsRequested.type,
       onSuccess: solutionsReceived.type,
+      onError: solutionsRequestFailed.type,
+    })
+  );
+};
+
+export const createSolution = () => (dispatch, getState) => {
+  const { token } = getState().auth;
+  const {
+    vehicles: vehiclesDiff,
+    fuelType: fuel_type,
+    offers,
+    transmission,
+    issueTypeOption: issue_type_option,
+    note,
+    visibility,
+    attachments,
+    advertisements,
+  } = getState().entities.solutions.newSolution;
+
+  const {
+    title,
+    shortDescription: short_description,
+    detailedDescription: long_description,
+    keywords,
+    parts,
+    tools,
+  } = getState().entities.solutions.newSolution.description;
+
+  const vehicles = vehiclesDiff.map((vehicle) => {
+    return {
+      brand: vehicle.brand,
+      model: vehicle.model,
+      model_variant: vehicle.variant,
+      year_from: vehicle.years[0],
+    };
+  });
+
+  let offer = [
+    {
+      offer_type: "Premium",
+      price: offers.premium.price,
+      additional_package: offers.premium.options,
+      assistance_minutes: offers.premium.assistanceMinutes,
+    },
+    {
+      offer_type: "Standard",
+      price: offers.standard.price,
+    },
+  ];
+
+  const data = {
+    vehicles,
+    fuel_type,
+    transmission,
+    issue_type_option,
+    title,
+    short_description,
+    long_description,
+    offer,
+    note,
+    keywords,
+    parts,
+    tools,
+    visibility,
+    attachments,
+    advertisements,
+  };
+
+  return dispatch(
+    apiCallBegan({
+      data,
+      url: solutionUrl,
+      method: "POST",
+      headers: { Authorization: token },
+      onStart: solutionsRequested.type,
+      onSuccess: solutionCreated.type,
       onError: solutionsRequestFailed.type,
     })
   );
