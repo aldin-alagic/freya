@@ -130,10 +130,13 @@ export function Offers() {
                   type="number"
                   ref={register({
                     required: FORM_REQUIRED_MESSAGE,
+                    min: 1,
                   })}
                 />
                 <div className="ml-1 my-2 text-danger">
-                  {errors.standardPrice?.message}
+                  {errors.standardPrice?.type === "min"
+                    ? "Only positive values are allowed"
+                    : errors.standardPrice?.message}
                 </div>
               </div>
             </div>
@@ -218,10 +221,13 @@ export function Offers() {
                     type="number"
                     ref={register({
                       required: FORM_REQUIRED_MESSAGE,
+                      min: 1,
                     })}
                   />
                   <div className="ml-1 my-2 text-danger">
-                    {errors.premiumPrice?.message}
+                    {errors.premiumPrice?.type === "min"
+                      ? "Only positive values are allowed"
+                      : errors.premiumPrice?.message}
                   </div>
                 </div>
                 <div className="form-group w-50">
@@ -239,10 +245,13 @@ export function Offers() {
                     type="number"
                     ref={register({
                       required: FORM_REQUIRED_MESSAGE,
+                      min: 0,
                     })}
                   />
                   <div className="ml-1 my-2 text-danger">
-                    {errors.assistanceMinutes?.message}
+                    {errors.assistanceMinutes?.type === "min"
+                      ? "Negative values are not allowed"
+                      : errors.assistanceMinutes?.message}
                   </div>
                 </div>
               </div>
