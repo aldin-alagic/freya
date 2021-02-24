@@ -1,0 +1,22 @@
+.options-list {
+  list-style-type: none;
+  padding-left: 0;
+  text-align: left;
+}
+
+.height-fit-content {
+  height: fit-content;
+}
+
+.remove-option-btn {
+  color: #d2cccc;
+  background-color: transparent;
+}
+
+.remove-option-btn:focus {
+  outline: 0;
+}
+
+.remove-option-btn:hover {
+  color: #dc3545;
+}
