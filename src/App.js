@@ -23,7 +23,7 @@ import { Profile } from "./components/profile/Profile";
 import { Issues } from "./components/issues/Issues";
 import { Issue } from "./components/issues/issue/Issue";
 import { NewIssue } from "./components/issues/newIssue/NewIssue";
-import Login from "./components/login/Login";
+import { Login } from "./components/login/Login";
 import Logout from "./components/logout/Logout";
 import ProtectedRoute from "./components/common/protectedRoute/ProtectedRoute";
 import { Home } from "./components/home/Home";

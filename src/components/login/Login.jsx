@@ -1,74 +1,77 @@
-import React from "react";
-import Joi from "joi-browser";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Form } from "../common/form/Form";
 import { Spinner } from "./../spinner/Spinner";
 import { authenticateUser } from "./../../store/auth";
 
 import { AUTH_TOKEN } from "../../config.json";
 
-class Login extends Form {
-  state = {
-    data: { email: "", password: "" },
-    errors: {},
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Please provide a valid e-mail address")
+    .required("Please provide your e-mail address"),
+  password: yup.string().required("Please provide your password"),
+});
+
+export function Login(props) {
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
+  const token = useSelector((state) => state.auth.token);
+
+  const onSubmit = (data) => {
+    dispatch(authenticateUser(data.email, data.password));
   };
 
-  schema = {
-    email: Joi.string().email().required().label("E-mail"),
-    password: Joi.string().required().min(8).label("Password"),
-  };
-
-  componentDidUpdate() {
-    const { location, history, token } = this.props;
+  useEffect(() => {
     if (token) {
       localStorage.setItem(AUTH_TOKEN, token);
-      history.push(
-        location.state ? location.state.from.pathname : "/profile/details"
+      props.history.push(
+        props.location.state
+          ? props.location.state.from.pathname
+          : "/profile/details"
       );
     }
-  }
+  });
 
-  doSubmit = async () => {
-    const { email, password } = this.state.data;
-    this.props.authenticateUser(email, password);
-  };
+  return (
+    <div className="col-md-4 mx-auto">
+      <h1 className="mb-5 text-center">Login</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label className="text-dark font-weight-bold" htmlFor="email">
+          E-mail
+        </label>
+        <input
+          name="email"
+          type="email"
+          className={errors.email ? "form-control is-invalid" : "form-control"}
+          ref={register}
+        />
+        <div className="invalid-feedback">{errors.email?.message}</div>
 
-  render() {
-    return (
-      <div className="col-md-4 mx-auto">
-        <h1 className="mb-5 text-center">Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput(
-            "email",
-            "E-mail",
-            "email",
-            "text-dark font-weight-bold",
-            "form-control"
-          )}
-          {this.renderInput(
-            "password",
-            "Password",
-            "password",
-            "text-dark font-weight-bold",
-            "form-control"
-          )}
-          {this.renderButton("Login")}
-        </form>
-        {this.props.loading && <Spinner />}
-      </div>
-    );
-  }
+        <label className="text-dark font-weight-bold mt-3" htmlFor="password">
+          Password
+        </label>
+        <input
+          name="password"
+          type="password"
+          className={
+            errors.password ? "form-control is-invalid" : "form-control"
+          }
+          ref={register}
+        />
+        <div className="invalid-feedback">{errors.password?.message}</div>
+
+        <button className="btn btn-primary mt-3">Login</button>
+      </form>
+      {loading && <Spinner />}
+    </div>
+  );
 }
-
-const mapStateToProps = (state) => ({
-  loading: state.auth.loading,
-  token: state.auth.token,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  authenticateUser: (email, password) =>
-    dispatch(authenticateUser(email, password)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
