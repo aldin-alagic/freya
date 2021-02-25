@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
 
 import { apiCallBegan } from "./api";
 
-import { AUTH_TOKEN, AUTH_URL, API_ERROR_MESSAGE } from "../config.json";
+import { AUTH_TOKEN, AUTH_URL, API_ERROR_MESSAGE, USER } from "../config.json";
 
 const slice = createSlice({
   name: "auth",
   initialState: {
     token: localStorage.getItem(AUTH_TOKEN),
-    user: {},
+    user: localStorage.getItem(USER)
+      ? JSON.parse(localStorage.getItem(USER))
+      : {},
     loading: false,
     apiResult: {
       status: 0,
@@ -24,7 +27,7 @@ const slice = createSlice({
 
     authenticated: (auth, action) => {
       const { data, status, message } = action.payload;
-
+      const tokenDecoded = jwt_decode(data.auth_token);
       if (status === 200) {
         auth.token = data.auth_token;
         auth.user = {
@@ -32,6 +35,7 @@ const slice = createSlice({
           username: data.username,
           firstname: data.firstname,
           lastname: data.lastname,
+          role: tokenDecoded.account_type,
         };
         auth.apiResult = {
           status,
@@ -62,9 +66,7 @@ export const {
   deAuthenticated,
   authenticationFailed,
 } = slice.actions;
-
 export default slice.reducer;
-
 export const authenticateUser = (email, password) =>
   apiCallBegan({
     url: AUTH_URL,
