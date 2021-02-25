@@ -8,6 +8,7 @@ import { CSSTransitionGroup } from "react-transition-group";
 
 import { newSolutionUpdated } from "../../../../store/solutions";
 import StepNavigator from "../StepNavigator/StepNavigator";
+import { getBase64 } from "./../../../../utils/fileConverter";
 
 import "./Attachments.css";
 
@@ -35,17 +36,6 @@ export function Attachments() {
         attachments: storeAttachments,
       })
     );
-  };
-
-  const getBase64 = (file) => {
-    return new Promise((resolve) => {
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        let baseURL = reader.result;
-        resolve(baseURL);
-      };
-    });
   };
 
   const getUploadParams = () => {
