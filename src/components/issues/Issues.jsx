@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Sidebar } from "./sidebar/Sidebar";
-import { Main } from "./main/Main";
+import Main from "./main/Main";
 import { Widgets } from "./widgets/Widgets";
 
 export class Issues extends React.PureComponent {

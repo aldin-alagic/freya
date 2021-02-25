@@ -1,12 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { IssueCard } from "../issueCard/IssueCard";
 import { SelectBox } from "../../common/form/selectBox/SelectBox";
 import { SearchBox } from "../../common/form/searchBox/SearchBox";
+import { CardsLoader } from "./../../common/cardsLoader/CardsLoader";
+import { loadIssues } from "./../../../store/issues";
 import { Menu } from "../menu/Menu";
 
-export class Main extends React.PureComponent {
+class Main extends React.Component {
+  componentDidMount() {
+    this.props.loadIssues();
+  }
+
   render() {
+    const { privateIssues, user, loading } = this.props;
+
     return (
       <div className="col-md-6 mt-23">
         <Menu />
@@ -24,19 +33,39 @@ export class Main extends React.PureComponent {
             />
           </div>
           <span className="text-primary col-sm-12 col-md-2 text-right mb-2 mx-0 px-0">
-            1 results
+            {privateIssues.length} results
           </span>
         </div>
-        <IssueCard
-          title="Transmission problem"
-          description="We were riding down Highway 146 when the engine revved up and there was no power to the wheels. We gilded off the road. The transmission or torque converter was gone. There has been an ACURA Service bulletin 02-027 date 2/05/2008 on 2003 ACURA transmissions. ACURA has established a mileage and time ...."
-          user="Marko Grd"
-          tags={["Mercedes", "C200", "AMG"]}
-          url="/issues/test/"
-          views={45}
-          offers={3}
-        />
+        {loading && <CardsLoader />}
+        {privateIssues.map((issue) => {
+          const issueData = JSON.parse(issue.detail_json);
+          const { title, short_description, keywords, views } = issueData;
+          return (
+            <IssueCard
+              title={title}
+              description={short_description}
+              user={`${user.firstname} ${user.lastname}`}
+              tags={keywords}
+              url={`/issues/${issue.issue_id}`}
+              views={views ? views : 0} //Some solutions are missing this field in DB so this is a temp fix
+              offers={0}
+            />
+          );
+        })}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  loading: state.entities.issues.loading,
+  user: state.auth.user,
+  publicIssues: state.entities.issues.public,
+  privateIssues: state.entities.issues.private,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadIssues: () => dispatch(loadIssues()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
