@@ -21,7 +21,6 @@ export function IssueType() {
     unregister,
     handleSubmit,
     watch,
-    getValues,
     formState,
     errors,
   } = useForm({
