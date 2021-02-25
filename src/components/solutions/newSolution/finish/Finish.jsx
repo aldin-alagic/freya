@@ -7,7 +7,10 @@ import makeAnimated from "react-select/animated";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import { createSolution } from "../../../../store/solutions";
+import {
+  createSolution,
+  newSolutionUpdated,
+} from "../../../../store/solutions";
 import StepNavigator from "./../StepNavigator/StepNavigator";
 
 import { advertiseOptions } from "../../../../utils/staticData";
@@ -36,6 +39,18 @@ export function Finish() {
 
   const onSubmit = (data) => {
     console.log(data);
+    let newAdvertisements = {
+      position: data.positionAdvertisements,
+      notifications: data.notificationAdvertisements,
+    };
+
+    dispatch(
+      newSolutionUpdated({
+        advertisements: newAdvertisements,
+        visibility: data.visibility,
+        note: data.note,
+      })
+    );
     dispatch(createSolution());
     history.push("/solutions/basic");
   };
