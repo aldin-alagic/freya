@@ -1,0 +1,14 @@
+.dzu-dropzone {
+  min-height: 15em;
+  border: 2px dotted #d9d9d9;
+}
+
+.dzu-dropzone {
+  border-image-outset: null !important;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.image-fit {
+  object-fit: cover;
+}
