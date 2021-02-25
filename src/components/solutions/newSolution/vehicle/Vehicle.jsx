@@ -90,46 +90,6 @@ export function Vehicle() {
       })
     );
 
-  const showFuelTypeOptions = fuelTypeOptions.map((option, index) => (
-    <div key={index} className="col-sm-6 col-md-3">
-      <div key={index} className="form-check m-2">
-        <input
-          type="radio"
-          id={"fuelType-" + option}
-          name="fuelType"
-          className="form-check-input"
-          value={option}
-          ref={register({
-            required: FORM_REQUIRED_MESSAGE,
-          })}
-        />
-        <label className="form-check-label" htmlFor="fuelType">
-          {option}
-        </label>
-      </div>
-    </div>
-  ));
-
-  const showTransmissionOptions = transmissionOptions.map((option, index) => (
-    <div key={index} className="col-sm-6 col-md-3">
-      <div key={index} className="form-check m-2">
-        <input
-          type="radio"
-          id={"transmission-" + option}
-          name="transmission"
-          className="form-check-input"
-          value={option}
-          ref={register({
-            required: FORM_REQUIRED_MESSAGE,
-          })}
-        />
-        <label className="form-check-label" htmlFor="transmission">
-          {option}
-        </label>
-      </div>
-    </div>
-  ));
-
   return (
     <form
       className="animate__animated animate__fadeIn"
