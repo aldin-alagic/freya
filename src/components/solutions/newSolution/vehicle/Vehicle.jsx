@@ -6,7 +6,7 @@ import Select from "react-select";
 
 import { newSolutionUpdated } from "../../../../store/solutions";
 import StepNavigator from "../StepNavigator/StepNavigator";
-import { Options } from "./../options/Options";
+import { Options } from "../../../common/options/Options";
 
 import {
   transmissionOptions,

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { newSolutionUpdated } from "../../../../store/solutions";
 import { IssueTypeMenu } from "../issueTypeMenu/IssueTypeMenu";
 import StepNavigator from "./../StepNavigator/StepNavigator";
-import { Options } from "../options/Options";
+import { Options } from "../../../common/options/Options";
 
 import { issueTypes } from "../../../../utils/staticData";
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
