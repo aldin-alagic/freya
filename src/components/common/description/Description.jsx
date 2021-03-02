@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 
 import { IssueType } from "../issueType/IssueType";
-import { DescriptionText } from "./../descriptionText/DescriptionText";
+import { DescriptionText } from "../descriptionText/DescriptionText";
 import { ItemList } from "../itemList/ItemList";
 import { VehicleDescriptions } from "./../vehicleDescriptions/VehicleDescriptions";
 
