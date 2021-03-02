@@ -1,21 +1,16 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 export class IssueType extends React.PureComponent {
+  static propTypes = {
+    option: PropTypes.string.isRequired,
+  };
+
   render() {
     return (
       <React.Fragment>
         <h5 className="text-primary bg-light p-2">Issue type</h5>
-        <div className="row justify-content-start px-4 my-3">
-          <span className="badge badge-pill badge-secondary px-2 m-1">
-            Gear box
-          </span>
-          <span className="badge badge-pill badge-secondary px-2 m-1">
-            Interior
-          </span>
-          <span className="badge badge-pill badge-secondary px-2 m-1">
-            Body
-          </span>
-        </div>
+        <p className="font-weight-bold my-3 px-3">{this.props.option}</p>
       </React.Fragment>
     );
   }
