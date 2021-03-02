@@ -180,7 +180,7 @@ export function Vehicle() {
                         label="Years"
                         options={years}
                         defaultValue={
-                          vehicle.years.length > 0
+                          vehicle.years
                             ? vehicle.years.map((year) => {
                                 return { value: year, label: year };
                               })
