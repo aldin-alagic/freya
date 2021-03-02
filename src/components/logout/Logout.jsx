@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 
 import { deAuthenticated } from "./../../store/auth";
 
-import { AUTH_TOKEN } from "../../config.json";
+import { AUTH_TOKEN, USER } from "../../config.json";
 
 class Logout extends React.PureComponent {
   componentDidMount() {
     const { location, history, deAuthenticateUser } = this.props;
-    localStorage.removeItem(AUTH_TOKEN);
+    localStorage.removeItem(USER);
     deAuthenticateUser();
     history.push(location.state ? location.state.from.pathname : "/");
   }
