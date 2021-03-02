@@ -12,6 +12,7 @@ import {
   newSolutionUpdated,
 } from "../../../../store/solutions";
 import StepNavigator from "./../StepNavigator/StepNavigator";
+import { TextArea } from "../../../common/formNew/textArea/TextArea";
 
 import { advertiseOptions } from "../../../../utils/staticData";
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
@@ -98,18 +99,14 @@ export function Finish() {
               before making it visible to all the users.
             </p>
           </div>
-          <div className="form-group w-100 mb-3">
-            <label htmlFor="note" className="text-dark font-weight-bold">
-              Note for the client
-            </label>
-            <textarea
-              id="note"
-              name="note"
-              rows={4}
-              className="form-control"
-              ref={register}
-            />
-          </div>
+
+          <TextArea
+            title={"Note for the client"}
+            name={"note"}
+            register={register}
+            errors={errors}
+          />
+
           <label
             htmlFor="positionAdvertisements"
             className="text-dark font-weight-bold"
