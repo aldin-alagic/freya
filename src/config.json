@@ -5,5 +5,7 @@
   "API_ERROR_MESSAGE": "There was a problem with your request. Please try again later.",
   "FORM_REQUIRED_MESSAGE": "This is a required field",
   "CACHE_PERIOD": 5,
-  "USER": "USER"
+  "USER": "USER",
+  "CLIENT": "client",
+  "EXPERT": "expert"
 }
