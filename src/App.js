@@ -17,7 +17,7 @@ import { Pricing } from "./components/pricing/Pricing";
 import { BecomeExpert } from "./components/becomeExpert/BecomeExpert";
 import { HowItWorks } from "./components/howItWorks/HowItWorks";
 import { Solutions } from "./components/solutions/Solutions";
-import { Solution } from "./components/solutions/solution/Solution";
+import Solution from "./components/solutions/solution/solution/Solution";
 import { Report } from "./components/report/Report";
 import { Profile } from "./components/profile/Profile";
 import { Issues } from "./components/issues/Issues";
@@ -71,8 +71,8 @@ class App extends Component {
               <Route path="/how-it-works" component={HowItWorks} />
               <Route path="/become-an-expert" component={BecomeExpert} />
               <Route path="/solutions" component={Solutions} />
-              <Route path="/solution/test" component={Solution} />
               <Route path="/solution/new/" component={NewSolution} />
+              <Route path="/solution/:id" component={Solution} />
               <Route path="/issues/test/" component={Issue} />
               <Route path="/issues/new/" component={NewIssue} />
               <Route path="/issues" component={Issues} />
