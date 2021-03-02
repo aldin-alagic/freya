@@ -1,8 +1,9 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransitionGroup } from "react-transition-group";
+import { InputGroup } from "./../../../../common/formNew/inputGroup/InputGroup";
 
 import "./Items.css";
 
@@ -35,33 +36,13 @@ export class Items extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <div className="form-group col-12 px-0 mb-2">
-          <label className="text-dark font-weight-bold" htmlFor={name}>
-            {label}
-          </label>
-          <div className="input-group">
-            <input
-              name={name}
-              id={name}
-              className="form-control"
-              type="text"
-              ref={register}
-            />
-            <div className="input-group-append">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => onItemsClick("ADD", name)}
-              >
-                <FontAwesomeIcon
-                  className="text-white"
-                  icon={faPlus}
-                  size="lg"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
+        <InputGroup
+          name={name}
+          label={label}
+          register={register}
+          onClick={onItemsClick}
+          style="form-group col-12 px-0 mb-2"
+        />
         <CSSTransitionGroup
           component="div"
           className="row col-12 px-3 mb-4"
