@@ -7,6 +7,7 @@ import { Items } from "./items/Items";
 import StepNavigator from "./../StepNavigator/StepNavigator";
 
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
+import { TextArea } from "../../../common/formNew/textArea/TextArea";
 
 export function Description() {
   const {
@@ -91,67 +92,38 @@ export function Description() {
       <div className="card mb-4">
         <div className="card-header bg-light">Description</div>
         <div className="card-body row px-5 pt-4 pb-2">
-          <div className="form-group row mx-0 px-0 mb-3 col-12">
-            <label htmlFor="title" className="text-dark font-weight-bold">
-              Solution title
-            </label>
-            <textarea
-              id="title"
-              name="title"
-              rows={4}
-              className="form-control"
-              ref={register({
-                required: FORM_REQUIRED_MESSAGE,
-              })}
-            />
-            <div className="ml-1 my-2 text-danger">{errors.title?.message}</div>
-          </div>
+          <TextArea
+            title={"Solution title"}
+            name={"title"}
+            register={register({
+              required: FORM_REQUIRED_MESSAGE,
+            })}
+            errors={errors}
+          />
 
-          <div className="form-group row mx-0 px-0 mb-3 col-12">
-            <label
-              htmlFor="shortDescription"
-              className="text-dark font-weight-bold"
-            >
-              Short solution description (visible to everyone)
-            </label>
-            <textarea
-              id="shortDescription"
-              name="shortDescription"
-              rows={4}
-              className="form-control"
-              ref={register({
-                required: FORM_REQUIRED_MESSAGE,
-              })}
-            />
-            <div className="ml-1 my-2 text-danger">
-              {errors.shortDescription?.message}
-            </div>
-          </div>
+          <TextArea
+            title={"Short solution description (visible to everyone)"}
+            name={"shortDescription"}
+            register={register({
+              required: FORM_REQUIRED_MESSAGE,
+            })}
+            errors={errors}
+          />
 
-          <div className="form-group row mx-0 px-0 mb-3 col-12">
-            <label
-              htmlFor="detailedDescription"
-              className="text-dark font-weight-bold"
-            >
-              Detailed solution description (visible when purchased)
-            </label>
-            <textarea
-              id="detailedDescription"
-              name="detailedDescription"
-              rows={4}
-              className="form-control"
-              ref={register({
-                required: FORM_REQUIRED_MESSAGE,
-              })}
-            />
-            <div className="ml-1 my-2 text-danger">
-              {errors.detailedDescription?.message}
-            </div>
-          </div>
+          <TextArea
+            title={"Detailed solution description (visible when purchased)"}
+            name={"detailedDescription"}
+            register={register({
+              required: FORM_REQUIRED_MESSAGE,
+            })}
+            errors={errors}
+          />
+
           <div className="d-flex justify-content-between w-100">
             <div className="w-50 mr-5">
               <Items
                 name="parts"
+                type="text"
                 label="Required parts"
                 items={formData.parts}
                 register={register}
@@ -161,6 +133,7 @@ export function Description() {
             <div className="w-50">
               <Items
                 name="tools"
+                type="text"
                 label="Required tools"
                 items={formData.tools}
                 register={register}
@@ -171,6 +144,7 @@ export function Description() {
           <div className="w-50 pr-4">
             <Items
               name="keywords"
+              type="text"
               label="Keywords"
               items={formData.keywords}
               register={register}
