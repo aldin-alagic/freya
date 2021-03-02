@@ -1,10 +1,22 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faMedal, faCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export class Expert extends React.PureComponent {
+  static propTypes = {
+    company: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    memberSince: PropTypes.string.isRequired,
+    hourlyRate: PropTypes.number.isRequired,
+    about: PropTypes.string.isRequired,
+    limited: PropTypes.bool.isRequired,
+  };
+
   render() {
+    const { company, country, memberSince, hourlyRate, about } = this.props;
+
     return (
       <div>
         <h5 className="text-primary bg-light p-2">About the expert</h5>
@@ -17,7 +29,7 @@ export class Expert extends React.PureComponent {
                 size="3x"
               />
               <div className="d-inline-block">
-                <Link to="/home">Company XYZ</Link>
+                <Link to="/home">{company}</Link>
                 <div>
                   <FontAwesomeIcon
                     className="text-warning mr-1"
@@ -38,11 +50,11 @@ export class Expert extends React.PureComponent {
           </div>
           <div className="mx-2">
             <span>From</span>
-            <h6>Italy</h6>
+            <h6>{country}</h6>
           </div>
           <div className="mx-2">
             <span>Member since</span>
-            <h6>Jan 2020</h6>
+            <h6>{memberSince.substring(0, 16)}</h6>
           </div>
           <div className="mx-2">
             <span>Languages</span>
@@ -50,16 +62,11 @@ export class Expert extends React.PureComponent {
           </div>
           <div className="mx-2">
             <span>Hourly rate</span>
-            <h6>45 token/hr</h6>
+            <h6>{hourlyRate} token/hr</h6>
           </div>
         </div>
         <hr className="my-2 mx-4" />
-        <p className="text-justify px-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec
-          posuere lorem. Sed interdum facilisis ornare. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit. Fusce nec posuere lorem. Sed
-          interdum facilisis ornare.
-        </p>
+        <p className="text-justify px-4">{about}</p>
         <div className="ml-4 mb-4">
           <Link className="btn btn-sm btn-primary" to="/home">
             Message expert
