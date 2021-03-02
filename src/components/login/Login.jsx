@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "./../spinner/Spinner";
 import { authenticateUser } from "./../../store/auth";
 
-import { AUTH_TOKEN, USER } from "../../config.json";
+import { AUTH_TOKEN } from "../../config.json";
 
 const schema = yup.object().shape({
   email: yup
@@ -25,7 +25,6 @@ export function Login(props) {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
   const token = useSelector((state) => state.auth.token);
-  const user = useSelector((state) => state.auth.user);
 
   const onSubmit = (data) => {
     dispatch(authenticateUser(data.email, data.password));
@@ -34,8 +33,6 @@ export function Login(props) {
   useEffect(() => {
     if (token) {
       localStorage.setItem(AUTH_TOKEN, token);
-      localStorage.setItem(USER, JSON.stringify(user));
-
       props.history.push(
         props.location.state
           ? props.location.state.from.pathname
