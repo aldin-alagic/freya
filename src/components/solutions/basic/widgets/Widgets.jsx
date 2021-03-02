@@ -1,12 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Input } from "../../../common/form/input/Input";
 import { DropDownCard } from "../../../common/dropDownCard/DropDownCard";
 import { Modal } from "../../../common/modal/Modal";
 
-export class Widgets extends React.PureComponent {
+import { EXPERT } from "../../../../config.json";
+
+class Widgets extends React.Component {
   render() {
+    const { role } = this.props;
     return (
       <div className="col-md-3">
         <hr className="d-block d-sm-none" />
@@ -51,7 +55,18 @@ export class Widgets extends React.PureComponent {
             </div>
           </Modal>
         </section>
+        {role === EXPERT && (
+          <Link className="btn btn-primary w-100" to="/solution/new">
+            New solution
+          </Link>
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  role: state.auth.user.role,
+});
+
+export default connect(mapStateToProps)(Widgets);
