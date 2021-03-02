@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { CSSTransitionGroup } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { newSolutionUpdated } from "../../../../store/solutions";
 import StepNavigator from "../StepNavigator/StepNavigator";
+import { InputGroup } from "./../../../common/formNew/inputGroup/InputGroup";
+import { Input } from "../../../common/formNew/input/Input";
 
 import "./Offers.css";
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
@@ -185,75 +187,49 @@ export function Offers() {
                   </li>
                 ))}
               </CSSTransitionGroup>
-              <div className="input-group height-fit-content mb-4">
-                <input
-                  name="premium"
-                  id="premium"
-                  placeholder="Add a package option"
-                  className="form-control"
-                  type="text"
-                  ref={register}
-                />
-                <div className="input-group-append">
-                  <button type="button" className="btn btn-primary">
-                    <FontAwesomeIcon
-                      className="text-white"
-                      icon={faPlus}
-                      size="lg"
-                      onClick={() => handleOptionsClick("ADD", "premium")}
-                    />
-                  </button>
-                </div>
-              </div>
+
+              <InputGroup
+                name="premium"
+                type="text"
+                placeholder="Add a package option"
+                register={register}
+                onClick={handleOptionsClick}
+                style="input-group height-fit-content mb-4"
+              />
+
               <div className="d-flex">
-                <div className="form-group w-50 mr-3">
-                  <label
-                    className="text-dark font-weight-bold"
-                    htmlFor="premiumPrice"
-                  >
-                    Premium package price
-                  </label>
-                  <input
-                    name="premiumPrice"
-                    id="premiumPrice"
-                    placeholder="Enter number of tokens"
-                    className="form-control"
-                    type="number"
-                    ref={register({
-                      required: FORM_REQUIRED_MESSAGE,
-                      min: 1,
-                    })}
-                  />
-                  <div className="ml-1 my-2 text-danger">
-                    {errors.premiumPrice?.type === "min"
+                <Input
+                  name="premiumPrice"
+                  type="number"
+                  label="Premium package price"
+                  placeholder="Enter number of tokens"
+                  register={register({
+                    required: FORM_REQUIRED_MESSAGE,
+                    min: 1,
+                  })}
+                  style="form-group w-50 mr-3"
+                  errors={
+                    errors.premiumPrice?.type === "min"
                       ? "Only positive values are allowed"
-                      : errors.premiumPrice?.message}
-                  </div>
-                </div>
-                <div className="form-group w-50">
-                  <label
-                    className="text-dark font-weight-bold"
-                    htmlFor="assistanceMinutes"
-                  >
-                    Included assistance minutes
-                  </label>
-                  <input
-                    name="assistanceMinutes"
-                    id="assistanceMinutes"
-                    placeholder="Enter number of minutes"
-                    className="form-control"
-                    type="number"
-                    ref={register({
-                      required: FORM_REQUIRED_MESSAGE,
-                      min: 0,
-                    })}
-                  />
-                  <div className="ml-1 my-2 text-danger">
-                    {errors.assistanceMinutes?.type === "min"
-                      ? "Negative values are not allowed"
-                      : errors.assistanceMinutes?.message}
-                  </div>
-                </div>
+                      : errors.premiumPrice?.message
+                  }
+                />
+                <Input
+                  name="assistanceMinutes"
+                  type="number"
+                  label="Included assistance minutes"
+                  placeholder="Enter number of minutes"
+                  register={register({
+                    required: FORM_REQUIRED_MESSAGE,
+                    min: 1,
+                  })}
+                  style="form-group w-50"
+                  errors={
+                    errors.assistanceMinutes?.type === "min"
+                      ? "Only positive values are allowed"
+                      : errors.assistanceMinutes?.message
+                  }
+                />
               </div>
             </div>
           </div>
@@ -263,5 +239,3 @@ export function Offers() {
     </form>
   );
 }
-
-// VIDI KOMPONENTE GENRIČKE, MOŽDA OFFER CARD?
