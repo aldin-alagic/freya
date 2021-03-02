@@ -80,6 +80,66 @@ const slice = createSlice({
       if (status === 200) {
         solutions.public = data.public_solutions;
         solutions.private = data.user_solutions;
+
+    publicSolutionsReceived: (solutions, action) => {
+      const { data, status, message } = action.payload;
+      if (status === 200) {
+        solutions.public = data;
+        solutions.apiResult = {
+          status,
+          message,
+        };
+      } else toast.error(message, { className: "alert-danger" });
+      solutions.loading = false;
+    },
+
+    userSolutionsReceived: (solutions, action) => {
+      const { data, status, message } = action.payload;
+
+      if (status === 200) {
+        solutions.user = data.my_solutions;
+        solutions.apiResult = {
+          status,
+          message,
+        };
+      } else toast.error(message, { className: "alert-danger" });
+      solutions.loading = false;
+    },
+
+    purchasedSolutionsReceived: (solutions, action) => {
+      const { data, status, message } = action.payload;
+
+      if (status === 200) {
+        let purchasedSolutions = data.map((solution) => {
+          return {
+            solution_id: solution.solution_id,
+            title: solution.solution_title,
+            short_description: "Not provided",
+            keywords: ["Not provided"],
+            user_name: "Not provided",
+            user_id: "Not provided",
+            offer: [
+              {
+                additional_package: [
+                  "Full solution",
+                  "All solution attachments",
+                  "Expert assistance",
+                  "Premium support",
+                ],
+                assistance_minutes: 40,
+                offer_type: "Premium",
+                price: "Not provided",
+              },
+              {
+                offer_type: "Standard",
+                price: "Not provided",
+              },
+            ],
+            views: solution.solution_views,
+          };
+        });
+
+        solutions.purchased = purchasedSolutions;
         solutions.apiResult = {
           status,
           message,
@@ -120,7 +180,9 @@ const slice = createSlice({
 
 export const {
   solutionsRequested,
-  solutionsReceived,
+  publicSolutionsReceived,
+  userSolutionsReceived,
+  purchasedSolutionsReceived,
   solutionsRequestFailed,
   newSolutionUpdated,
   newSolutionReset,
@@ -130,6 +192,29 @@ export const {
 export default slice.reducer;
 
 export const loadSolutions = () => (dispatch, getState) => {
+export const loadPublicSolutions = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.solutions;
+
+  const { token } = getState().auth;
+  let headers = {};
+  if (token) headers = { Authorization: token };
+
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
+  if (diffInMinutes < CACHE_PERIOD) return;
+
+  return dispatch(
+    apiCallBegan({
+      url: `${solutionUrl}/all/public`,
+      method: "GET",
+      headers,
+      onStart: solutionsRequested.type,
+      onSuccess: publicSolutionsReceived.type,
+      onError: solutionsRequestFailed.type,
+    })
+  );
+};
+
+export const loadUserSolutions = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.solutions;
   const { token } = getState().auth;
 
@@ -142,7 +227,26 @@ export const loadSolutions = () => (dispatch, getState) => {
       method: "GET",
       headers: { Authorization: token },
       onStart: solutionsRequested.type,
-      onSuccess: solutionsReceived.type,
+      onSuccess: userSolutionsReceived.type,
+      onError: solutionsRequestFailed.type,
+    })
+  );
+};
+
+export const loadPurchasedSolutions = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.solutions;
+  const { token } = getState().auth;
+
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
+  if (diffInMinutes < CACHE_PERIOD) return;
+
+  return dispatch(
+    apiCallBegan({
+      url: `${solutionUrl}/all/purchased`,
+      method: "GET",
+      headers: { Authorization: token },
+      onStart: solutionsRequested.type,
+      onSuccess: purchasedSolutionsReceived.type,
       onError: solutionsRequestFailed.type,
     })
   );
