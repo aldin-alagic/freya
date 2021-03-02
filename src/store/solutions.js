@@ -8,6 +8,28 @@ import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 
 const solutionUrl = "/solution";
 
+const initialSolutionState = {
+  id: 0,
+  expert: {},
+  vehicles: [],
+  fuelType: "",
+  transmission: "",
+  issueTypeOption: "",
+  title: "",
+  shortDescription: "",
+  longDescription: "",
+  keywords: [],
+  parts: [],
+  tools: [],
+  attachments: [],
+  offers: [],
+  advertisements: [],
+  visibility: false,
+  note: "",
+  views: 0,
+  created: "",
+};
+
 const initialNewSolutionState = {
   vehicles: [
     {
@@ -51,16 +73,145 @@ const initialNewSolutionState = {
     position: { value: 0, label: "No top position advertisements" },
     notifications: { value: 0, label: "No notification advertisements" },
   },
+  views: 0,
   step: 0,
   status: "process",
+};
+
+const prepareSolutionData = (isOwner, data) => {
+  let solution = {};
+  if (isOwner) {
+    const { user, expert, solution: solutionData, attachments } = data;
+    const {
+      solution_id: id,
+      vehicles: vehiclesDiff,
+      fuel_type: fuelType,
+      transmission,
+      issue_type_option: issueTypeOption,
+      title,
+      short_description: shortDescription,
+      long_description: longDescription,
+      parts: partsDiff,
+      tools: toolsDiff,
+      keywords: keywordsDiff,
+      offer: offers,
+      advertisements,
+      visibility,
+      note,
+      views,
+      created_at: created,
+    } = solutionData;
+
+    const parts = partsDiff ? partsDiff : [];
+    const tools = toolsDiff ? toolsDiff : [];
+    const keywords = keywordsDiff ? keywordsDiff : [];
+
+    const vehicles = vehiclesDiff.map((vehicle) => {
+      return {
+        brand: vehicle.brand,
+        model: vehicle.model,
+        variant: vehicle.model_variant,
+        years: [vehicle.year_from],
+      };
+    });
+
+    solution = {
+      id,
+      owner: true,
+      user,
+      expert,
+      vehicles,
+      fuelType,
+      transmission,
+      issueTypeOption,
+      title,
+      shortDescription,
+      longDescription,
+      keywords,
+      parts,
+      tools,
+      attachments,
+      offers,
+      advertisements,
+      visibility,
+      note,
+      views,
+      limited: false,
+      created,
+    };
+  } else {
+    const {
+      solution_id: id,
+      vehicles: vehiclesDiff,
+      fuel_type: fuelType,
+      transmission,
+      issue_type_option: issueTypeOption,
+      title,
+      short_description: shortDescription,
+      long_description: longDescription,
+      parts: partsDiff,
+      tools: toolsDiff,
+      keywords: keywordsDiff,
+      attachments,
+      user_id,
+      user_name,
+      views,
+      offer: offers,
+      purchased,
+      created_at: created,
+    } = data;
+
+    const parts = partsDiff ? partsDiff : [];
+    const tools = toolsDiff ? toolsDiff : [];
+    const keywords = keywordsDiff ? keywordsDiff : [];
+
+    const vehicles = vehiclesDiff.map((vehicle) => {
+      return {
+        brand: vehicle.brand,
+        model: vehicle.model,
+        variant: vehicle.model_variant,
+        years: [vehicle.year_from],
+      };
+    });
+
+    const expert = {
+      user_id,
+      company_name: user_name,
+    };
+
+    solution = {
+      id,
+      owner: purchased,
+      expert,
+      vehicles,
+      fuelType,
+      transmission,
+      issueTypeOption,
+      title,
+      shortDescription,
+      longDescription,
+      keywords,
+      parts,
+      tools,
+      attachments,
+      offers,
+      views,
+      created,
+      limited: !("purchased" in data),
+    };
+  }
+
+  return solution;
 };
 
 const slice = createSlice({
   name: "solutions",
   initialState: {
     newSolution: initialNewSolutionState,
+    solution: initialSolutionState,
     public: [],
-    private: [],
+    user: [],
+    purchased: [],
     apiResult: {
       status: 0,
       message: "",
@@ -74,12 +225,20 @@ const slice = createSlice({
       solutions.loading = true;
     },
 
-    solutionsReceived: (solutions, action) => {
+    solutionReceived: (solutions, action) => {
       const { data, status, message } = action.payload;
 
       if (status === 200) {
-        solutions.public = data.public_solutions;
-        solutions.private = data.user_solutions;
+        let isOwner = "owner" in data;
+        let solution = prepareSolutionData(isOwner, data);
+        solutions.solution = solution;
+        solutions.apiResult = {
+          status,
+          message,
+        };
+      } else toast.error(message, { className: "alert-danger" });
+      solutions.loading = false;
+    },
 
     publicSolutionsReceived: (solutions, action) => {
       const { data, status, message } = action.payload;
@@ -144,7 +303,6 @@ const slice = createSlice({
           status,
           message,
         };
-        toast.success(message, { className: "alert-success" });
       } else toast.error(message, { className: "alert-danger" });
       solutions.loading = false;
     },
@@ -180,6 +338,7 @@ const slice = createSlice({
 
 export const {
   solutionsRequested,
+  solutionReceived,
   publicSolutionsReceived,
   userSolutionsReceived,
   purchasedSolutionsReceived,
@@ -191,7 +350,22 @@ export const {
 
 export default slice.reducer;
 
-export const loadSolutions = () => (dispatch, getState) => {
+export const loadSolution = (id) => (dispatch, getState) => {
+  const { token } = getState().auth;
+  let headers = {};
+  if (token) headers = { Authorization: token };
+  return dispatch(
+    apiCallBegan({
+      url: `${solutionUrl}/${id}`,
+      method: "GET",
+      headers: { Authorization: token },
+      onStart: solutionsRequested.type,
+      onSuccess: solutionReceived.type,
+      onError: solutionsRequestFailed.type,
+    })
+  );
+};
+
 export const loadPublicSolutions = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.solutions;
 
