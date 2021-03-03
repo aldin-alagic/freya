@@ -114,7 +114,7 @@ class Solution extends React.Component {
             )}
           />
         </div>
-        <SolutionOffers offers={solution.offers} />
+        {solution.offers[1] && <SolutionOffers offers={solution.offers} />}
         <Modal
           id="solution-checkout-modal"
           title="Checkout"
