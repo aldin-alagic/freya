@@ -33,7 +33,7 @@ class Solution extends React.Component {
             </div>
           </div>
           <hr className="mt-3 mb-0" />
-          <Menu likes={0} dislikes={0} />
+          <Menu />
           <hr className="mt-0 mb-4" />
           <Route
             path={"/solution/:id/overview"}
