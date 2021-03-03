@@ -129,25 +129,26 @@ class Main extends React.Component {
           <CardsLoader />
         ) : (
           paginatedSolutions.map((solution, index) => {
+            const {
+              title,
+              description,
+              views,
+              keywords,
+              offer,
+              solution_id,
+              expert,
+            } = solution;
             return (
               <SolutionCard
                 key={index}
-                title={solution.title}
-                description={solution.short_description}
-                company={
-                  selectedSolutions === "userSolutions"
-                    ? `${user.firstname} ${user.lastname}`
-                    : solution.user_name
-                }
-                userId={
-                  selectedSolutions === "userSolutions"
-                    ? user.id
-                    : solution.user_id
-                }
-                views={solution.views}
-                offer={solution.offer}
-                keywords={solution.keywords}
-                solutionId={solution.solution_id}
+                title={title}
+                description={description}
+                companyName={expert ? expert.company : null}
+                expertId={expert ? expert.expert_id : null}
+                views={views}
+                offer={offer}
+                keywords={keywords}
+                solutionId={solution_id}
                 limited={user.role ? false : true}
               />
             );

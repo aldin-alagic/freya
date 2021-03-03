@@ -19,12 +19,12 @@ export class SolutionCard extends React.PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    company: PropTypes.string.isRequired,
+    companyName: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
     offer: PropTypes.arrayOf(PropTypes.number).isRequired,
     keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
     solutionId: PropTypes.number.isRequired,
-    userId: PropTypes.number.isRequired,
+    expertId: PropTypes.number.isRequired,
     limited: PropTypes.bool.isRequired,
   };
 
@@ -32,12 +32,12 @@ export class SolutionCard extends React.PureComponent {
     const {
       title,
       description,
-      company,
+      companyName,
       offer,
       views,
       keywords,
       solutionId,
-      userId,
+      expertId,
       limited,
     } = this.props;
 
@@ -91,7 +91,7 @@ export class SolutionCard extends React.PureComponent {
               <FontAwesomeIcon className="text-dark" icon={faUser} size="4x" />
               <div className="ml-3 mr-sm-0 mr-md-auto mb-1">
                 <Link to="/home">
-                  {company} <span className="text-info">#{userId}</span>
+                  {companyName} <span className="text-info">#{expertId}</span>
                 </Link>
                 <div>Expert</div>
                 <div className="text-success">
