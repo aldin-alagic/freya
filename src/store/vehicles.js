@@ -30,7 +30,7 @@ const slice = createSlice({
       const { data, status, message } = action.payload;
 
       if (status === 200) {
-        const vehiclesData = JSON.parse(data.vehicles);
+        const vehiclesData = data.vehicles;
         vehicles.brands = Object.keys(vehiclesData).map((brand) => {
           return { value: brand, label: brand };
         });
