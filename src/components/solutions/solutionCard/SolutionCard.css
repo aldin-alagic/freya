@@ -5,3 +5,18 @@
 .font-md {
   font-size: 1rem !important;
 }
+
+.favorite-btn,
+.ban-btn {
+  color: #6c757d;
+  align-self: center;
+  cursor: pointer;
+}
+
+.favorite-btn:hover {
+  color: rgb(245, 210, 16);
+}
+
+.ban-btn:hover {
+  color: #dc3545;
+}
