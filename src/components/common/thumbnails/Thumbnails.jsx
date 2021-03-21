@@ -5,11 +5,12 @@ import { faFile } from "@fortawesome/free-solid-svg-icons";
 
 export class Thumbnails extends React.PureComponent {
   static propTypes = {
+    title: PropTypes.string.isRequired,
     attachments: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const { attachments } = this.props;
+    const { title, attachments } = this.props;
 
     const thumbnails =
       attachments.length > 0 ? (
@@ -41,7 +42,7 @@ export class Thumbnails extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <h5 className="text-primary bg-light p-2">Attachments</h5>
+        <h5 className="text-primary bg-light p-2">{title}</h5>
         <div className="row justify-content-start px-4 my-3">{thumbnails}</div>
       </React.Fragment>
     );
