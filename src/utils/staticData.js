@@ -1,3 +1,8 @@
+export const standardPackageOptions = [
+  "Full solution",
+  "All solution attachments",
+];
+
 export const issueTypes = [
   {
     title: "Additional electric parts",
