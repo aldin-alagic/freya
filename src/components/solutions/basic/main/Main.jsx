@@ -68,7 +68,7 @@ class Main extends React.Component {
           className="col-12 btn-group btn-group-toggle px-0"
           data-toggle="buttons"
         >
-          <label className="col-6 btn btn-primary active">
+          <label className="col-6 btn btn-outline-primary active">
             <input
               type="radio"
               name="solutions"
@@ -80,7 +80,7 @@ class Main extends React.Component {
             All solutions
           </label>
           {user.role === EXPERT && (
-            <label className="col-6 btn btn-primary">
+            <label className="col-6 btn btn-outline-primary">
               <input
                 type="radio"
                 name="solutions"
@@ -91,7 +91,7 @@ class Main extends React.Component {
               My solutions
             </label>
           )}
-          <label className="col-6 btn btn-primary">
+          <label className="col-6 btn btn-outline-primary">
             <input
               type="radio"
               name="solutions"
@@ -133,7 +133,6 @@ class Main extends React.Component {
               title,
               description,
               views,
-              keywords,
               offer,
               solution_id,
               expert,
@@ -147,7 +146,6 @@ class Main extends React.Component {
                 expertId={expert ? expert.expert_id : null}
                 views={views}
                 offer={offer}
-                keywords={keywords}
                 solutionId={solution_id}
                 limited={user.role ? false : true}
               />
