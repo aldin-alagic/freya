@@ -9,205 +9,53 @@ import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 const solutionUrl = "/solution";
 
 const initialSolutionState = {
-  id: 0,
-  expert: {},
-  vehicles: [],
-  fuelType: "",
-  transmission: "",
-  issueTypeOption: "",
-  title: "",
-  shortDescription: "",
-  longDescription: "",
-  keywords: [],
-  parts: [],
-  tools: [],
-  attachments: [],
-  offers: [],
-  advertisements: [],
-  visibility: false,
-  note: "",
-  views: 0,
-  created: "",
-};
-
-const initialNewSolutionState = {
-  vehicles: [
-    {
-      brand: null,
-      model: null,
-      yearFrom: null,
-      years: [],
-      variant: null,
-    },
-  ],
-  fuelType: null,
-  transmission: null,
-  issueTypeOption: null,
-  description: {
+  vehicle: {
+    vehicles: [
+      {
+        brand: null,
+        model: null,
+        variant: null,
+        years: [],
+      },
+    ],
+    fuelType: "",
+    transmission: "",
+  },
+  issue: {
+    type: "",
+    option: "",
+    code: "",
+    description: "",
+    attachments: [],
+  },
+  solution: {
     title: "",
-    shortDescription: "",
-    detailedDescription: "",
+    description: null,
+    attachments: [],
     parts: [],
     tools: [],
+  },
+  finish: {
     keywords: [],
-  },
-  attachments: [],
-  offers: {
-    standard: {
-      price: null,
-      options: ["Full solution", "All solution attachments"],
+    packages: {
+      standard: {
+        price: null,
+        options: [],
+      },
     },
-    premium: {
-      price: null,
-      options: [
-        "Full solution",
-        "All solution attachments",
-        "Expert assistance",
-      ],
-      assistanceMinutes: null,
+    visibility: false,
+    advertisements: {
+      position: null,
+      notifications: null,
     },
   },
-  visibility: false,
-  note: "",
-  advertisements: {
-    position: { value: 0, label: "No top position advertisements" },
-    notifications: { value: 0, label: "No notification advertisements" },
-  },
-  views: 0,
   step: 0,
   status: "process",
-};
-
-const prepareSolutionData = (isOwner, data) => {
-  let solution = {};
-  if (isOwner) {
-    const { user, expert, solution: solutionData, attachments } = data;
-    const {
-      solution_id: id,
-      vehicles: vehiclesDiff,
-      fuel_type: fuelType,
-      transmission,
-      issue_type_option: issueTypeOption,
-      title,
-      short_description: shortDescription,
-      long_description: longDescription,
-      parts: partsDiff,
-      tools: toolsDiff,
-      keywords: keywordsDiff,
-      offer: offers,
-      advertisements,
-      visibility,
-      note,
-      views,
-      created_at: created,
-    } = solutionData;
-
-    const parts = partsDiff ? partsDiff : [];
-    const tools = toolsDiff ? toolsDiff : [];
-    const keywords = keywordsDiff ? keywordsDiff : [];
-
-    const vehicles = vehiclesDiff.map((vehicle) => {
-      return {
-        brand: vehicle.brand,
-        model: vehicle.model,
-        variant: vehicle.model_variant,
-        years: [vehicle.year_from],
-      };
-    });
-
-    solution = {
-      id,
-      owner: true,
-      user,
-      expert,
-      vehicles,
-      fuelType,
-      transmission,
-      issueTypeOption,
-      title,
-      shortDescription,
-      longDescription,
-      keywords,
-      parts,
-      tools,
-      attachments,
-      offers,
-      advertisements,
-      visibility,
-      note,
-      views,
-      limited: false,
-      created,
-    };
-  } else {
-    const {
-      solution_id: id,
-      vehicles: vehiclesDiff,
-      fuel_type: fuelType,
-      transmission,
-      issue_type_option: issueTypeOption,
-      title,
-      short_description: shortDescription,
-      long_description: longDescription,
-      parts: partsDiff,
-      tools: toolsDiff,
-      keywords: keywordsDiff,
-      attachments,
-      user_id,
-      user_name,
-      views,
-      offer: offers,
-      purchased,
-      created_at: created,
-    } = data;
-
-    const parts = partsDiff ? partsDiff : [];
-    const tools = toolsDiff ? toolsDiff : [];
-    const keywords = keywordsDiff ? keywordsDiff : [];
-
-    const vehicles = vehiclesDiff.map((vehicle) => {
-      return {
-        brand: vehicle.brand,
-        model: vehicle.model,
-        variant: vehicle.model_variant,
-        years: [vehicle.year_from],
-      };
-    });
-
-    const expert = {
-      user_id,
-      company_name: user_name,
-    };
-
-    solution = {
-      id,
-      owner: purchased,
-      expert,
-      vehicles,
-      fuelType,
-      transmission,
-      issueTypeOption,
-      title,
-      shortDescription,
-      longDescription,
-      keywords,
-      parts,
-      tools,
-      attachments,
-      offers,
-      views,
-      created,
-      limited: !("purchased" in data),
-    };
-  }
-
-  return solution;
 };
 
 const slice = createSlice({
   name: "solutions",
   initialState: {
-    newSolution: initialNewSolutionState,
     solution: initialSolutionState,
     public: [],
     user: [],
@@ -365,12 +213,32 @@ const slice = createSlice({
     },
 
     newSolutionUpdated: (solutions, action) => {
-      for (const field in action.payload)
-        solutions.newSolution[field] = action.payload[field];
+      for (const firstKey in action.payload) {
+        if (firstKey === "step" || firstKey === "status")
+          solutions.solution[firstKey] = action.payload[firstKey];
+        else {
+          for (const secondKey in action.payload[firstKey]) {
+            if (
+              secondKey === "attachment" &&
+              solutions.solution[firstKey]["attachments"].find(
+                (attachment) =>
+                  attachment.name ===
+                  action.payload[firstKey]["attachment"].name
+              ) === undefined
+            ) {
+              solutions.solution[firstKey]["attachments"].push(
+                action.payload[firstKey]["attachment"]
+              );
+            } else
+              solutions.solution[firstKey][secondKey] =
+                action.payload[firstKey][secondKey];
+          }
+        }
+      }
     },
 
     newSolutionReset: (solutions, action) => {
-      solutions.newSolution = initialNewSolutionState;
+      solutions.newSolution = initialSolutionState;
     },
   },
 });
@@ -468,69 +336,15 @@ export const loadPurchasedSolutions = () => (dispatch, getState) => {
 export const createSolution = () => (dispatch, getState) => {
   const { token } = getState().auth;
   const {
-    vehicles: vehiclesDiff,
-    fuelType: fuel_type,
-    offers,
-    transmission,
-    issueTypeOption: issue_type_option,
-    note,
-    visibility,
-    attachments,
-    advertisements,
-  } = getState().entities.solutions.newSolution;
-
-  const {
-    title,
-    shortDescription: short_description,
-    detailedDescription: long_description,
-    keywords,
-    parts,
-    tools,
-  } = getState().entities.solutions.newSolution.description;
-
-  const vehicles = vehiclesDiff.map((vehicle) => {
-    return {
-      brand: vehicle.brand,
-      model: vehicle.model,
-      model_variant: vehicle.variant,
-      year_from: vehicle.years[0],
-    };
-  });
-
-  let offer = [
-    {
-      offer_type: "Premium",
-      price: offers.premium.price,
-      additional_package: offers.premium.options,
-      assistance_minutes: offers.premium.assistanceMinutes,
-    },
-    {
-      offer_type: "Standard",
-      price: offers.standard.price,
-    },
-  ];
-
-  const data = {
-    vehicles,
-    fuel_type,
-    transmission,
-    issue_type_option,
-    title,
-    short_description,
-    long_description,
-    offer,
-    note,
-    keywords,
-    parts,
-    tools,
-    visibility,
-    attachments,
-    advertisements,
-  };
+    vehicle,
+    issue,
+    solution,
+    finish,
+  } = getState().entities.solutions.solution;
 
   return dispatch(
     apiCallBegan({
-      data,
+      data: { vehicle, issue, solution, finish },
       url: solutionUrl,
       method: "POST",
       headers: { Authorization: token },
