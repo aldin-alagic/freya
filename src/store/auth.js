@@ -18,6 +18,7 @@ const getUser = () => {
       firstname: data.firstname,
       lastname: data.lastname,
       role: data.account_type,
+      wallet: 999,
     };
   } else return {};
 };
@@ -51,6 +52,7 @@ const slice = createSlice({
           firstname: tokenDecoded.firstname,
           lastname: tokenDecoded.lastname,
           role: tokenDecoded.account_type,
+          wallet: data.wallet,
         };
         auth.apiResult = {
           status,
