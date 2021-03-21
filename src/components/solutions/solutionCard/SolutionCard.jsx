@@ -5,9 +5,8 @@ import {
   faBan,
   faCircle,
   faCoins,
-  faHeart,
+  faStar,
   faUser,
-  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
@@ -22,7 +21,6 @@ export class SolutionCard extends React.PureComponent {
     companyName: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
     offer: PropTypes.arrayOf(PropTypes.number).isRequired,
-    keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
     solutionId: PropTypes.number.isRequired,
     expertId: PropTypes.number.isRequired,
     limited: PropTypes.bool.isRequired,
@@ -35,7 +33,6 @@ export class SolutionCard extends React.PureComponent {
       companyName,
       offer,
       views,
-      keywords,
       solutionId,
       expertId,
       limited,
@@ -91,7 +88,8 @@ export class SolutionCard extends React.PureComponent {
               <FontAwesomeIcon className="text-dark" icon={faUser} size="4x" />
               <div className="ml-3 mr-sm-0 mr-md-auto mb-1">
                 <Link to="/home">
-                  {companyName} <span className="text-info">#{expertId}</span>
+                  {companyName}
+                  <span className="text-muted ml-1">#{expertId}</span>
                 </Link>
                 <div>Expert</div>
                 <div className="text-success">
@@ -101,45 +99,58 @@ export class SolutionCard extends React.PureComponent {
               </div>
             </React.Fragment>
           )}
-          <div className="text-center pr-0 py-2 font-weight-bold font-md my-auto">
-            <span className="text-primary col-12">
-              {views ? views : 0} <FontAwesomeIcon icon={faEye} />
-            </span>
-            <span className="text-secondary col-12">
-              {offer[1].price} <FontAwesomeIcon icon={faCoins} />
-            </span>
-            <span className="text-warning col-12 pr-1">
-              {offer[0].price} <FontAwesomeIcon icon={faCoins} />
-            </span>
+          <div className="d-flex text-muted font-weight-bold font-md p-0 m-0">
+            <div className="mx-3 text-center">
+              <div>Views</div>
+              <span className="text-dark">{views ? views : 0}</span>
+            </div>
+            <div className="mx-3 text-center">
+              <div>Standard</div>
+              <span className="text-dark">
+                {offer[1].price}
+                <FontAwesomeIcon
+                  className="text-dark ml-1"
+                  icon={faCoins}
+                  size="sm"
+                />
+              </span>
+            </div>
+            <div className="ml-3 text-center">
+              <div>Premium</div>
+              <span className="text-dark">
+                {offer[0].price}
+                <FontAwesomeIcon
+                  className="text-dark ml-1"
+                  icon={faCoins}
+                  size="sm"
+                />
+              </span>
+            </div>
           </div>
         </div>
         <Link to={url}>
           <h6 className="mb-0">
-            <span className="text-info mr-2">#{solutionId}</span>
             {title}
+            <span className="text-muted ml-2">#{solutionId}</span>
           </h6>
         </Link>
         <p className="text-justify mb-1">{description}</p>
-        <div>
-          {keywords.map(function (keyword, index) {
-            return (
-              <span
-                key={"keyword-" + index}
-                className="badge badge-pill badge-secondary px-3 py-1 m-1"
-              >
-                {keyword}
-              </span>
-            );
-          })}
-        </div>
-        <hr className="my-1" />
+        <hr className="mt-2 mb-1" />
         <div className="row justify-content-end pr-2">
-          <FontAwesomeIcon className="text-danger m-1" icon={faBan} size="2x" />
-          <FontAwesomeIcon
-            className="text-primary m-1"
-            icon={faHeart}
-            size="2x"
-          />
+          <div className="ml-2 mr-auto">
+            <FontAwesomeIcon
+              className="favorite-btn m-1 "
+              icon={faStar}
+              size="2x"
+              fixedWidth
+            />
+            <FontAwesomeIcon
+              className="ban-btn m-1"
+              icon={faBan}
+              size="2x"
+              fixedWidth
+            />
+          </div>
           {cardButtons()}
         </div>
         <ReactTooltip place="bottom" type="dark" effect="solid" />
