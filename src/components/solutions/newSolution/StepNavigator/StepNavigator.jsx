@@ -40,8 +40,8 @@ class StepNavigator extends React.PureComponent {
         >
           <FontAwesomeIcon
             className="text-white"
-            icon={currentStep !== 6 ? faLongArrowAltRight : faCheck}
-            size={currentStep !== 6 ? "lg" : "md"}
+            icon={currentStep !== 4 ? faLongArrowAltRight : faCheck}
+            size={currentStep !== 4 ? "lg" : "1x"}
           />
         </button>
       </div>

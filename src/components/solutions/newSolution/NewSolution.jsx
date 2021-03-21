@@ -3,14 +3,12 @@ import { Steps } from "rsuite";
 import { connect } from "react-redux";
 
 import { Vehicle } from "./vehicle/Vehicle";
-import { Description } from "./description/Description";
+import { Solution } from "./solution/Solution";
 import Review from "./review/Review";
-import { Attachments } from "./attachments/Attachments";
 import { newSolutionReset } from "./../../../store/solutions";
 import { loadVehicles } from "./../../../store/vehicles";
-import { IssueType } from "./issueType/IssueType";
+import { Issue } from "./issue/Issue";
 import { Spinner } from "./../../spinner/Spinner";
-import { Offers } from "./offers/Offers";
 import { Finish } from "./finish/Finish";
 
 class NewSolution extends React.Component {
@@ -27,16 +25,12 @@ class NewSolution extends React.Component {
       case 0:
         return <Vehicle />;
       case 1:
-        return <IssueType />;
+        return <Issue />;
       case 2:
-        return <Description />;
+        return <Solution />;
       case 3:
-        return <Attachments />;
-      case 4:
-        return <Offers />;
-      case 5:
         return <Review />;
-      case 6:
+      case 4:
         return <Finish />;
     }
   };
@@ -53,9 +47,7 @@ class NewSolution extends React.Component {
         >
           <Steps.Item title="Vehicle" />
           <Steps.Item title="Issue" />
-          <Steps.Item title="Description" />
-          <Steps.Item title="Attachments" />
-          <Steps.Item title="Offers" />
+          <Steps.Item title="Solution" />
           <Steps.Item title="Review" />
           <Steps.Item title="Finish" />
         </Steps>
@@ -68,8 +60,8 @@ class NewSolution extends React.Component {
 
 const mapStateToProps = (state) => ({
   loading: state.vehicles.loading,
-  step: state.entities.solutions.newSolution.step,
-  status: state.entities.solutions.newSolution.status,
+  step: state.entities.solutions.solution.step,
+  status: state.entities.solutions.solution.status,
 });
 
 const mapDispatchToProps = (dispatch) => ({

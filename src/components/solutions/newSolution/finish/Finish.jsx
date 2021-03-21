@@ -1,60 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faExclamationCircle,
+  faCheck,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import { CSSTransitionGroup } from "react-transition-group";
 
+import { InputGroup } from "./../../../common/formNew/inputGroup/InputGroup";
+import { Input } from "../../../common/formNew/input/Input";
+import { Items } from "../items/Items";
+import StepNavigator from "./../StepNavigator/StepNavigator";
+import { Options } from "../../../common/options/Options";
 import {
   createSolution,
   newSolutionUpdated,
 } from "../../../../store/solutions";
-import StepNavigator from "./../StepNavigator/StepNavigator";
-import { TextArea } from "../../../common/formNew/textArea/TextArea";
 
-import { advertiseOptions } from "../../../../utils/staticData";
+import {
+  advertiseOptions,
+  standardPackageOptions,
+} from "../../../../utils/staticData";
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
+import "./Finish.css";
 
 export function Finish() {
   let history = useHistory();
   const animatedComponents = makeAnimated();
   const dispatch = useDispatch();
 
-  const visibility = useSelector(
-    (state) => state.entities.solutions.newSolution.visibility
-  );
-  const note = useSelector(
-    (state) => state.entities.solutions.newSolution.note
-  );
-  const advertisements = useSelector(
-    (state) => state.entities.solutions.newSolution.advertisements
+  const wallet = useSelector((state) => state.auth.user.wallet);
+  const { keywords, packages, visibility, advertisements } = useSelector(
+    (state) => state.entities.solutions.solution.finish
   );
 
-  const { register, control, errors, handleSubmit, watch, getValues } = useForm(
-    {
-      defaultValues: { visibility, note },
-    }
-  );
+  const {
+    register,
+    control,
+    errors,
+    handleSubmit,
+    watch,
+    getValues,
+    setValue,
+    formState,
+  } = useForm({
+    defaultValues: {
+      visibility,
+      price: packages.standard.price,
+    },
+  });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    let newAdvertisements = {
-      position: data.positionAdvertisements,
-      notifications: data.notificationAdvertisements,
-    };
-
-    dispatch(
-      newSolutionUpdated({
-        advertisements: newAdvertisements,
-        visibility: data.visibility,
-        note: data.note,
-      })
-    );
-    dispatch(createSolution());
-    history.push("/solutions/basic");
-  };
+  const [formData, setFormData] = useState({
+    offerOptions: packages.standard.options,
+    keywords,
+  });
 
   const getTotal = () => {
     const positionCharge = getValues("positionAdvertisements")
@@ -66,55 +70,219 @@ export function Finish() {
     return ` ${positionCharge + notificationsCharge} tokens`;
   };
 
+  const handleOptionsClick = (action, deletedOption = "") => {
+    const newFormData = {
+      keywords: [...formData.keywords],
+      offerOptions: [...formData.offerOptions],
+    };
+
+    if (action === "ADD") {
+      const option = getValues("offerOptions");
+      if (option !== "" && !formData.offerOptions.includes(option))
+        newFormData.offerOptions.push(option);
+      setValue("offerOptions", "");
+    } else if (action === "REMOVE") {
+      newFormData.offerOptions = newFormData.offerOptions.filter(
+        (option) => option !== deletedOption
+      );
+    }
+
+    setFormData(newFormData);
+  };
+
+  const handleItemsClick = (action, itemType, deletedItem = "") => {
+    const newFormData = {
+      keywords: [...formData.keywords],
+      offerOptions: [...formData.offerOptions],
+    };
+
+    if (action === "ADD") {
+      const item = getValues(itemType);
+      if (item !== "" && !formData[itemType].includes(item))
+        newFormData[itemType].push(item);
+      setValue(itemType, "");
+    } else if (action === "REMOVE") {
+      newFormData[itemType] = newFormData[itemType].filter(
+        (item) => item !== deletedItem
+      );
+    }
+    setFormData(newFormData);
+  };
+
+  const onSubmit = ({
+    visibility,
+    positionAdvertisements,
+    notificationAdvertisements,
+    price,
+  }) => {
+    const { offerOptions, keywords } = formData;
+    const advertisements = {
+      position: positionAdvertisements.value,
+      notifications: notificationAdvertisements.value,
+    };
+    const packages = {
+      standard: { price: parseInt(price), options: offerOptions },
+    };
+    const finish = {
+      step: 4,
+      status: "process",
+      finish: {
+        keywords,
+        visibility,
+        packages,
+        advertisements,
+      },
+    };
+
+    dispatch(newSolutionUpdated(finish));
+    dispatch(createSolution());
+    history.push("/solutions/basic");
+  };
+
+  !(Object.keys(formState.errors).length === 0) &&
+    dispatch(
+      newSolutionUpdated({
+        status: "error",
+      })
+    );
+
   return (
     <form
       className="animate__animated animate__fadeIn"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="card mb-4">
-        <div className="card-header bg-light">Finish</div>
-        <div className="card-body row px-5 mb-3">
-          <div className="material-switch mt-2 mb-2">
-            <span className="text-dark font-weight-bold mr-3">Visible</span>
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              name="visibility"
-              id="visibility"
-              ref={register}
+        <div className="card-header">Keywords</div>
+        <div className="card-body p-4">
+          <div className="w-50">
+            <Items
+              name="keywords"
+              placeholder="Enter e keyword related to your solution"
+              type="text"
+              items={formData.keywords}
+              register={register}
+              onItemsClick={handleItemsClick}
             />
-            <label className="bg-primary" htmlFor="visibility"></label>
           </div>
-          <div className="alert alert-warning mb-3">
+        </div>
+      </div>
+
+      <div className="card mb-4">
+        <div className="card-header">Visibility</div>
+        <div className="card-body p-4">
+          <div className="row w-50">
+            <Options
+              type="visibility"
+              options={["Private", "Public"]}
+              register={register({
+                required: FORM_REQUIRED_MESSAGE,
+              })}
+            />
+          </div>
+          <div className="alert alert-warning mb-0">
             <h4 className="alert-heading">
               <FontAwesomeIcon icon={faExclamationCircle} /> Warning
             </h4>
-            <hr className="my-2" />
-            <p className="text-justify">
+            <hr className="my-1" />
+            <p className="text-justify mb-0">
               Once the solution is
-              <span className="font-weight-bold"> visible </span>and
+              <span className="font-weight-bold"> public </span>and then
               <span className="font-weight-bold"> purchased</span>, you will
-              only be able to edit the solution note and add new attachments. We
-              highly recommend that you review your solution multiple times
-              before making it visible to all the users.
+              only be able to edit the solution note and add new solution
+              attachments. We highly recommend that you review your solution
+              multiple times before making it visible to all the users.
             </p>
           </div>
+        </div>
+      </div>
 
-          <TextArea
-            title={"Note for the client"}
-            name={"note"}
-            register={register}
-            errors={errors}
-          />
+      <div className="card mb-4">
+        <div className="card h-100">
+          <div className="card-header">Offer</div>
+          <div className="card-body d-flex px-4 pb-0">
+            <div className="w-25 mr-5">
+              <Input
+                name="price"
+                type="number"
+                label="Offer price"
+                placeholder="Enter number of tokens"
+                register={register({
+                  required: FORM_REQUIRED_MESSAGE,
+                  min: 1,
+                })}
+                style="form-group"
+                errors={
+                  errors.price?.type === "min"
+                    ? "Only positive values are allowed"
+                    : errors.price?.message
+                }
+              />
+            </div>
 
-          <label
-            htmlFor="positionAdvertisements"
-            className="text-dark font-weight-bold"
-          >
-            Optional advertisement options
-          </label>
-          <div className="d-flex w-100 mb-3">
-            <div className="w-50 mr-5">
+            <div className="w-50">
+              <p className="text-dark font-weight-bold w-50 mb-0">
+                Offer includes:
+              </p>
+              <CSSTransitionGroup
+                component="ul"
+                className="options-list mb-2"
+                transitionName={{
+                  appear: "animate__animated",
+                  appearActive: "animate__fadeInRight",
+                  enter: "animate__animated",
+                  enterActive: "animate__fadeInRight",
+                  leave: "animate__animated",
+                  leaveActive: "animate__fadeOut",
+                }}
+                transitionEnterTimeout={0}
+                transitionAppearTimeout={0}
+                transitionLeaveTimeout={0}
+              >
+                {standardPackageOptions.map((option) => (
+                  <li key={option}>
+                    <FontAwesomeIcon
+                      className="text-success mr-2"
+                      icon={faCheck}
+                    />
+                    {option}
+                  </li>
+                ))}
+                {formData.offerOptions.map((option) => (
+                  <li key={option}>
+                    <FontAwesomeIcon
+                      className="text-success mr-2"
+                      icon={faCheck}
+                    />
+                    {option}
+                    <button className="remove-option-btn ml-2" type="button">
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        onClick={() => handleOptionsClick("REMOVE", option)}
+                      />
+                    </button>
+                  </li>
+                ))}
+              </CSSTransitionGroup>
+              <InputGroup
+                name="offerOptions"
+                type="text"
+                placeholder="Add a offer option"
+                register={register}
+                onClick={handleOptionsClick}
+                style="input-group height-fit-content mb-4"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="card mb-4">
+        <div className="card-header">
+          Find a client for your solution faster
+        </div>
+        <div className="card-body p-4">
+          <div className="d-flex w-100">
+            <div className="w-50 mr-4">
               <Controller
                 control={control}
                 rules={{ required: FORM_REQUIRED_MESSAGE }}
@@ -157,14 +325,15 @@ export function Finish() {
               </div>
             </div>
           </div>
-          <hr className="mt-0 mb-2 w-100" />
+          <hr className="my-2 w-100" />
           <div className="w-100">
             <div>
-              <span className="font-weight-bold">My wallet:</span> 400 tokens
+              <span className="font-weight-bold">My wallet: </span>
+              {`${wallet} tokens`}
             </div>
             <div>
-              <span className="font-weight-bold"> Amount for the charge:</span>
-              {watch("positionAdvertisements") &&
+              <span className="font-weight-bold">Amount for the charge:</span>
+              {watch("positionAdvertisements") ||
               watch("notificationAdvertisements")
                 ? getTotal()
                 : " 0 tokens"}
@@ -172,7 +341,8 @@ export function Finish() {
           </div>
         </div>
       </div>
-      <StepNavigator currentStep={6} onNextStepClick={handleSubmit(onSubmit)} />
+
+      <StepNavigator currentStep={4} onNextStepClick={handleSubmit(onSubmit)} />
     </form>
   );
 }

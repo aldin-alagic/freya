@@ -6,58 +6,54 @@ import { VehicleDescriptions } from "../../../common/vehicleDescriptions/Vehicle
 import StepNavigator from "./../StepNavigator/StepNavigator";
 import { ItemList } from "../../../common/itemList/ItemList";
 import { DescriptionText } from "./../../../common/descriptionText/DescriptionText";
+import { DescriptionRichText } from "./../../../common/descriptionRichText/DescriptionRichText";
+
 import { Thumbnails } from "../../../common/thumbnails/Thumbnails";
-import { Offers } from "./offers/Offers";
 
 class Review extends React.Component {
   handleSubmit = () => {
     this.props.updateSolution({
       status: "process",
-      step: 6,
+      step: 4,
     });
   };
 
   render() {
-    const {
-      vehicles,
-      fuelType,
-      transmission,
-      issueTypeOption,
-      description,
-      attachments,
-      offers,
-    } = this.props.solution;
+    const { vehicle, issue, solution } = this.props.solution;
 
     return (
       <React.Fragment>
         <VehicleDescriptions
-          vehicles={vehicles}
-          fuelType={fuelType}
-          transmission={transmission}
-        />
-        <DescriptionText title="Issue type" text={issueTypeOption} bold />
-        <DescriptionText title="Solution title" text={description.title} />
-        <DescriptionText
-          title="Short solution description"
-          text={description.shortDescription}
+          vehicles={vehicle.vehicles}
+          fuelType={vehicle.fuelType}
+          transmission={vehicle.transmission}
         />
         <DescriptionText
-          title="Detailed solution description"
-          text={description.detailedDescription}
+          title="Issue type"
+          text={`${issue.type} - ${issue.option}`}
+          bold
         />
-        <ItemList title="Parts" items={description.parts} />
-        <ItemList title="Tools" items={description.tools} />
-        <ItemList title="Keywords" items={description.keywords} />
-        <Thumbnails attachments={attachments} />
-        <Offers offers={offers} />
-        <StepNavigator currentStep={5} onNextStepClick={this.handleSubmit} />
+        <DescriptionText title="Issue description" text={issue.description} />
+        <Thumbnails title="Issue attachments" attachments={issue.attachments} />
+        <DescriptionText title="Solution title" text={solution.title} />
+        <DescriptionRichText
+          title="Solution description"
+          text={solution.description}
+        />
+        <ItemList title="Parts" items={solution.parts} />
+        <ItemList title="Tools" items={solution.tools} />
+        <Thumbnails
+          title="Solution attachments"
+          attachments={solution.attachments}
+        />
+        <StepNavigator currentStep={3} onNextStepClick={this.handleSubmit} />
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  solution: state.entities.solutions.newSolution,
+  solution: state.entities.solutions.solution,
 });
 
 const mapDispatchToProps = (dispatch) => ({
