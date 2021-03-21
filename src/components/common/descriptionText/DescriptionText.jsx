@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 export class DescriptionText extends React.PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.node.isRequired,
     bold: PropTypes.bool,
   };
 
