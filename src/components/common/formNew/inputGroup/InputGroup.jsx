@@ -8,14 +8,15 @@ export class InputGroup extends React.PureComponent {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    label: PropTypes.string.isRequired,
-    onClick: PropTypes.object.isRequired,
-    register: PropTypes.object.isRequired,
+    label: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
     style: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     placeholder: "",
+    label: "",
   };
 
   render() {
@@ -31,9 +32,11 @@ export class InputGroup extends React.PureComponent {
 
     return (
       <div className={style}>
-        <label className="text-dark font-weight-bold" htmlFor={name}>
-          {label}
-        </label>
+        {label && (
+          <label className="text-dark font-weight-bold" htmlFor={name}>
+            {label}
+          </label>
+        )}
         <div className="input-group">
           <input
             name={name}
@@ -42,6 +45,9 @@ export class InputGroup extends React.PureComponent {
             className="form-control"
             type={type}
             ref={register}
+            onKeyPress={(e) =>
+              e.charCode === 13 ? onClick("ADD", name) : null
+            }
           />
           <div className="input-group-append">
             <button
