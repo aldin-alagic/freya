@@ -3,34 +3,40 @@ import { PropTypes } from "prop-types";
 
 export class TextArea extends React.PureComponent {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     name: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
     rows: PropTypes.number,
-    register: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired,
     errors: PropTypes.object,
   };
 
   static defaultProps = {
+    title: "",
+    placeholder: "",
     rows: 4,
     errors: null,
   };
 
   render() {
-    const { title, name, rows, register, errors } = this.props;
+    const { title, name, placeholder, rows, register, errors } = this.props;
     return (
-      <div className="form-group row mx-0 px-0 mb-3 col-12">
-        <label htmlFor={name} className="text-dark font-weight-bold">
-          {title}
-        </label>
+      <div className="row col-12 mx-0 px-0">
+        {title && (
+          <label htmlFor={name} className="text-dark font-weight-bold">
+            {title}
+          </label>
+        )}
         <textarea
           id={name}
           name={name}
+          placeholder={placeholder}
           rows={rows}
           className="form-control"
           ref={register}
         />
         {errors && (
-          <div className="ml-1 my-2 text-danger">{errors[name]?.message}</div>
+          <div className="text-danger mt-2">{errors[name]?.message}</div>
         )}
       </div>
     );
