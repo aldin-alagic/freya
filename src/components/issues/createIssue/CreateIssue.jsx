@@ -12,7 +12,7 @@ import { IssueType } from "./issueType/IssueType";
 import { Spinner } from "../../spinner/Spinner";
 import { Finish } from "./finish/Finish";
 
-class NewIssue extends React.Component {
+class CreateIssue extends React.Component {
   componentDidMount() {
     this.props.loadVehicles();
   }
@@ -73,4 +73,4 @@ const mapDispatchToProps = (dispatch) => ({
   resetNewIssue: () => dispatch(newIssueReset()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewIssue);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);
