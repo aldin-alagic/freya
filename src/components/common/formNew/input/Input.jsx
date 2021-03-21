@@ -7,14 +7,15 @@ export class Input extends React.PureComponent {
     type: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     label: PropTypes.string,
-    register: PropTypes.object.isRequired,
-    style: PropTypes.string.isRequired,
+    register: PropTypes.func.isRequired,
+    style: PropTypes.string,
     errors: PropTypes.node,
   };
 
   static defaultProps = {
     label: "",
     placeholder: "",
+    style: "",
     errors: null,
   };
 
@@ -30,9 +31,11 @@ export class Input extends React.PureComponent {
     } = this.props;
     return (
       <div className={style}>
-        <label className="text-dark font-weight-bold" htmlFor={name}>
-          {label}
-        </label>
+        {label && (
+          <label className="text-dark font-weight-bold" htmlFor={name}>
+            {label}
+          </label>
+        )}
         <input
           name={name}
           id={name}
@@ -41,7 +44,7 @@ export class Input extends React.PureComponent {
           type={type}
           ref={register}
         />
-        {errors && <div className="ml-1 my-2 text-danger">{errors}</div>}
+        {errors && <div className="mt-2 text-danger">{errors}</div>}
       </div>
     );
   }
