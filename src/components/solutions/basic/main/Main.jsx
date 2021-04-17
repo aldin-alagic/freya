@@ -5,7 +5,7 @@ import { SolutionCard } from "../../solutionCard/SolutionCard";
 import { SearchBox } from "../../../common/form/searchBox/SearchBox";
 import { SelectBox } from "../../../common/form/selectBox/SelectBox";
 import {
-  loadPublicSolutions,
+  getPublicSolutions,
   loadUserSolutions,
   loadPurchasedSolutions,
 } from "./../../../../store/solutions";
@@ -23,12 +23,12 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    this.props.loadPublicSolutions();
+    this.props.getPublicSolutions();
   }
 
   onSolutionsClick = (e) => {
     const {
-      loadPublicSolutions,
+      getPublicSolutions,
       loadUserSolutions,
       loadPurchasedSolutions,
     } = this.props;
@@ -36,7 +36,7 @@ class Main extends React.Component {
 
     switch (filterType) {
       case "publicSolutions":
-        loadPublicSolutions();
+        getPublicSolutions();
         break;
       case "userSolutions":
         loadUserSolutions();
@@ -133,19 +133,19 @@ class Main extends React.Component {
               title,
               description,
               views,
-              offer,
+              prices,
               solution_id,
               expert,
             } = solution;
             return (
               <SolutionCard
-                key={index}
+                key={index.toString()}
                 title={title}
                 description={description}
                 companyName={expert ? expert.company : null}
                 expertId={expert ? expert.expert_id : null}
                 views={views}
-                offer={offer}
+                prices={prices}
                 solutionId={solution_id}
                 limited={user.role ? false : true}
               />
@@ -179,7 +179,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadPublicSolutions: () => dispatch(loadPublicSolutions()),
+  getPublicSolutions: () => dispatch(getPublicSolutions()),
   loadUserSolutions: () => dispatch(loadUserSolutions()),
   loadPurchasedSolutions: () => dispatch(loadPurchasedSolutions()),
 });

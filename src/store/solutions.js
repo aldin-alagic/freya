@@ -270,10 +270,11 @@ export const loadSolution = (id) => (dispatch, getState) => {
   );
 };
 
-export const loadPublicSolutions = () => (dispatch, getState) => {
+export const getPublicSolutions = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.solutions;
-  const { token } = getState().auth;
-
+  const { token: Authorization } = getState().auth;
+  const headers = Authorization ? { Authorization } : null;
+  
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   if (diffInMinutes < CACHE_PERIOD) return;
 
@@ -281,7 +282,7 @@ export const loadPublicSolutions = () => (dispatch, getState) => {
     apiCallBegan({
       url: `${solutionUrl}/all/public`,
       method: "GET",
-      headers: { Authorization: token },
+      headers,
       onStart: requestStarted.type,
       onSuccess: publicSolutionsReceived.type,
       onError: requestFailed.type,
