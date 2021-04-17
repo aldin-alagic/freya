@@ -8,7 +8,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { newSolutionUpdated } from "../../../../store/solutions";
+import { newIssueUpdated } from "../../../../store/issues";
 
 class StepNavigator extends React.PureComponent {
   static propTypes = {
@@ -40,8 +40,8 @@ class StepNavigator extends React.PureComponent {
         >
           <FontAwesomeIcon
             className="text-white"
-            icon={currentStep !== 5 ? faLongArrowAltRight : faCheck}
-            size={currentStep !== 5 ? "lg" : "md"}
+            icon={currentStep !== 3 ? faLongArrowAltRight : faCheck}
+            size={currentStep !== 3 ? "lg" : "1x"}
           />
         </button>
       </div>
@@ -50,7 +50,7 @@ class StepNavigator extends React.PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onPreviousStepClick: (step) => dispatch(newSolutionUpdated({ step })),
+  onPreviousStepClick: (step) => dispatch(newIssueUpdated({ step })),
 });
 
 export default connect(null, mapDispatchToProps)(StepNavigator);

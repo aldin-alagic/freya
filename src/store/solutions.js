@@ -24,7 +24,7 @@ const initialSolutionState = {
   issue: {
     type: "",
     option: "",
-    code: "",
+    codes: [],
     description: "",
     attachments: [],
   },
@@ -39,11 +39,11 @@ const initialSolutionState = {
     keywords: [],
     packages: {
       standard: {
-        price: null,
+        price: 0,
         options: [],
       },
     },
-    visibility: false,
+    visibility: "Public",
     advertisements: {
       position: null,
       notifications: null,
@@ -259,8 +259,6 @@ export default slice.reducer;
 
 export const loadSolution = (id) => (dispatch, getState) => {
   const { token } = getState().auth;
-  let headers = {};
-  if (token) headers = { Authorization: token };
   return dispatch(
     apiCallBegan({
       url: `${solutionUrl}/${id}`,
@@ -275,10 +273,7 @@ export const loadSolution = (id) => (dispatch, getState) => {
 
 export const loadPublicSolutions = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.solutions;
-
   const { token } = getState().auth;
-  let headers = {};
-  if (token) headers = { Authorization: token };
 
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   if (diffInMinutes < CACHE_PERIOD) return;
@@ -287,7 +282,7 @@ export const loadPublicSolutions = () => (dispatch, getState) => {
     apiCallBegan({
       url: `${solutionUrl}/all/public`,
       method: "GET",
-      headers,
+      headers: { Authorization: token },
       onStart: solutionsRequested.type,
       onSuccess: publicSolutionsReceived.type,
       onError: solutionsRequestFailed.type,

@@ -18,7 +18,6 @@ class StepNavigator extends React.PureComponent {
 
   render() {
     const { currentStep, onPreviousStepClick, onNextStepClick } = this.props;
-
     return (
       <div className="d-flex justify-content-center">
         <button
@@ -49,8 +48,12 @@ class StepNavigator extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  status: state.entities.solutions.solution.status,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onPreviousStepClick: (step) => dispatch(newSolutionUpdated({ step })),
 });
 
-export default connect(null, mapDispatchToProps)(StepNavigator);
+export default connect(mapStateToProps, mapDispatchToProps)(StepNavigator);

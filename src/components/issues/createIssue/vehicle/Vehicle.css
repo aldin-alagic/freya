@@ -1,0 +1,4 @@
+.change-vehicles-btn:focus,
+.change-vehicles-btn:hover {
+  outline: 0;
+}

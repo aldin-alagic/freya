@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
-import { newSolutionUpdated } from "../../../../store/solutions";
+import { newIssueUpdated } from "../../../../store/issues";
 import { Options } from "../../../common/options/Options";
 import { TextArea } from "./../../../common/formNew/textArea/TextArea";
 import Attachments from "../attachments/Attachments";
 import StepNavigator from "../StepNavigator/StepNavigator";
-import { Items } from "./../items/Items";
+import { Input } from "../../../common/formNew/input/Input";
+
 
 import { issueTypes, issueTypeOptions } from "../../../../utils/staticData";
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
@@ -19,64 +20,40 @@ export function Issue() {
   const dispatch = useDispatch();
   const animatedComponents = makeAnimated();
 
-  const { type, option, codes, description, attachments } = useSelector(
-    (state) => state.entities.solutions.solution.issue
+  const { title, type, option, code, description, attachments } = useSelector(
+    (state) => state.entities.issues.issue.issue
   );
-
-  const [formCodes, setFormCodes] = useState(codes ? [...codes] : []);
 
   const {
     register,
     getValues,
-    setValue,
     handleSubmit,
     watch,
     formState,
     errors,
     control,
   } = useForm({
-    defaultValues: {
-      issueTypeOption: option,
-      issueDescription: description,
-    },
+      defaultValues: { solutionTitle: title, issueTypeOption: option, issueCode: code, issueDescription: description },
   });
 
-  const handleCodesClick = (action, itemType, deletedItem = "") => {
-    let newFormCodes = [...formCodes];
-    if (action === "ADD") {
-      const item = getValues(itemType);
-      if (item !== "" && !formCodes.includes(item))
-      newFormCodes.push(item);
-      setValue(itemType, "");
-    } else if (action === "REMOVE") {
-      newFormCodes = newFormCodes.filter(
-        (item) => item !== deletedItem
-      );
-    }
-    setFormCodes(newFormCodes);
-  };
-
-  const onSubmit = ({
-    issueType,
-    issueTypeOption,
-    issueDescription,
-  }) => {
+  const onSubmit = ({ issueTitle, issueType, issueTypeOption, issueCode, issueDescription }) => {
     const issue = {
       step: 2,
       status: "process",
       issue: {
+        title: issueTitle,
         type: issueType.value,
+        code: issueCode,
         option: issueTypeOption,
-        codes: formCodes,
         description: issueDescription,
       },
     };
-    dispatch(newSolutionUpdated(issue));
+    dispatch(newIssueUpdated(issue));
   };
 
   !(Object.keys(formState.errors).length === 0) &&
     dispatch(
-      newSolutionUpdated({
+      newIssueUpdated({
         status: "error",
       })
     );
@@ -105,6 +82,21 @@ export function Issue() {
       className="animate__animated animate__fadeIn"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <div className="card mb-4">
+        <div className="card-header">Issue title</div>
+        <div className="card-body p-4">
+          <Input
+            name="issueTitle"
+            type="text"
+            placeholder="Enter solution title"
+            register={register({
+              required: FORM_REQUIRED_MESSAGE,
+            })}
+            errors={errors.issueTitle?.message}
+          />
+        </div>
+      </div>
+
       <div className="card mb-4">
         <div className="card-header">Issue type</div>
         <div className="card-body p-4">
@@ -137,15 +129,21 @@ export function Issue() {
       </div>
 
       <div className="card mb-4">
-        <div className="card-header">Issue codes</div>
+        <div className="card-header">Issue code</div>
         <div className="card-body p-4">
-          <Items
+          <Input
             name="issueCode"
             type="text"
-            placeholder="Enter warning or error code if applicable"
-            items={formCodes}
-            register={register}
-            onItemsClick={handleCodesClick}
+            placeholder="Enter issue code if applicable"
+            register={register({
+              max: 12,
+            })}
+            style=""
+            errors={
+              errors.issueCode?.type === "max"
+                ? "Maximum of 12 characters are allowed"
+                : errors.issueCode?.message
+            }
           />
         </div>
       </div>

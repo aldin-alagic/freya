@@ -22,7 +22,7 @@ import { Report } from "./components/report/Report";
 import { Profile } from "./components/profile/Profile";
 import { Issues } from "./components/issues/Issues";
 import { Issue } from "./components/issues/issue/Issue";
-import NewIssue from "./components/issues/newIssue/NewIssue";
+import CreateIssue from "./components/issues/createIssue/CreateIssue";
 import { Login } from "./components/login/Login";
 import Logout from "./components/logout/Logout";
 import ProtectedRoute from "./components/common/protectedRoute/ProtectedRoute";
@@ -73,8 +73,7 @@ class App extends Component {
               <Route path="/solutions" component={Solutions} />
               <Route path="/solution/new/" component={NewSolution} />
               <Route path="/solution/:id" component={Solution} />
-              <Route path="/issues/test/" component={Issue} />
-              <Route path="/issues/new/" component={NewIssue} />
+              <Route path="/issues/new/" component={CreateIssue} />
               <Route path="/issues" component={Issues} />
               <Route path="/offers/:id" component={Offer} />
               <ProtectedRoute path="/profile" component={Profile} />

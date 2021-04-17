@@ -37,7 +37,7 @@ export class Thumbnails extends React.PureComponent {
           </div>
         ))
       ) : (
-        <span>Attachments have not been added.</span>
+        <span>Attachments have not been added</span>
       );
 
     return (

@@ -8,33 +8,35 @@ import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 
 const ISSUE_URL = "/issue";
 
-const initialNewIssueState = {
-  vehicles: [
-    {
-      brand: null,
-      model: null,
-      yearFrom: null,
-      years: [],
-      variant: null,
-    },
-  ],
-  fuelType: null,
-  transmission: null,
-  issueTypeOption: null,
-  description: {
+const initialIssueState = {
+  vehicle: {
+    vehicles: [
+      {
+        brand: null,
+        model: null,
+        variant: null,
+        years: [],
+      },
+    ],
+    fuelType: "",
+    transmission: "",
+  },
+  issue: {
     title: "",
-    shortDescription: "",
-    detailedDescription: "",
+    type: "",
+    option: "",
+    code: "",
+    description: "",
+    attachments: [],
+  },
+  finish: {
     keywords: [],
+    visibility: "Public",
+    advertisements: {
+      position: null,
+      notifications: null,
+    },
   },
-  attachments: [],
-  visibility: false,
-  note: "",
-  advertisements: {
-    position: { value: 0, label: "No top position advertisements" },
-    notifications: { value: 0, label: "No notification advertisements" },
-  },
-  views: 0,
   step: 0,
   status: "process",
 };
@@ -42,7 +44,7 @@ const initialNewIssueState = {
 const slice = createSlice({
   name: "issues",
   initialState: {
-    newIssue: initialNewIssueState,
+    issue: initialIssueState,
     public: [],
     private: [],
     apiResult: {
@@ -54,7 +56,7 @@ const slice = createSlice({
   },
 
   reducers: {
-    issuesRequested: (issues, action) => {
+    requestStarted: (issues, action) => {
       issues.loading = true;
     },
 
@@ -86,26 +88,46 @@ const slice = createSlice({
       issues.loading = false;
     },
 
-    issuesRequestFailed: (issues, action) => {
+    requestFailed: (issues, action) => {
       issues.loading = false;
       toast.error(API_ERROR_MESSAGE, { className: "alert-danger" });
     },
 
     newIssueUpdated: (issues, action) => {
-      for (const field in action.payload)
-        issues.newIssue[field] = action.payload[field];
+      for (const firstKey in action.payload) {
+        if (firstKey === "step" || firstKey === "status")
+          issues.issue[firstKey] = action.payload[firstKey];
+        else {
+          for (const secondKey in action.payload[firstKey]) {
+            if (
+              secondKey === "attachment" &&
+              issues.issue[firstKey]["attachments"].find(
+                (attachment) =>
+                  attachment.name ===
+                  action.payload[firstKey]["attachment"].name
+              ) === undefined
+            ) {
+              issues.issue[firstKey]["attachments"].push(
+                action.payload[firstKey]["attachment"]
+              );
+            } else
+              issues.issue[firstKey][secondKey] =
+                action.payload[firstKey][secondKey];
+          }
+        }
+      }
     },
 
     newIssueReset: (issues, action) => {
-      issues.newIssue = initialNewIssueState;
+      issues.issue = initialIssueState;
     },
   },
 });
 
 export const {
-  issuesRequested,
+  requestStarted,
   issuesReceived,
-  issuesRequestFailed,
+  requestFailed,
   newIssueUpdated,
   newIssueReset,
   issueCreated,
@@ -125,66 +147,26 @@ export const loadIssues = () => (dispatch, getState) => {
       url: `${ISSUE_URL}/all`,
       method: "GET",
       headers: { Authorization: token },
-      onStart: issuesRequested.type,
+      onStart: requestStarted.type,
       onSuccess: issuesReceived.type,
-      onError: issuesRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };
 
 export const createIssue = () => (dispatch, getState) => {
   const { token } = getState().auth;
-  const {
-    vehicles: vehiclesDiff,
-    fuelType: fuel_type,
-    transmission,
-    issueTypeOption: issue_type_option,
-    note,
-    visibility,
-    attachments,
-    advertisements,
-  } = getState().entities.issues.newIssue;
-
-  const {
-    title,
-    shortDescription: short_description,
-    detailedDescription: long_description,
-    keywords,
-  } = getState().entities.issues.newIssue.description;
-
-  const vehicles = vehiclesDiff.map((vehicle) => {
-    return {
-      brand: vehicle.brand,
-      model: vehicle.model,
-      model_variant: vehicle.variant,
-      year_from: vehicle.years[0],
-    };
-  });
-
-  const data = {
-    vehicles,
-    fuel_type,
-    transmission,
-    issue_type_option,
-    title,
-    short_description,
-    long_description,
-    note,
-    keywords,
-    visibility,
-    attachments,
-    advertisements,
-  };
+  const { vehicle, issue, finish } = getState().entities.issues.issue;
 
   return dispatch(
     apiCallBegan({
-      data,
+      data: { vehicle, issue, finish },
       url: ISSUE_URL,
       method: "POST",
       headers: { Authorization: token },
-      onStart: issuesRequested.type,
+      onStart: requestStarted.type,
       onSuccess: issueCreated.type,
-      onError: issuesRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };

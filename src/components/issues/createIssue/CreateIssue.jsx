@@ -3,13 +3,11 @@ import { Steps } from "rsuite";
 import { connect } from "react-redux";
 
 import { Vehicle } from "./vehicle/Vehicle";
-import { Description } from "./description/Description";
 import Review from "./review/Review";
-import { Attachments } from "./attachments/Attachments";
 import { newIssueReset } from "../../../store/issues";
 import { loadVehicles } from "../../../store/vehicles";
-import { IssueType } from "./issueType/IssueType";
 import { Spinner } from "../../spinner/Spinner";
+import { Issue } from './issue/Issue';
 import { Finish } from "./finish/Finish";
 
 class CreateIssue extends React.Component {
@@ -26,14 +24,10 @@ class CreateIssue extends React.Component {
       case 0:
         return <Vehicle />;
       case 1:
-        return <IssueType />;
+        return <Issue />;
       case 2:
-        return <Description />;
-      case 3:
-        return <Attachments />;
-      case 4:
         return <Review />;
-      case 5:
+      case 3:
         return <Finish />;
     }
   };
@@ -50,8 +44,6 @@ class CreateIssue extends React.Component {
         >
           <Steps.Item title="Vehicle" />
           <Steps.Item title="Issue" />
-          <Steps.Item title="Description" />
-          <Steps.Item title="Attachments" />
           <Steps.Item title="Review" />
           <Steps.Item title="Finish" />
         </Steps>
@@ -64,8 +56,8 @@ class CreateIssue extends React.Component {
 
 const mapStateToProps = (state) => ({
   loading: state.vehicles.loading,
-  step: state.entities.issues.newIssue.step,
-  status: state.entities.issues.newIssue.status,
+  step: state.entities.issues.issue.step,
+  status: state.entities.issues.issue.status,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -33,6 +33,7 @@ class Review extends React.Component {
           text={`${issue.type} - ${issue.option}`}
           bold
         />
+        <ItemList title="Issue codes" items={issue.codes} />
         <DescriptionText title="Issue description" text={issue.description} />
         <Thumbnails title="Issue attachments" attachments={issue.attachments} />
         <DescriptionText title="Solution title" text={solution.title} />

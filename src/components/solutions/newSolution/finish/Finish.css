@@ -20,3 +20,27 @@
 .remove-option-btn:hover {
   color: #dc3545;
 }
+
+.get-tokens-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.get-tokens-btn:hover, .get-tokens-btn:focus, .get-tokens-btn:active {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+  text-decoration: none;
+}
+
+.tokens-input:focus {
+  outline: none;
+}

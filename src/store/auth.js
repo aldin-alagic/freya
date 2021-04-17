@@ -18,7 +18,7 @@ const getUser = () => {
       firstname: data.firstname,
       lastname: data.lastname,
       role: data.account_type,
-      wallet: 999,
+      wallet: 10,
     };
   } else return {};
 };

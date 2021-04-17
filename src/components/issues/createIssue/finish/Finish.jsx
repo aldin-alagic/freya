@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faExclamationCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
-import { createIssue, newIssueUpdated } from "../../../../store/issues";
+import { Items } from "../items/Items";
 import StepNavigator from "./../StepNavigator/StepNavigator";
+import { Options } from "../../../common/options/Options";
+import {
+  createIssue,
+  newIssueUpdated,
+} from "../../../../store/issues";
 
-import { advertiseOptions } from "../../../../utils/staticData";
+import {
+  advertiseOptions,
+} from "../../../../utils/staticData";
 import { FORM_REQUIRED_MESSAGE } from "../../../../config.json";
 
 export function Finish() {
@@ -18,37 +27,31 @@ export function Finish() {
   const animatedComponents = makeAnimated();
   const dispatch = useDispatch();
 
-  const visibility = useSelector(
-    (state) => state.entities.issues.newIssue.visibility
-  );
-  const note = useSelector((state) => state.entities.issues.newIssue.note);
-  const advertisements = useSelector(
-    (state) => state.entities.issues.newIssue.advertisements
+  const wallet = useSelector((state) => state.auth.user.wallet);
+  const { keywords, packages, visibility, advertisements } = useSelector(
+    (state) => state.entities.solutions.solution.finish
   );
 
-  const { register, control, errors, handleSubmit, watch, getValues } = useForm(
-    {
-      defaultValues: { visibility, note },
-    }
-  );
+  const {
+    register,
+    control,
+    errors,
+    handleSubmit,
+    watch,
+    getValues,
+    setValue,
+    formState,
+  } = useForm({
+    defaultValues: {
+      visibility,
+      price: packages.standard.price,
+    },
+  });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    let newAdvertisements = {
-      position: data.positionAdvertisements,
-      notifications: data.notificationAdvertisements,
-    };
-
-    dispatch(
-      newIssueUpdated({
-        advertisements: newAdvertisements,
-        visibility: data.visibility,
-        note: data.note,
-      })
-    );
-    dispatch(createIssue());
-    history.push("/issues");
-  };
+  const [formData, setFormData] = useState({
+    offerOptions: packages.standard.options,
+    keywords,
+  });
 
   const getTotal = () => {
     const positionCharge = getValues("positionAdvertisements")
@@ -60,59 +63,113 @@ export function Finish() {
     return ` ${positionCharge + notificationsCharge} tokens`;
   };
 
+
+  const handleItemsClick = (action, itemType, deletedItem = "") => {
+    const newFormData = {
+      keywords: [...formData.keywords],
+    };
+
+    if (action === "ADD") {
+      const item = getValues(itemType);
+      if (item !== "" && !formData[itemType].includes(item))
+        newFormData[itemType].push(item);
+      setValue(itemType, "");
+    } else if (action === "REMOVE") {
+      newFormData[itemType] = newFormData[itemType].filter(
+        (item) => item !== deletedItem
+      );
+    }
+    setFormData(newFormData);
+  };
+
+  const onSubmit = ({
+    visibility,
+    positionAdvertisements,
+    notificationAdvertisements,
+    price,
+  }) => {
+    const { keywords } = formData;
+    const advertisements = {
+      position: positionAdvertisements.value,
+      notifications: notificationAdvertisements.value,
+    };
+    const finish = {
+      step: 3,
+      status: "process",
+      finish: {
+        keywords,
+        visibility,
+        advertisements,
+      },
+    };
+
+    dispatch(newIssueUpdated(finish));
+    dispatch(createIssue());
+    history.push("/issues");
+  };
+
+  !(Object.keys(formState.errors).length === 0) &&
+    dispatch(
+      newIssueUpdated({
+        status: "error",
+      })
+    );
+
   return (
     <form
       className="animate__animated animate__fadeIn"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="card mb-4">
-        <div className="card-header bg-light">Finish</div>
-        <div className="card-body row px-5 mb-3">
-          <div className="material-switch mt-2 mb-2">
-            <span className="text-dark font-weight-bold mr-3">Visible</span>
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              name="visibility"
-              id="visibility"
-              ref={register}
+        <div className="card-header">Keywords</div>
+        <div className="card-body p-4">
+          <div className="w-50">
+            <Items
+              name="keywords"
+              placeholder="Enter a keyword related to your issue"
+              type="text"
+              items={formData.keywords}
+              register={register}
+              onItemsClick={handleItemsClick}
             />
-            <label className="bg-primary" htmlFor="visibility"></label>
           </div>
-          <div className="alert alert-warning mb-3">
+        </div>
+      </div>
+
+      <div className="card mb-4">
+        <div className="card-header">Visibility</div>
+        <div className="card-body p-4">
+        <div className="alert alert-warning mb-0">
             <h4 className="alert-heading">
               <FontAwesomeIcon icon={faExclamationCircle} /> Warning
             </h4>
-            <hr className="my-2" />
-            <p className="text-justify">
-              Once the issue is
-              <span className="font-weight-bold"> visible </span>and
-              <span className="font-weight-bold"> purchased</span>, you will
-              only be able to edit the issue note and add new attachments. We
-              highly recommend that you review your issue multiple times before
-              making it visible to all the users.
+            <hr className="my-1" />
+            <p className="text-justify mb-0">
+              Once you <span className="font-weight-bold"> accept </span>
+              an offer for this issue, you will only be able to edit the note
+              and/or add new attachments. We highly recommend that you review your issue
+              multiple times before making it visible to all users.
             </p>
           </div>
-          <div className="form-group w-100 mb-3">
-            <label htmlFor="note" className="text-dark font-weight-bold">
-              Note for the client
-            </label>
-            <textarea
-              id="note"
-              name="note"
-              rows={4}
-              className="form-control"
-              ref={register}
+          <div className="row w-50">
+            <Options
+              type="visibility"
+              options={["Public", "Private"]}
+              register={register({
+                required: FORM_REQUIRED_MESSAGE,
+              })}
             />
           </div>
-          <label
-            htmlFor="positionAdvertisements"
-            className="text-dark font-weight-bold"
-          >
-            Optional advertisement options
-          </label>
-          <div className="d-flex w-100 mb-3">
-            <div className="w-50 mr-5">
+        </div>
+      </div>
+
+      <div className="card mb-4">
+        <div className="card-header">
+          Find a client for your issue faster
+        </div>
+        <div className="card-body p-4">
+          <div className="d-flex w-100">
+            <div className="w-50 mr-4">
               <Controller
                 control={control}
                 rules={{ required: FORM_REQUIRED_MESSAGE }}
@@ -155,14 +212,15 @@ export function Finish() {
               </div>
             </div>
           </div>
-          <hr className="mt-0 mb-2 w-100" />
+          <hr className="my-2 w-100" />
           <div className="w-100">
             <div>
-              <span className="font-weight-bold">My wallet:</span> 400 tokens
+              <span className="font-weight-bold">My wallet: </span>
+              {`${wallet} tokens`}
             </div>
             <div>
-              <span className="font-weight-bold"> Amount for the charge:</span>
-              {watch("positionAdvertisements") &&
+              <span className="font-weight-bold">Amount for the charge:</span>
+              {watch("positionAdvertisements") ||
               watch("notificationAdvertisements")
                 ? getTotal()
                 : " 0 tokens"}
@@ -170,7 +228,8 @@ export function Finish() {
           </div>
         </div>
       </div>
-      <StepNavigator currentStep={5} onNextStepClick={handleSubmit(onSubmit)} />
+
+      <StepNavigator currentStep={4} onNextStepClick={handleSubmit(onSubmit)} />
     </form>
   );
 }
