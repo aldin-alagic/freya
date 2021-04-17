@@ -20,7 +20,7 @@ export class SolutionCard extends React.PureComponent {
     description: PropTypes.string.isRequired,
     companyName: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
-    offer: PropTypes.arrayOf(PropTypes.number).isRequired,
+    prices: PropTypes.arrayOf(PropTypes.object).isRequired,
     solutionId: PropTypes.number.isRequired,
     expertId: PropTypes.number.isRequired,
     limited: PropTypes.bool.isRequired,
@@ -31,7 +31,7 @@ export class SolutionCard extends React.PureComponent {
       title,
       description,
       companyName,
-      offer,
+      prices,
       views,
       solutionId,
       expertId,
@@ -105,20 +105,9 @@ export class SolutionCard extends React.PureComponent {
               <span className="text-dark">{views ? views : 0}</span>
             </div>
             <div className="mx-3 text-center">
-              <div>Standard</div>
+              <div>Price</div>
               <span className="text-dark">
-                {offer[1].price}
-                <FontAwesomeIcon
-                  className="text-dark ml-1"
-                  icon={faCoins}
-                  size="sm"
-                />
-              </span>
-            </div>
-            <div className="ml-3 text-center">
-              <div>Premium</div>
-              <span className="text-dark">
-                {offer[0].price}
+                {prices[0].standard}
                 <FontAwesomeIcon
                   className="text-dark ml-1"
                   icon={faCoins}
