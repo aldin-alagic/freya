@@ -7,7 +7,6 @@ import { apiCallBegan } from "./api";
 import { API_ERROR_MESSAGE, CACHE_PERIOD } from "../config.json";
 
 const solutionUrl = "/solution";
-
 const initialSolutionState = {
   vehicle: {
     vehicles: [
@@ -69,7 +68,7 @@ const slice = createSlice({
   },
 
   reducers: {
-    solutionsRequested: (solutions, action) => {
+    requestStarted: (solutions, action) => {
       solutions.loading = true;
     },
 
@@ -207,7 +206,7 @@ const slice = createSlice({
       solutions.loading = false;
     },
 
-    solutionsRequestFailed: (solutions, action) => {
+    requestFailed: (solutions, action) => {
       solutions.loading = false;
       toast.error(API_ERROR_MESSAGE, { className: "alert-danger" });
     },
@@ -244,12 +243,12 @@ const slice = createSlice({
 });
 
 export const {
-  solutionsRequested,
+  requestStarted,
   solutionReceived,
   publicSolutionsReceived,
   userSolutionsReceived,
   purchasedSolutionsReceived,
-  solutionsRequestFailed,
+  requestFailed,
   newSolutionUpdated,
   newSolutionReset,
   solutionCreated,
@@ -264,9 +263,9 @@ export const loadSolution = (id) => (dispatch, getState) => {
       url: `${solutionUrl}/${id}`,
       method: "GET",
       headers: { Authorization: token },
-      onStart: solutionsRequested.type,
+      onStart: requestStarted.type,
       onSuccess: solutionReceived.type,
-      onError: solutionsRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };
@@ -283,9 +282,9 @@ export const loadPublicSolutions = () => (dispatch, getState) => {
       url: `${solutionUrl}/all/public`,
       method: "GET",
       headers: { Authorization: token },
-      onStart: solutionsRequested.type,
+      onStart: requestStarted.type,
       onSuccess: publicSolutionsReceived.type,
-      onError: solutionsRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };
@@ -302,9 +301,9 @@ export const loadUserSolutions = () => (dispatch, getState) => {
       url: `${solutionUrl}/all`,
       method: "GET",
       headers: { Authorization: token },
-      onStart: solutionsRequested.type,
+      onStart: requestStarted.type,
       onSuccess: userSolutionsReceived.type,
-      onError: solutionsRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };
@@ -321,9 +320,9 @@ export const loadPurchasedSolutions = () => (dispatch, getState) => {
       url: `${solutionUrl}/all/purchased`,
       method: "GET",
       headers: { Authorization: token },
-      onStart: solutionsRequested.type,
+      onStart: requestStarted.type,
       onSuccess: purchasedSolutionsReceived.type,
-      onError: solutionsRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };
@@ -343,9 +342,9 @@ export const createSolution = () => (dispatch, getState) => {
       url: solutionUrl,
       method: "POST",
       headers: { Authorization: token },
-      onStart: solutionsRequested.type,
+      onStart: requestStarted.type,
       onSuccess: solutionCreated.type,
-      onError: solutionsRequestFailed.type,
+      onError: requestFailed.type,
     })
   );
 };
