@@ -16,30 +16,30 @@ export class VehicleDescriptions extends React.Component {
         <h5 className="text-primary bg-light p-2">Vehicles</h5>
         <div className="my-3">
           {vehicles.map((vehicle, index) => (
-            <div key={index} className="row text-center">
+            <div key={index} className="row text-center mb-2">
               <div className="col-2">
-                <span>Brand</span>
-                <h6>{vehicle.brand}</h6>
+                <h6 className="mb-0">Brand</h6>
+                <span>{vehicle.brand}</span>
               </div>
               <div className="col-2">
-                <span>Model</span>
-                <h6>{vehicle.model}</h6>
+                <h6 className="mb-0">Model</h6>
+                <span>{vehicle.model}</span>
               </div>
               <div className="col-2">
-                <span>Variant</span>
-                <h6>{vehicle.variant ? vehicle.variant : "-"}</h6>
+                <h6 className="mb-0">Variant</h6>
+                <span>{vehicle.variant ? vehicle.variant : "-"}</span>
               </div>
               <div className="col-2">
-                <span>Years</span>
-                <h6>{vehicle.years.join(", ")}</h6>
+                <h6 className="mb-0">Years</h6>
+                <span>{vehicle.years.join(", ")}</span>
               </div>
               <div className="col-2">
-                <span>Fuel type</span>
-                <h6>{fuelType}</h6>
+                <h6 className="mb-0">Fuel type</h6>
+                <span>{fuelType}</span>
               </div>
               <div className="col-2">
-                <span>Transmission</span>
-                <h6>{transmission}</h6>
+                <h6 className="mb-0">Transmission</h6>
+                <span>{transmission}</span>
               </div>
             </div>
           ))}

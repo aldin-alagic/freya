@@ -1,73 +1,65 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import { Description } from "../../../common/description/Description";
-import { Attachments } from "../../../common/attachments/Attachments";
-import { Expert } from "../../../common/expert/Expert";
+import { VehicleDescriptions } from "./../../../common/vehicleDescriptions/VehicleDescriptions";
+import { IssueSection } from "../../../common/product/issueSection/IssueSection";
+import { SolutionSection } from "./../../../common/product/solutionSection/SolutionSection";
 
 export class Overview extends React.PureComponent {
   static propTypes = {
-    vehicles: PropTypes.arrayOf(PropTypes.object).isRequired,
-    fuelType: PropTypes.string.isRequired,
-    transmission: PropTypes.string.isRequired,
-    issueTypeOption: PropTypes.string.isRequired,
-    shortDescription: PropTypes.string.isRequired,
-    longDescription: PropTypes.string,
-    parts: PropTypes.arrayOf(PropTypes.string).isRequired,
-    tools: PropTypes.arrayOf(PropTypes.string).isRequired,
-    keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
-    attachments: PropTypes.arrayOf(PropTypes.string).isRequired,
-    expert: PropTypes.object.isRequired,
-    owner: PropTypes.bool.isRequired,
-    limited: PropTypes.bool.isRequired,
+    vehicle: PropTypes.object.isRequired,
+    issue: PropTypes.object.isRequired,
+    solution: PropTypes.object,
+    expert: PropTypes.object,
+    extra: PropTypes.object,
+    views: PropTypes.number.isRequired,
+    owner: PropTypes.bool,
+    guest: PropTypes.bool,
   };
 
   static defaultProps = {
-    longDescription: null,
+    solution: null,
+    expert: null,
+    extra: null,
+    owner: false,
+    guest: false,
   };
 
   render() {
     const {
-      vehicles,
-      fuelType,
-      transmission,
-      issueTypeOption,
-      shortDescription,
-      longDescription,
-      parts,
-      tools,
-      keywords,
-      attachments,
+      vehicle,
+      issue,
+      solution,
       expert,
+      extra,
+      views,
       owner,
-      limited,
+      guest,
     } = this.props;
 
     return (
       <React.Fragment>
-        <Description
-          vehicles={vehicles}
-          fuelType={fuelType}
-          transmission={transmission}
-          issueTypeOption={issueTypeOption}
-          shortDescription={shortDescription}
-          longDescription={longDescription}
-          parts={parts}
-          tools={tools}
-          keywords={keywords}
-          owner={owner}
+        <VehicleDescriptions
+          vehicles={vehicle.vehicles}
+          fuelType={vehicle.fuelType}
+          transmission={vehicle.transmission}
         />
-        <Attachments attachments={attachments} limited={owner} />
-        <Expert
-          company={expert.company_name}
-          country={expert.country ? expert.country : "Not provided"}
-          memberSince={
-            expert.created_at ? expert.created_at : "Not provided            "
-          }
-          hourlyRate={expert.hourly_rate ? expert.hourly_rate : "Not provided"}
-          about={expert.about ? expert.about : "Not provided"}
-          limited={limited}
+        <IssueSection
+          type={issue.type}
+          option={issue.option}
+          description={issue.description}
+          codes={issue.codes}
+          attachments={issue.attachments}
         />
+        {owner && (
+          <SolutionSection
+            title={solution.title}
+            description={solution.description}
+            parts={solution.parts}
+            tools={solution.tools}
+            attachments={issue.attachments}
+          />
+        )}
       </React.Fragment>
     );
   }

@@ -5,21 +5,32 @@ import { Route } from "react-router-dom";
 import { Overview } from "../overview/Overview";
 import { Menu } from "../menu/Menu";
 import { Modal } from "../../../common/modal/Modal";
-import { Description } from "../../../common/description/Description";
-import { Attachments } from "../../../common/attachments/Attachments";
 import { Expert } from "../../../common/expert/Expert";
 import { SolutionOffers } from "../../../common/solutionOffers/SolutionOffers";
-import { loadSolution } from "../../../../store/solutions";
+import { getSolution } from "../../../../store/solutions";
 import { Spinner } from "../../../spinner/Spinner";
+import { VehicleDescriptions } from "./../../../common/vehicleDescriptions/VehicleDescriptions";
+import { IssueSection } from "./../../../common/product/issueSection/IssueSection";
+import { SolutionSection } from "./../../../common/product/solutionSection/SolutionSection";
 
 class Solution extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
-    this.props.loadSolution(id);
+    this.props.getSolution(id);
   }
 
   render() {
-    const { solution, loading } = this.props;
+    const { data, loading } = this.props;
+    const {
+      vehicle,
+      issue,
+      solution,
+      expert,
+      extra,
+      views,
+      guest,
+      owner,
+    } = data;
 
     return loading || solution.id === 0 ? (
       <Spinner />
@@ -29,92 +40,66 @@ class Solution extends React.Component {
           <div className="row pl-3 px-md-3 ">
             <h4 className="mr-auto">{solution.title}</h4>
             <div className="text-secondary">
-              <span className="m-1">{solution.views} views</span>
+              <span className="m-1">{views} views</span>
             </div>
           </div>
           <hr className="mt-3 mb-0" />
-          <Menu />
+          <Menu owner={owner} guest={guest} />
           <hr className="mt-0 mb-4" />
           <Route
             path={"/solution/:id/overview"}
             render={(props) => (
               <Overview
                 {...props}
-                vehicles={solution.vehicles}
-                fuelType={solution.fuelType}
-                transmission={solution.transmission}
-                issueTypeOption={solution.issueTypeOption}
-                shortDescription={solution.shortDescription}
-                longDescription={solution.longDescription}
+                vehicle={vehicle}
+                issue={issue}
+                solution={solution ? solution : null}
+                expert={guest ? null : expert}
+                extra={owner ? extra : null}
+                views={views}
+                owner={owner}
+                guest={guest}
+              />
+            )}
+          />
+          <Route
+            path={"/solution/:id/vehicle"}
+            render={(props) => (
+              <VehicleDescriptions
+                {...props}
+                vehicles={vehicle.vehicles}
+                fuelType={vehicle.fuelType}
+                transmission={vehicle.transmission}
+              />
+            )}
+          />
+          <Route
+            path={"/solution/:id/issue"}
+            render={(props) => (
+              <IssueSection
+                {...props}
+                type={issue.type}
+                option={issue.option}
+                description={issue.description}
+                codes={issue.codes}
+                attachments={issue.attachments}
+              />
+            )}
+          />
+          <Route
+            path={"/solution/:id/solution"}
+            render={(props) => (
+              <SolutionSection
+                {...props}
+                title={solution.title}
+                description={solution.description}
                 parts={solution.parts}
                 tools={solution.tools}
-                keywords={solution.keywords}
-                attachments={solution.attachments}
-                expert={solution.expert}
-                limited={solution.limited}
-                owner={solution.owner}
-              />
-            )}
-          />
-          <Route
-            path={"/solution/:id/description"}
-            render={(props) => (
-              <Description
-                {...props}
-                vehicles={solution.vehicles}
-                fuelType={solution.fuelType}
-                transmission={solution.transmission}
-                issueTypeOption={solution.issueTypeOption}
-                shortDescription={solution.shortDescription}
-                longDescription={solution.longDescription}
-                parts={solution.parts}
-                tools={solution.tools}
-                keywords={solution.keywords}
-                owner={solution.owner}
-              />
-            )}
-          />
-          <Route
-            path={"/solution/:id/attachments"}
-            render={(props) => (
-              <Attachments
-                {...props}
-                attachments={solution.attachments}
-                owner={solution.owner}
-              />
-            )}
-          />
-
-          <Route
-            path={"/solution/:id/expert"}
-            render={(props) => (
-              <Expert
-                {...props}
-                company={solution.expert.company_name}
-                country={
-                  solution.expert.country
-                    ? solution.expert.country
-                    : "Not provided"
-                }
-                memberSince={
-                  solution.expert.created_at
-                    ? solution.expert.created_at
-                    : "Not provided            "
-                }
-                hourlyRate={
-                  solution.expert.hourly_rate
-                    ? solution.expert.hourly_rate
-                    : "Not provided"
-                }
-                about={
-                  solution.expert.about ? solution.expert.about : "Not provided"
-                }
-                limited={solution.limited}
+                attachments={issue.attachments}
               />
             )}
           />
         </div>
-        {solution.offers[1] && <SolutionOffers offers={solution.offers} />}
         <Modal
           id="solution-checkout-modal"
           title="Checkout"
@@ -134,11 +119,11 @@ class Solution extends React.Component {
 
 const mapStateToProps = (state) => ({
   loading: state.entities.solutions.loading,
-  solution: state.entities.solutions.solution,
+  data: state.entities.solutions.solution,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadSolution: (id) => dispatch(loadSolution(id)),
+  getSolution: (id) => dispatch(getSolution(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Solution);

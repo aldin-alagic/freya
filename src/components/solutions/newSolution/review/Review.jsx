@@ -4,11 +4,8 @@ import { connect } from "react-redux";
 import { newSolutionUpdated } from "../../../../store/solutions";
 import { VehicleDescriptions } from "../../../common/vehicleDescriptions/VehicleDescriptions";
 import StepNavigator from "./../StepNavigator/StepNavigator";
-import { ItemList } from "../../../common/itemList/ItemList";
-import { DescriptionText } from "./../../../common/descriptionText/DescriptionText";
-import { DescriptionRichText } from "./../../../common/descriptionRichText/DescriptionRichText";
-
-import { Thumbnails } from "../../../common/thumbnails/Thumbnails";
+import { IssueSection } from "../../../common/product/issueSection/IssueSection";
+import { SolutionSection } from './../../../common/product/solutionSection/SolutionSection';
 
 class Review extends React.Component {
   handleSubmit = () => {
@@ -28,24 +25,19 @@ class Review extends React.Component {
           fuelType={vehicle.fuelType}
           transmission={vehicle.transmission}
         />
-        <DescriptionText
-          title="Issue type"
-          text={`${issue.type} - ${issue.option}`}
-          bold
+        <IssueSection 
+          type={issue.type}
+          option={issue.option}
+          description={issue.description}
+          codes={issue.codes}
+          attachments={issue.attachments}
         />
-        <ItemList title="Issue codes" items={issue.codes} />
-        <DescriptionText title="Issue description" text={issue.description} />
-        <Thumbnails title="Issue attachments" attachments={issue.attachments} />
-        <DescriptionText title="Solution title" text={solution.title} />
-        <DescriptionRichText
-          title="Solution description"
-          text={solution.description}
-        />
-        <ItemList title="Parts" items={solution.parts} />
-        <ItemList title="Tools" items={solution.tools} />
-        <Thumbnails
-          title="Solution attachments"
-          attachments={solution.attachments}
+        <SolutionSection 
+          title={solution.title}
+          description={solution.description}
+          parts={solution.parts}
+          tools={solution.tools}
+          attachments={issue.attachments}
         />
         <StepNavigator currentStep={3} onNextStepClick={this.handleSubmit} />
       </React.Fragment>
