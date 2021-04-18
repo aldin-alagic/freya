@@ -25,7 +25,7 @@ export class ItemList extends React.PureComponent {
           {items.length > 0 ? (
             showItems
           ) : (
-            <span>{title} have not been added</span>
+            <span className="px-2 text-muted">{title} have not been added</span>
           )}
         </div>
       </React.Fragment>
