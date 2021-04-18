@@ -76,47 +76,12 @@ const slice = createSlice({
       const { data, status, message } = action.payload;
 
       if (status === 200) {
-        const offers = {
-          standard: {
-            price: data.offer[1].price,
-            options: ["Full solution", "All solution attachments"],
-          },
-          premium: {
-            price: data.offer[0].price,
-            options: data.offer[0].additional_package,
-            assistanceMinutes: data.offer[0].assistance_minutes,
-          },
-        };
+        const {solution_id, advertisement} = data;
+        
+        const solution = data;
+        solution.solution.id = solution_id;
+        solution.extra.advertisement = advertisement;
 
-        const vehicles = data.vehicles.map((vehicle) => {
-          return {
-            brand: vehicle.brand,
-            model: vehicle.model,
-            variant: vehicle.model_variant,
-            years: [vehicle.year_from],
-          };
-        });
-
-        let solution = {
-          id: data.solution_id,
-          owner: !("guest" in data) && data.owner,
-          expert: data.expert,
-          vehicles: vehicles,
-          fuelType: data.fuel_type,
-          transmission: data.transmission,
-          issueTypeOption: data.issue_type_option,
-          title: data.title,
-          shortDescription: data.short_description,
-          longDescription: data.long_description,
-          keywords: data.keywords ? data.keywords : [],
-          parts: data.parts ? data.parts : [],
-          tools: data.tools ? data.tools : [],
-          attachments: data.attachments,
-          offers: offers,
-          views: data.views,
-          created: data.created_at,
-          limited: !("guest" in data),
-        };
         solutions.solution = solution;
         solutions.apiResult = {
           status,
@@ -256,7 +221,7 @@ export const {
 
 export default slice.reducer;
 
-export const loadSolution = (id) => (dispatch, getState) => {
+export const getSolution = (id) => (dispatch, getState) => {
   const { token } = getState().auth;
   return dispatch(
     apiCallBegan({
