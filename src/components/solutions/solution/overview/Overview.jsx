@@ -4,6 +4,7 @@ import { PropTypes } from "prop-types";
 import { VehicleDescriptions } from "./../../../common/vehicleDescriptions/VehicleDescriptions";
 import { IssueSection } from "../../../common/product/issueSection/IssueSection";
 import { SolutionSection } from "./../../../common/product/solutionSection/SolutionSection";
+import { ExpertSection } from './../../../common/product/expertSection/ExpertSection';
 
 export class Overview extends React.PureComponent {
   static propTypes = {
@@ -60,6 +61,16 @@ export class Overview extends React.PureComponent {
             attachments={issue.attachments}
           />
         )}
+        <ExpertSection
+          id={expert.expert_id}
+          company={expert.company}
+          country={expert.country}
+          about={expert.about}
+          languages={expert.languages}
+          brands={expert.brands}
+          professions={expert.professions}
+          limited={guest}
+        />
       </React.Fragment>
     );
   }

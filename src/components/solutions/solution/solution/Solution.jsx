@@ -12,6 +12,7 @@ import { Spinner } from "../../../spinner/Spinner";
 import { VehicleDescriptions } from "./../../../common/vehicleDescriptions/VehicleDescriptions";
 import { IssueSection } from "./../../../common/product/issueSection/IssueSection";
 import { SolutionSection } from "./../../../common/product/solutionSection/SolutionSection";
+import { ExpertSection } from './../../../common/product/expertSection/ExpertSection';
 
 class Solution extends React.Component {
   componentDidMount() {
@@ -31,8 +32,8 @@ class Solution extends React.Component {
       guest,
       owner,
     } = data;
-
-    return loading || solution.id === 0 ? (
+    console.log(data);
+    return loading || expert == null ? (
       <Spinner />
     ) : (
       <div className="row">
@@ -96,6 +97,22 @@ class Solution extends React.Component {
                 parts={solution.parts}
                 tools={solution.tools}
                 attachments={issue.attachments}
+              />
+            )}
+          />
+          <Route
+            path={"/solution/:id/expert"}
+            render={(props) => (
+              <ExpertSection
+                {...props}
+                id={expert.expert_id}
+                company={expert.company}
+                country={expert.country}
+                about={expert.about}
+                languages={expert.languages}
+                brands={expert.brands}
+                professions={expert.professions}
+                limited={guest}
               />
             )}
           />
