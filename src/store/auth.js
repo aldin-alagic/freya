@@ -42,8 +42,8 @@ const slice = createSlice({
 
     authenticated: (auth, action) => {
       const { data, status, message } = action.payload;
-      const tokenDecoded = jwt_decode(data.auth_token);
       if (status === 200) {
+        const tokenDecoded = jwt_decode(data.auth_token);
         auth.token = data.auth_token;
         auth.user = {
           id: tokenDecoded.user_id,
