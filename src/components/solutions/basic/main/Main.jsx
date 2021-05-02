@@ -6,8 +6,8 @@ import { SearchBox } from "../../../common/form/searchBox/SearchBox";
 import { SelectBox } from "../../../common/form/selectBox/SelectBox";
 import {
   getPublicSolutions,
-  loadUserSolutions,
-  loadPurchasedSolutions,
+  getUserSolutions,
+  getPurchasedSolutions,
 } from "./../../../../store/solutions";
 import { CardsLoader } from "./../../../common/cardsLoader/CardsLoader";
 import { Pagination } from "../../../common/pagination/Pagination";
@@ -29,8 +29,8 @@ class Main extends React.Component {
   onSolutionsClick = (e) => {
     const {
       getPublicSolutions,
-      loadUserSolutions,
-      loadPurchasedSolutions,
+      getUserSolutions,
+      getPurchasedSolutions,
     } = this.props;
     const filterType = e.target.id;
 
@@ -39,10 +39,10 @@ class Main extends React.Component {
         getPublicSolutions();
         break;
       case "userSolutions":
-        loadUserSolutions();
+        getUserSolutions();
         break;
       case "purchasedSolutions":
-        loadPurchasedSolutions();
+        getPurchasedSolutions();
         break;
       default:
         break;
@@ -134,20 +134,21 @@ class Main extends React.Component {
               description,
               views,
               prices,
-              solution_id,
+              id,
               expert,
+              keywords,
             } = solution;
             return (
               <SolutionCard
-                key={index.toString()}
+                key={index}
                 title={title}
                 description={description}
-                companyName={expert ? expert.company : null}
-                expertId={expert ? expert.expert_id : null}
+                expert={expert}
                 views={views}
                 prices={prices}
-                solutionId={solution_id}
+                solutionId={id}
                 limited={user.role ? false : true}
+                keywords={keywords}
               />
             );
           })
@@ -180,8 +181,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getPublicSolutions: () => dispatch(getPublicSolutions()),
-  loadUserSolutions: () => dispatch(loadUserSolutions()),
-  loadPurchasedSolutions: () => dispatch(loadPurchasedSolutions()),
+  getUserSolutions: () => dispatch(getUserSolutions()),
+  getPurchasedSolutions: () => dispatch(getPurchasedSolutions()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
