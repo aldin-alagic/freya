@@ -3,6 +3,14 @@ export const standardPackageOptions = [
   "All solution attachments",
 ];
 
+export const questionTypes = [
+  { label: "About", value: "About" },
+  { label: "Account", value: "Account" },
+  { label: "Transactions", value: "Transactions" },
+  { label: "Support", value: "Support" },
+  { label: "Platform", value: "Platform" },
+];
+
 export const issueTypes = [
   { label: "Additional electric parts", value: "Additional electric parts" },
   { label: "Body and exterior", value: "Body and exterior" },
