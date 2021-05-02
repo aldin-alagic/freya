@@ -30,6 +30,8 @@ import { Home } from "./components/home/Home";
 import { Offer } from "./components/offer/Offer";
 import NewSolution from "./components/solutions/newSolution/NewSolution";
 import configureStore from "./store/configureStore";
+import ScrollToTop from "./components/scrollToTop/ScrollToTop";
+import { AddQuestion } from './components/admin/faq/AddQuestion';
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,52 +42,58 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={this.store}>
-        <div className="main-container">
-          <ReactTooltip place="right" type="dark" effect="solid" />
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            limit={1}
-            draggable
-            pauseOnHover
-            bodyClassName="p-3 text-justify"
-          />
-          <Report />
-          <Navbar />
-          <main className="container col-9">
-            <Switch>
-              <Route path="/help-and-support" component={HelpAndSupport} />
-              <Route path="/faq" component={Faq} />
-              <ProtectedRoute path="/submit-ticket" component={SubmitTicket} />
-              <Route path="/contact-us" component={ContactUs} />
-              <Route path="/user-agreement" component={UserAgreement} />
-              <Route path="/privacy-policy" component={PrivacyPolicy} />
-              <Route path="/about-us" component={AboutUs} />
-              <Route path="/pricing" component={Pricing} />
-              <Route path="/how-it-works" component={HowItWorks} />
-              <Route path="/become-an-expert" component={BecomeExpert} />
-              <Route path="/solutions" component={Solutions} />
-              <Route path="/solution/new/" component={NewSolution} />
-              <Route path="/solution/:id" component={Solution} />
-              <Route path="/issues/new/" component={CreateIssue} />
-              <Route path="/issues" component={Issues} />
-              <Route path="/offers/:id" component={Offer} />
-              <ProtectedRoute path="/profile" component={Profile} />
-              <Route path="/login" component={Login} />
-              <Route path="/logout" component={Logout} />
-              <Route path="/" component={Home} />
-              <Redirect to="/" />
-            </Switch>
-          </main>
-          <Footer />
-        </div>
-      </Provider>
+      <ScrollToTop>
+        <Provider store={this.store}>
+          <div className="main-container">
+            <ReactTooltip place="right" type="dark" effect="solid" />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              limit={1}
+              draggable
+              pauseOnHover
+              bodyClassName="p-3 text-justify"
+            />
+            <Report />
+            <Navbar />
+            <main className="container col-9">
+              <Switch>
+                <Route path="/admin/faq/question" component={AddQuestion} />
+                <Route path="/help-and-support" component={HelpAndSupport} />
+                <Route path="/faq" component={Faq} />
+                <ProtectedRoute
+                  path="/submit-ticket"
+                  component={SubmitTicket}
+                />
+                <Route path="/contact-us" component={ContactUs} />
+                <Route path="/user-agreement" component={UserAgreement} />
+                <Route path="/privacy-policy" component={PrivacyPolicy} />
+                <Route path="/about-us" component={AboutUs} />
+                <Route path="/pricing" component={Pricing} />
+                <Route path="/how-it-works" component={HowItWorks} />
+                <Route path="/become-an-expert" component={BecomeExpert} />
+                <Route path="/solutions" component={Solutions} />
+                <Route path="/solution/new/" component={NewSolution} />
+                <Route path="/solution/:id" component={Solution} />
+                <Route path="/issues/new/" component={CreateIssue} />
+                <Route path="/issues" component={Issues} />
+                <Route path="/offers/:id" component={Offer} />
+                <ProtectedRoute path="/profile" component={Profile} />
+                <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
+                <Route path="/" component={Home} />
+                <Redirect to="/" />
+              </Switch>
+            </main>
+            <Footer />
+          </div>
+        </Provider>
+      </ScrollToTop>
     );
   }
 }
