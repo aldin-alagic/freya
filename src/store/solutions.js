@@ -255,9 +255,10 @@ export const getPublicSolutions = () => (dispatch, getState) => {
   );
 };
 
-export const loadUserSolutions = () => (dispatch, getState) => {
+export const getUserSolutions = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.solutions;
-  const { token } = getState().auth;
+  const { token: Authorization } = getState().auth;
+  const headers = Authorization ? { Authorization } : null;
 
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   if (diffInMinutes < CACHE_PERIOD) return;
@@ -266,7 +267,7 @@ export const loadUserSolutions = () => (dispatch, getState) => {
     apiCallBegan({
       url: `${solutionUrl}/all`,
       method: "GET",
-      headers: { Authorization: token },
+      headers,
       onStart: requestStarted.type,
       onSuccess: userSolutionsReceived.type,
       onError: requestFailed.type,
@@ -274,9 +275,10 @@ export const loadUserSolutions = () => (dispatch, getState) => {
   );
 };
 
-export const loadPurchasedSolutions = () => (dispatch, getState) => {
+export const getPurchasedSolutions = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.solutions;
-  const { token } = getState().auth;
+  const { token: Authorization } = getState().auth;
+  const headers = Authorization ? { Authorization } : null;
 
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
   if (diffInMinutes < CACHE_PERIOD) return;
@@ -285,7 +287,7 @@ export const loadPurchasedSolutions = () => (dispatch, getState) => {
     apiCallBegan({
       url: `${solutionUrl}/all/purchased`,
       method: "GET",
-      headers: { Authorization: token },
+      headers,
       onStart: requestStarted.type,
       onSuccess: purchasedSolutionsReceived.type,
       onError: requestFailed.type,
