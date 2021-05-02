@@ -18,24 +18,28 @@ export class SolutionCard extends React.PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    companyName: PropTypes.string.isRequired,
+    expert: PropTypes.object,
     views: PropTypes.number.isRequired,
-    prices: PropTypes.arrayOf(PropTypes.object).isRequired,
+    prices: PropTypes.object.isRequired,
     solutionId: PropTypes.number.isRequired,
-    expertId: PropTypes.number.isRequired,
     limited: PropTypes.bool.isRequired,
+    keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
+
+  static defaultProps = {
+    expert: null,
+  }
 
   render() {
     const {
       title,
       description,
-      companyName,
+      expert,
       prices,
       views,
       solutionId,
-      expertId,
       limited,
+      keywords,
     } = this.props;
 
     const url = `/solution/${solutionId}/overview`;
@@ -67,8 +71,8 @@ export class SolutionCard extends React.PureComponent {
           <Link className="btn btn-sm btn-primary m-1" to={url}>
             Solution
           </Link>
-          <Link className="btn btn-sm btn-primary m-1">Message</Link>
-          <Link className="btn btn-sm btn-primary m-1">Purchase</Link>
+          <Link to="/" className="btn btn-sm btn-primary m-1">Message</Link>
+          <Link to="/" className="btn btn-sm btn-primary m-1">Purchase</Link>
         </React.Fragment>
       );
     };
@@ -88,8 +92,8 @@ export class SolutionCard extends React.PureComponent {
               <FontAwesomeIcon className="text-dark" icon={faUser} size="4x" />
               <div className="ml-3 mr-sm-0 mr-md-auto mb-1">
                 <Link to="/home">
-                  {companyName}
-                  <span className="text-muted ml-1">#{expertId}</span>
+                  {expert.company}
+                  <span className="text-muted ml-1">#{expert.id}</span>
                 </Link>
                 <div>Expert</div>
                 <div className="text-success">
@@ -107,7 +111,7 @@ export class SolutionCard extends React.PureComponent {
             <div className="mx-3 text-center">
               <div>Price</div>
               <span className="text-dark">
-                {prices[0].standard}
+                {prices.standard}
                 <FontAwesomeIcon
                   className="text-dark ml-1"
                   icon={faCoins}
@@ -124,6 +128,19 @@ export class SolutionCard extends React.PureComponent {
           </h6>
         </Link>
         <p className="text-justify mb-1">{description}</p>
+        {keywords.length > 0 &&
+          (
+            <div className="row justify-content-start px-3 my-2">
+              {keywords.map((keyword, index) => (
+                <span
+                  key={index}
+                  className="badge badge-pill badge-secondary px-3 py-1 my-1 mr-1"
+                >
+                  {keyword}
+                </span>
+              ))}
+            </div>
+          )}
         <hr className="mt-2 mb-1" />
         <div className="row justify-content-end pr-2">
           <div className="ml-2 mr-auto">
