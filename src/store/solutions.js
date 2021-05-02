@@ -222,12 +222,14 @@ export const {
 export default slice.reducer;
 
 export const getSolution = (id) => (dispatch, getState) => {
-  const { token } = getState().auth;
+  const { token: Authorization } = getState().auth;
+  const headers = Authorization ? { Authorization } : null;
+
   return dispatch(
     apiCallBegan({
       url: `${solutionUrl}/${id}`,
       method: "GET",
-      headers: { Authorization: token },
+      headers,
       onStart: requestStarted.type,
       onSuccess: solutionReceived.type,
       onError: requestFailed.type,
