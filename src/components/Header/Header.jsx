@@ -30,7 +30,7 @@ const Header = ({ onLogout }) => {
     <HeaderWrapper>
       <Inner>
         <LogoContainer to="/">
-          <Logo src={LogoImage} alt="CPSRK logo" />
+          <Logo src={LogoImage} alt="FAH logo" />
         </LogoContainer>
         <Hamburger onClick={() => handleHamburgerClick()}>
           {isHamburgerNavOpened ? (
@@ -47,6 +47,7 @@ const Header = ({ onLogout }) => {
           <NavItem to="/" exact>
             Home
           </NavItem>
+          <NavItem to="/solutions">Solutions</NavItem>
           <NavItem to="/login">Login</NavItem>
           <NavItem to="/register">Register</NavItem>
           <NavItem to="/" logout="true">
@@ -59,6 +60,9 @@ const Header = ({ onLogout }) => {
         <HamburgerNav>
           <HamburgerNavItem to="/" exact onClick={() => handleHamburgerClick()}>
             Home
+          </HamburgerNavItem>
+          <HamburgerNavItem to="/solutions" exact onClick={() => handleHamburgerClick()}>
+            Solutions
           </HamburgerNavItem>
           <HamburgerNavItem to="/login" onClick={() => handleHamburgerClick()}>
             Login
