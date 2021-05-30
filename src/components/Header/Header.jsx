@@ -1,44 +1,75 @@
-import React, { useState } from "react";
-
-import HamburgerNav from "../HamburgerNav/HamburgerNav";
+import React, { useState } from 'react';
 
 import {
   HeaderWrapper,
   Inner,
-  Logo,
   LogoContainer,
+  Logo,
+  CloseHamburgerButton,
   Nav,
   NavItem,
   Hamburger,
   HamburgerLine,
-} from "./HeaderStyle";
-import LogoImage from "../../assets/images/logo.png";
+  HamburgerNav,
+  HamburgerNavItem,
+} from './HeaderStyle';
+import LogoImage from '../../assets/images/logo.png';
 
-const Header = () => {
-  const [hamburgerNavOpened, setHamburgerNavOpened] = useState(false);
+const Header = ({ onLogout }) => {
+  const [isHamburgerNavOpened, setIsHamburgerNavOpened] = useState(false);
 
-  const handleHamburgerClick = () => {
-    setHamburgerNavOpened(!hamburgerNavOpened);
-  }
+  const handleHamburgerClick = (isLogout = false) => {
+    setIsHamburgerNavOpened(!isHamburgerNavOpened);
+
+    if (isLogout) {
+      onLogout();
+    }
+  };
 
   return (
     <HeaderWrapper>
       <Inner>
         <LogoContainer to="/">
-          <Logo src={LogoImage} alt="FOI logo" />
+          <Logo src={LogoImage} alt="CPSRK logo" />
         </LogoContainer>
-        <Hamburger onClick={handleHamburgerClick}>
-          <HamburgerLine />
-          <HamburgerLine />
-          <HamburgerLine />
+        <Hamburger onClick={() => handleHamburgerClick()}>
+          {isHamburgerNavOpened ? (
+            <CloseHamburgerButton size={32} />
+          ) : (
+            <>
+              <HamburgerLine />
+              <HamburgerLine />
+              <HamburgerLine />
+            </>
+          )}
         </Hamburger>
         <Nav>
-          <NavItem to="/">Home</NavItem>
+          <NavItem to="/" exact>
+            Home
+          </NavItem>
           <NavItem to="/login">Login</NavItem>
-          <NavItem to="/register">Register</NavItem>
+          <NavItem to="/" logout="true">
+            Logout
+          </NavItem>
         </Nav>
       </Inner>
-      <HamburgerNav onClick={handleHamburgerClick} opened={hamburgerNavOpened} />
+
+      {isHamburgerNavOpened && (
+        <HamburgerNav>
+          <HamburgerNavItem to="/" exact onClick={() => handleHamburgerClick()}>
+            Home
+          </HamburgerNavItem>
+          <HamburgerNavItem to="/" exact onClick={() => handleHamburgerClick()}>
+            Login
+          </HamburgerNavItem>
+          <HamburgerNavItem
+            to="/"
+            onClick={() => handleHamburgerClick()}
+            logout="true">
+            Logout
+          </HamburgerNavItem>
+        </HamburgerNav>
+      )}
     </HeaderWrapper>
   );
 };
