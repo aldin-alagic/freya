@@ -16,8 +16,7 @@ export const Grid = styled.div`
     grid-template-columns: repeat(3, 1fr);
 
     ${(props) =>
-      props.columns === 3 &&
-      `
+      props.columns === 3 && `
       padding: 0 32px;
     `};
   }
@@ -26,8 +25,7 @@ export const Grid = styled.div`
     grid-template-columns: repeat(${(props) => props.columns}, 1fr);
 
     ${(props) =>
-      props.columns === 3 &&
-      `
+      props.columns === 3 && `
       padding: 0 84px;
     `};
   }
@@ -35,7 +33,7 @@ export const Grid = styled.div`
 
 export const Title = styled.h1`
   font-size: 1.5em;
-  margin-bottom: 32px;
+  margin: 32px 0;
   text-align: center;
 
   @media screen and (${breakpoints.mobileLarge}) {
@@ -99,6 +97,7 @@ export const ButtonTable = styled.button`
 export const Main = styled.main`
   margin-top: 80px;
   flex: 1 0 auto;
+  background: ${colors.white};
 `;
 
 export const Image = styled.img`
@@ -114,9 +113,8 @@ export const Form = styled.form`
     width: 400px;
 
     ${(props) =>
-      props.fullWidth &&
-      `
-      max-width: 100%;
+      props.fullWidth && `
+        max-width: 100%;
     `};
   }
 `;
@@ -145,17 +143,32 @@ export const CheckboxWrapper = styled.div`
   align-items: center;
 `;
 
+export const RadioWrapper = styled.div`
+  margin-top: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+`;
+
 export const InputLabel = styled.label`
   display: block;
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
+  color: ${colors.primary};
 
   ${(props) =>
     props.isCheckBox &&
-    `
-    margin-bottom: 0;
-  `};
+     `margin-bottom: 0;`
+  };
+
+  ${(props) =>
+    props.isRadio &&
+     `
+     margin-bottom: 0;
+     margin-right: 16px;
+     `
+  };
 
   @media screen and (${breakpoints.desktop}) {
     font-size: 16px;
@@ -207,8 +220,32 @@ export const InputCheckbox = styled.input`
   height: 18px;
 `;
 
+export const InputRadio = styled.input`
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+`;
+
 export const InputError = styled.p`
   font-size: 14px;
-  color: ${colors.danger};
+  color: ${colors.error};
   padding-top: 8px;
+`;
+
+export const SuccessMessage = styled.p`
+  margin: 0 auto;
+  padding: 15px;
+  margin-bottom: 32px;
+  border-radius: 6px;
+  background: ${colors.successBackground};
+  color: ${colors.success};
+  
+  ${props => props.isError && `
+      background: ${colors.errorBackground};
+      color: ${colors.error};
+  `};
+
+  @media screen and (${breakpoints.mobileLarge}){
+      max-width: 400px;
+  }
 `;
