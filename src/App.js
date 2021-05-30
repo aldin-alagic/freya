@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer";
 
 import "./App.scss";
 import { Main } from "./lib/style/generalStyles";
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
         <Header />
         <Main>
           <Switch>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
             <Route exact path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
