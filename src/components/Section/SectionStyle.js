@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../lib/style/theme";
 
 export const SectionWrapper = styled.section`
-  padding: 60px 15px;
+  padding: 60px 32px;
 
   ${(props) => props.withoutTopPadding && `
     padding-top: 0;
