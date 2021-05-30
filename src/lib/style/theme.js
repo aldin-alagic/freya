@@ -8,9 +8,12 @@ export const breakpoints = {
 export const colors = {
   primary: "#12232E",
   secondary: "#007CC7",
-  accentOne: "#4DA8DA",
-  accentTwo: "#203647",
-  white: "#EEFBFB",
+  accentPrimary: "#203647",
+  darkSecondary: "#026AA8",
+  accentSecondary: "#4DA8DA",
+  accent: "#00BFA6",
+  white: "#FFFFFF",
+  smoke: "#f8f8f8",
   black: "#000000",
   darkGrey: "#333333",
   lightGrey: "#d0d0d0",
@@ -20,6 +23,10 @@ export const colors = {
   info: "#e8f4fd",
   warning: "#fff4e5",
   danger: "fdecea",
+  success: "#27ae60",
+  successBackground: "rgba(111,207,151,0.2)",
+  error: "#eb5757",
+  errorBackground: "rgba(235,87,87,0.2)",
 };
 
 export const boxShadow = "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)";
