@@ -74,6 +74,26 @@ export const Button = styled(Link)`
   ${ButtonDefault}
 `;
 
+export const ButtonText = styled.button`
+  font: 600 18px 'Montserrat', sans-serif;
+  color: ${colors.black};
+  background: none;
+  border: none;
+
+  &:hover {
+    color: ${colors.blue};
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
 export const ButtonSubmit = styled.button`
   ${ButtonDefault}
 `;
@@ -95,9 +115,9 @@ export const ButtonTable = styled.button`
 `;
 
 export const Main = styled.main`
-  margin-top: 80px;
+  margin-top: 70px;
   flex: 1 0 auto;
-  background: ${colors.white};
+  background: ${colors.lighterGrey};
 `;
 
 export const Image = styled.img`
@@ -224,6 +244,76 @@ export const InputRadio = styled.input`
   margin-right: 12px;
   width: 18px;
   height: 18px;
+`;
+
+export const ButtonOutlineGruped = styled.button`
+  ${ButtonDefault}
+
+  font-weight: bold;
+  color: ${colors.lightGrey};
+  background: ${colors.white};
+  border: 2px solid ${colors.lightGrey};
+
+  &:hover {
+    background: transparent;
+    color: ${colors.primary};
+    border-color: ${colors.primary};
+  }
+
+  &:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+
+  &:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+
+  ${(props) =>
+    props.isActive &&
+    `
+      border: 2px solid ${colors.primary};
+      color: ${colors.primary};
+      border: 2px solid ${colors.primary}!important;
+  `};
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 100%;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    width: 180px;
+  }
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-contetn: center;
+`;
+
+export const Select = styled.select`
+  border: 1px solid ${colors.primary};
+  border-radius: 4px;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  outline: none;
+  font: normal 16px 'Montserrat', sans-serif;
+  color: ${colors.black};
+
+  &:focus {
+    border-color: ${colors.secondary};
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    font-size: 16px;
+  }
+`;
+
+export const SelectOption = styled.option`
 `;
 
 export const InputError = styled.p`
