@@ -48,6 +48,7 @@ const Header = ({ onLogout }) => {
             Home
           </NavItem>
           <NavItem to="/login">Login</NavItem>
+          <NavItem to="/register">Register</NavItem>
           <NavItem to="/" logout="true">
             Logout
           </NavItem>
@@ -59,8 +60,11 @@ const Header = ({ onLogout }) => {
           <HamburgerNavItem to="/" exact onClick={() => handleHamburgerClick()}>
             Home
           </HamburgerNavItem>
-          <HamburgerNavItem to="/" exact onClick={() => handleHamburgerClick()}>
+          <HamburgerNavItem to="/login" onClick={() => handleHamburgerClick()}>
             Login
+          </HamburgerNavItem>
+          <HamburgerNavItem to="/register" onClick={() => handleHamburgerClick()}>
+            Register
           </HamburgerNavItem>
           <HamburgerNavItem
             to="/"
