@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { colors, breakpoints, transitionEase } from "../../lib/style/theme";
 
 export const FooterWrapper = styled.footer`
-  background-color: ${colors.accentTwo};
+  background-color: ${colors.accentPrimary};
   padding: 30px;
 `;
 
