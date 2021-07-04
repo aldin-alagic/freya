@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 
 import Section from "../../components/Section/Section";
-import Loading from "./../../components/Loading/Loading";
+import DataLoader from './../../components/DataLoader/DataLoader';
+
 import {
   Title,
   Form,
@@ -10,7 +11,7 @@ import {
   InputLabel,
   InputText,
   InputError,
-  ButtonSubmit,
+  Button,
   SuccessMessage,
 } from "../../lib/style/generalStyles";
 
@@ -29,7 +30,7 @@ const Login = () => {
             <InputText id="password" type="password" />
           </FormRow>
           <FormRow>
-            <ButtonSubmit type="submit">Login</ButtonSubmit>
+            <Button type="submit">Login</Button>
           </FormRow>
         </Form>
       </Section>

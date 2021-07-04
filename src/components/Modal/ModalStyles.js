@@ -1,50 +1,47 @@
 import styled from 'styled-components';
 
-import { colors, transitionEase, breakpoints } from '../../lib/style/theme';
+import { colors, breakpoints, boxShadow } from '../../lib/style/theme';
 
 export const ModalWrapper = styled.div`
-  height: 100%;
-  overflow-y: scroll;
   position: fixed;
-  background-color: ${colors.blackOverlay};
   top: 0;
-  right: 0;
   left: 0;
-  z-index: 999;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: ${colors.blackOverlay};
+  z-index: 1;
+  overflow-y: auto;
+  padding: 15px;
 `;
 
 export const Inner = styled.div`
+  margin: 127px 0 57px 0;
   border-radius: 10px;
+  height: auto;
   overflow: hidden;
-  margin: 0 16px;
-  position: relative;
-  transition: ${transitionEase};
+  box-shadow: ${boxShadow};
 
   @media screen and (${breakpoints.tablet}) {
-    margin: 0 40px;
+    margin: 170px 40px 90px 40px;
   }
 
   @media screen and (${breakpoints.desktop}) {
     max-width: 648px;
-    margin: 0 auto;
+    margin: auto;
   }
 `;
 
 export const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
   align-items: center;
-  background: ${colors.primary};
-  height: 60px;
-  padding: 0 20px;
+  background: ${colors.blue};
+  height: 74px;
+  padding: 0 16px;
 `;
 
 export const Title = styled.h3`
+  grid-column: 2;
   text-align: center;
   color: ${colors.white};
   font: bold 18px 'Montserrat', sans-serif;
@@ -55,6 +52,8 @@ export const Title = styled.h3`
 `;
 
 export const CloseButton = styled.button`
+  grid-column: 3;
+  justify-self: end;
   color: ${colors.white};
   display: inherit;
   border: none;
@@ -74,6 +73,19 @@ export const Body = styled.div`
   padding: 24px 16px 16px 16px;
 
   @media screen and (${breakpoints.tablet}) {
-    padding: 24px 20px 20px 20px;
+    padding: 25px 48px 32px 48px;
   }
+`;
+
+export const Footer = styled.div`
+  padding: 16px;
+  background: ${colors.lightGrey};
+  display: flex;
+  @media screen and (${breakpoints.tablet}) {
+    padding: 16px 48px;
+  }
+`;
+export const FooterText = styled.p``;
+export const FooterGrade = styled.span`
+  font-weight: bold;
 `;

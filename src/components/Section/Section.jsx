@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { SectionWrapper, Title } from "./SectionStyle";
+import { SectionWrapper } from './SectionStyles';
 
-const Section = ({ title, children, withoutTopPadding }) => {
+const Section = ({ children, withoutTopPadding }) => {
   return (
     <SectionWrapper withoutTopPadding={withoutTopPadding}>
-      {title && <Title>{title}</Title>}
       {children}
     </SectionWrapper>
   );

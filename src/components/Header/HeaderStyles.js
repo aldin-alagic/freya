@@ -1,18 +1,18 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { IoCloseOutline } from 'react-icons/io5';
 
 import { colors, breakpoints, boxShadow } from '../../lib/style/theme';
 import { ButtonDefault } from '../../lib/style/generalStyles';
 
 export const HeaderWrapper = styled.header`
-  background-color: ${colors.primary};
+  background-color: ${colors.white};
   box-shadow: ${boxShadow};
   width: 100%;
   height: 70px;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 `;
 
 export const Inner = styled.div`
@@ -42,14 +42,24 @@ export const Logo = styled.img`
   object-fit: contain;
 `;
 
+export const LogoText = styled.p`
+  display: none;
+
+  @media screen and (${breakpoints.desktop}) {
+    display: block;
+    font: bold 18px 'Montserrat', sans-serif;
+  }
+`;
+
 export const LogoContainer = styled(NavLink)`
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  margin-right: 16px;
 
   @media screen and (${breakpoints.tablet}) {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 `;
 
@@ -65,7 +75,7 @@ export const Nav = styled.nav`
 export const NavItem = styled(NavLink)`
   text-decoration: none;
   font: bold 18px 'Montserrat', sans-serif;
-  color: ${colors.white};
+  color: ${colors.black};
   display: inline-block;
   margin-top: 5px;
   margin-right: 32px;
@@ -74,7 +84,7 @@ export const NavItem = styled(NavLink)`
   &:after {
     display: block;
     content: '';
-    border-bottom: 4px solid ${colors.secondary};
+    border-bottom: 4px solid ${colors.blue};
     transform: scaleX(0);
     transition: transform 250ms ease-in-out;
     transform-origin: 100% 50%;
@@ -110,7 +120,7 @@ export const HamburgerLine = styled.div`
   width: 100%;
   height: 2px;
   border-radius: 100px;
-  background-color: ${colors.white};
+  background-color: ${colors.darkBlack};
   margin-bottom: 6px;
 
   &:last-child {
@@ -123,7 +133,7 @@ export const HamburgerNav = styled.nav`
   top: 73px;
   height: calc(100% - 73px);
   width: 100%;
-  background: ${colors.lighterGrey};
+  background: ${colors.lightGrey};
   padding: 24px 16px 16px 16px;
   display: flex;
   flex-direction: column;
@@ -133,23 +143,19 @@ export const HamburgerNav = styled.nav`
   }
 `;
 
-export const CloseHamburgerButton = styled(IoCloseOutline)`
-  color: ${colors.white};
-`;
-
 export const HamburgerNavItem = styled(NavLink)`
   display: block;
   text-decoration: none;
   font: bold 24px 'Montserrat', sans-serif;
-  color: ${colors.white};
+  color: ${colors.black};
   margin-bottom: 16px;
 
   &:hover {
-    color: ${colors.primary};
+    color: ${colors.blue};
   }
 
   &.active {
-    color: ${colors.primary};
+    color: ${colors.blue};
   }
 
   ${(props) => props.logout && LogoutButton};
@@ -159,15 +165,15 @@ export const LogoutButton = css`
   ${ButtonDefault}
 
   color: ${colors.white}!important;
-  background: ${colors.secondary};
-  border: 1px solid ${colors.secondary};
+  background: ${colors.blue};
   display: inline-block;
   margin-top: auto;
   margin-bottom: 0;
+  height: 56px;
 
   &:hover {
-    border-color: ${colors.darkSecondary};
-    background: ${colors.darkSecondary};
+    border-color: ${colors.darkBlue};
+    background: ${colors.darkBlue};
   }
 
   @media screen and (${breakpoints.tablet}) {

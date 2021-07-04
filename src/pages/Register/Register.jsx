@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 
 import Section from "../../components/Section/Section";
-import Loading from "./../../components/Loading/Loading";
+import DataLoader from './../../components/DataLoader/DataLoader';
 
 import {
   Title,
   Form,
   FormRow,
-  RadioWrapper,
+  CheckboxWrapper,
   InputLabel,
   InputText,
-  InputRadio,
+  InputCheckbox,
   InputError,
-  ButtonSubmit,
+  Button,
   SuccessMessage,
 } from "../../lib/style/generalStyles";
 
@@ -49,19 +49,19 @@ const Register = () => {
             <InputLabel htmlFor="client">
               Select your role
             </InputLabel>
-            <RadioWrapper>
-              <InputRadio id="client" name="role" type="radio"/>
+            <CheckboxWrapper>
+              <InputCheckbox id="client" name="role" type="radio"/>
               <InputLabel htmlFor="client" isRadio>
                 Client
               </InputLabel>
-              <InputRadio id="expert" name="role" type="radio"/>
+              <InputCheckbox id="expert" name="role" type="radio"/>
               <InputLabel htmlFor="expert" isRadio>
                 Expert
               </InputLabel>
-            </RadioWrapper>
+            </CheckboxWrapper>
           </FormRow>
           <FormRow>
-            <ButtonSubmit type="submit">Register</ButtonSubmit>
+            <Button type="submit">Register</Button>
           </FormRow>
         </Form>
       </Section>

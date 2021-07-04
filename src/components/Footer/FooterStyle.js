@@ -32,24 +32,24 @@ export const NavColumn = styled.div`
 `;
 
 export const NavColumnTitle = styled.h4`
-  color: ${colors.secondary};
+  color: ${colors.darkBlue};
   margin-bottom: 10px;
 `;
 
 export const NavColumnItem = styled(Link)`
   display: block;
   text-decoration: none;
-  color: ${colors.white};
+  color: ${colors.black};
   transition: ${transitionEase};
   font-size: 14px;
   padding: 10px 0;
 
   &.active {
-    color: ${colors.secondary};
+    color: ${colors.blue};
   }
 
   &:hover {
-    color: ${colors.secondary};
+    color: ${colors.blue};
   }
 
   &:last-child {

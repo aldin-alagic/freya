@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import {
   HeaderWrapper,
   Inner,
   LogoContainer,
   Logo,
-  CloseHamburgerButton,
+  LogoText,
   Nav,
   NavItem,
   Hamburger,
   HamburgerLine,
   HamburgerNav,
   HamburgerNavItem,
-} from './HeaderStyle';
-import LogoImage from '../../assets/images/logo.png';
+} from "./HeaderStyles";
+import LogoImage from "../../assets/images/logo.png";
+import { IoCloseOutline } from "react-icons/io5";
 
-const Header = ({ onLogout }) => {
+const Header = ({ onLogout, isLoggedIn, isAdmin }) => {
   const [isHamburgerNavOpened, setIsHamburgerNavOpened] = useState(false);
 
   const handleHamburgerClick = (isLogout = false) => {
     setIsHamburgerNavOpened(!isHamburgerNavOpened);
-
-    if (isLogout) {
-      onLogout();
-    }
+    if (isLogout) onLogout();
   };
 
   return (
     <HeaderWrapper>
       <Inner>
-        <LogoContainer to="/">
+        <LogoContainer to="#">
           <Logo src={LogoImage} alt="FAH logo" />
         </LogoContainer>
+        <LogoText>Find Ask Hire</LogoText>
         <Hamburger onClick={() => handleHamburgerClick()}>
           {isHamburgerNavOpened ? (
-            <CloseHamburgerButton size={32} />
+            <IoCloseOutline size={32} />
           ) : (
             <>
               <HamburgerLine />
@@ -44,13 +43,10 @@ const Header = ({ onLogout }) => {
           )}
         </Hamburger>
         <Nav>
-          <NavItem to="/" exact>
-            Home
-          </NavItem>
           <NavItem to="/solutions">Solutions</NavItem>
-          <NavItem to="/login">Login</NavItem>
           <NavItem to="/register">Register</NavItem>
-          <NavItem to="/" logout="true">
+          <NavItem to="/login">Login</NavItem>
+          <NavItem to="/login" logout="true">
             Logout
           </NavItem>
         </Nav>
@@ -58,22 +54,26 @@ const Header = ({ onLogout }) => {
 
       {isHamburgerNavOpened && (
         <HamburgerNav>
-          <HamburgerNavItem to="/" exact onClick={() => handleHamburgerClick()}>
-            Home
-          </HamburgerNavItem>
-          <HamburgerNavItem to="/solutions" exact onClick={() => handleHamburgerClick()}>
+          <HamburgerNavItem
+            to="/solutions"
+            onClick={() => handleHamburgerClick()}
+          >
             Solutions
+          </HamburgerNavItem>
+          <HamburgerNavItem
+            to="/register"
+            onClick={() => handleHamburgerClick()}
+          >
+            Register
           </HamburgerNavItem>
           <HamburgerNavItem to="/login" onClick={() => handleHamburgerClick()}>
             Login
           </HamburgerNavItem>
-          <HamburgerNavItem to="/register" onClick={() => handleHamburgerClick()}>
-            Register
-          </HamburgerNavItem>
           <HamburgerNavItem
-            to="/"
-            onClick={() => handleHamburgerClick()}
-            logout="true">
+            to="/login"
+            onClick={() => handleHamburgerClick(true)}
+            logout="true"
+          >
             Logout
           </HamburgerNavItem>
         </HamburgerNav>
