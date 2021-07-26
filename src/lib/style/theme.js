@@ -15,6 +15,7 @@ export const colors = {
   darkGrey: '#bbbbbb',
   lightGrey: '#f5f5f5',
   shadow: '#777777',
+  lightshadow: '#ffffff9e',
   blackOverlay: 'rgba(0, 0, 0, 0.3)',
   green: '#28a745',
   successBackground: '#dbf4e6',

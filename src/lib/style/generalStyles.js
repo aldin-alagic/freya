@@ -474,7 +474,7 @@ export const ProductNavInner = styled.ul`
 `;
 
 export const ProductNavItem = styled.li`
-  background: ${colors.white};
+  background: ${colors.lightshadow};
   text-transform: uppercase;
   color: ${colors.grey};
   font-weight: bolder;
@@ -487,6 +487,7 @@ export const ProductNavItem = styled.li`
 
   &:hover {
     color: ${colors.blue};
+    background: ${colors.white};
   }
 
   @media screen and (${breakpoints.tablet}) {
