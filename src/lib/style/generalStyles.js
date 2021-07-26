@@ -460,11 +460,6 @@ export const ProductCards = styled.div`
 
 export const ProductNav = styled.nav`
   flex-basis: 100%;
-  margin-bottom: 32px;
-
-  @media screen and (${breakpoints.tablet}) {
-    margin: 0px 0px 32px 15px;
-  }
 `;
 
 export const ProductNavInner = styled.ul`
@@ -475,13 +470,11 @@ export const ProductNavInner = styled.ul`
   @media screen and (${breakpoints.tablet}) {
     flex-direction: row;
     justify-content: space-evenly;
-    transform: skew(-25deg);
   }
 `;
 
 export const ProductNavItem = styled.li`
   background: ${colors.white};
-  box-shadow: ${boxShadow};
   text-transform: uppercase;
   color: ${colors.grey};
   font-weight: bolder;
@@ -489,33 +482,21 @@ export const ProductNavItem = styled.li`
   cursor: pointer;
   width: -webkit-fill-available;
   text-align: center;
-
-  &:first-child {
-    border-radius: 4px 4px 0 0;
-  }
-
-  &:last-child {
-    border-right: none;
-    border-radius: 0 0 4px 4px;
-  }  
-
-  @media screen and (${breakpoints.tablet}) {
-    border-right: 3px solid ${colors.lightGrey};
-
-    &:first-child {
-      border-radius: 4px 0 0 4px;
-    }
-  
-    &:last-child {
-      border-right: none;
-      border-radius: 0 4px 4px 0;
-    }  
-
-  }
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid ${colors.lightGrey};
 
   &:hover {
-    background: ${colors.blue};
-    color: ${colors.white};
+    color: ${colors.blue};
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    &:not(:last-child) {
+      border-right: 2px solid ${colors.lightGrey};
+    }
+
+    &:hover {
+      border-bottom: none;
+    }
   }
 `;
 
@@ -524,17 +505,12 @@ export const ProductNavItemLink = styled.a`
   padding: 1em 2em;
   color: inherit;
   text-decoration: none;
-
-  @media screen and (${breakpoints.tablet}) {
-    transform: skew(25deg);
-  }
 `;
 
 export const ProductDetailsPanel = styled.div`
   background: ${colors.white};
-  border-radius: 4px;
-  box-shadow: ${boxShadow};
-  padding: 24px;
+  border-radius: 0 0 4px 4px;
+  padding: 32px 68px 32px 68px;
 `;
 
 export const ProductDetailsVehicle = styled.div`
@@ -548,7 +524,6 @@ export const ProductDetailsVehicle = styled.div`
     }
   }
 `;
-
 
 export const Pill = styled.div`
   display: flex;
