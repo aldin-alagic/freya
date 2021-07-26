@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { colors, transitionEase, breakpoints } from './theme';
+import { colors, transitionEase, breakpoints, boxShadow } from './theme';
 import SearchIcon from './../../assets/images/search-icon.svg';
 
 export const Main = styled.main`
@@ -394,6 +394,7 @@ export const CardText = styled.p`
   font: normal 16px 'Montserrat', sans-serif;
   line-height: 1.5;
   color: ${colors.black};
+  
   &:last-child {
     margin: 4px 16px 16px 16px;
   }
@@ -455,4 +456,137 @@ export const ProductCards = styled.div`
   @media screen and (${breakpoints.desktopLarge}) {
     width: 832px;
   }
+`;
+
+export const ProductNav = styled.nav`
+  flex-basis: 100%;
+  margin-bottom: 32px;
+
+  @media screen and (${breakpoints.tablet}) {
+    margin: 0px 0px 32px 15px;
+  }
+`;
+
+export const ProductNavInner = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  @media screen and (${breakpoints.tablet}) {
+    flex-direction: row;
+    justify-content: space-evenly;
+    transform: skew(-25deg);
+  }
+`;
+
+export const ProductNavItem = styled.li`
+  background: ${colors.white};
+  box-shadow: ${boxShadow};
+  text-transform: uppercase;
+  color: ${colors.grey};
+  font-weight: bolder;
+  transition: ${transitionEase};
+  cursor: pointer;
+  width: -webkit-fill-available;
+  text-align: center;
+
+  &:first-child {
+    border-radius: 4px 4px 0 0;
+  }
+
+  &:last-child {
+    border-right: none;
+    border-radius: 0 0 4px 4px;
+  }  
+
+  @media screen and (${breakpoints.tablet}) {
+    border-right: 3px solid ${colors.lightGrey};
+
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+  
+    &:last-child {
+      border-right: none;
+      border-radius: 0 4px 4px 0;
+    }  
+
+  }
+
+  &:hover {
+    background: ${colors.blue};
+    color: ${colors.white};
+  }
+`;
+
+export const ProductNavItemLink = styled.a`
+  display: block;
+  padding: 1em 2em;
+  color: inherit;
+  text-decoration: none;
+
+  @media screen and (${breakpoints.tablet}) {
+    transform: skew(25deg);
+  }
+`;
+
+export const ProductDetailsPanel = styled.div`
+  background: ${colors.white};
+  border-radius: 4px;
+  box-shadow: ${boxShadow};
+  padding: 24px;
+`;
+
+export const ProductDetailsVehicle = styled.div`
+  & ul li {
+    flex-basis: 50%;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    & ul li {
+      flex-basis: revert;
+    }
+  }
+`;
+
+
+export const Pill = styled.div`
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: ${boxShadow};
+  font: 600 16px 'Montserrat', sans-serif;
+
+  & span {
+    padding: 12px 18px;
+  }
+`;
+
+export const PillLabel = styled.span`
+  background: ${colors.blue};
+  color: ${colors.white};
+`;
+
+export const PillValue = styled.span`
+  background: ${colors.white};
+`;
+
+export const HorizontalList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  row-gap: 24px;
+`;
+
+export const HorizontalListItem = styled.li`
+  text-align: center;
+`;
+
+export const HorizontalListItemLabel = styled.div`
+  font: bold 16px 'Montserrat', sans-serif;
+  margin-bottom: 8px;
+`;
+
+export const HorizontalListItemValue = styled.div`
 `;
