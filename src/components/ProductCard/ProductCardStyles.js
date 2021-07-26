@@ -106,7 +106,8 @@ export const Actions = styled.div`
 `;
 
 export const Expert = styled.p`
-	font: 16px 'Montserrat', sans-serif;
+	font: bold 16px 'Montserrat', sans-serif;
+	color: ${colors.shadow}
 `;
 
 export const Keywords = styled.div`
