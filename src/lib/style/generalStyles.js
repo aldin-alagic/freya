@@ -18,20 +18,12 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 24px;
-
-  @media screen and (${breakpoints.tablet}) {
-    margin-bottom: 32px;
-  }
-
-  @media screen and (${breakpoints.desktop}) {
-    margin-bottom: 80px;
-  }
 `;
 
 export const Title = styled.h1`
   font: bold 28px 'Montserrat', sans-serif;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 60px;
   margin-bottom: 32px;
 
   @media screen and (${breakpoints.tablet}) {
