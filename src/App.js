@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.scss";
 import { Main } from "./lib/style/generalStyles";
 import Solutions from './pages/Solutions/Solutions';
+import Solution from "./pages/Solution/Solution";
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 
@@ -19,6 +20,7 @@ const App = () => {
         <Main>
           <Switch>
             <Route path="/solutions" component={Solutions} />
+            <Route path="/solution" component={Solution} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route exact path="/" component={Home} />
