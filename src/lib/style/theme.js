@@ -23,7 +23,7 @@ export const colors = {
   success: '#27ae60',
 };
 
-export const boxShadow = '1px 1px 4px 0 rgba(0, 0, 0, 0.1)';
+export const boxShadow = '0px 0px 5px 0px rgb(0 0 0 / 10%)';
 export const strongBoxShadow = '1px 1px 6px 2px rgb(0 0 0 / 10%);';
 export const boxShadowHover =
   '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)';
