@@ -1,76 +1,85 @@
 import React, { useState } from 'react';
 
 import Section from '../../components/Section/Section';
-
 import { SolutionWrapper, Inner } from './SolutionStyles';
+import ProductDetailsVehicle from '../../components/ProductDetailsVehicle/ProductDetailsVehicle';
 import {
 	Header,
 	Title,
-	ButtonText,
-	InfoText,
 	ProductNav,
 	ProductNavItem,
-	ProductNavItemLink,
 	ProductNavInner,
 	ProductDetailsPanel,
-	ProductDetailsVehicle,
-	Pill,
-	PillLabel,
-	PillValue,
-	HorizontalList,
-	HorizontalListItem,
-	HorizontalListItemLabel,
-	HorizontalListItemValue,
 } from '../../lib/style/generalStyles';
 
+import { solutionsMock } from '../../lib/mock/solutions';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import ProductDetailsSolution from '../../components/ProductDetailsSolution/ProductDetailsSolution';
+import ProductDetailsIssue from '../../components/ProductDetailsIssue/ProductDetailsIssue';
+
 const Solution = () => {
+	var solution = solutionsMock[0];
+	var { solution: solutionDetails, issue } = solution;
+	console.log(solution);
 	return (
 		<SolutionWrapper>
 			<Section withoutTopPadding>
 				<Header>
-					<Title>Solution for car brakes</Title>
+					<Title>{solution.title}</Title>
 				</Header>
 				<Inner>
 					<ProductNav aria-label="solution-navigation">
 						<ProductNavInner>
-							<ProductNavItem>
-								<ProductNavItemLink>Vehicle</ProductNavItemLink>
+							<ProductNavItem to="vehicle">
+								Vehicle
 							</ProductNavItem>
-							<ProductNavItem>
-								<ProductNavItemLink>Issue</ProductNavItemLink>
+							<ProductNavItem to="issue">
+								Issue
 							</ProductNavItem>
-							<ProductNavItem>
-								<ProductNavItemLink>Solution</ProductNavItemLink>
+							<ProductNavItem to="solution">
+								Solution
 							</ProductNavItem>
-							<ProductNavItem>
-								<ProductNavItemLink>Author</ProductNavItemLink>
+							<ProductNavItem to="author">
+								Author
 							</ProductNavItem>
-							<ProductNavItem>
-								<ProductNavItemLink>Settings</ProductNavItemLink>
+							<ProductNavItem to="settings">
+								Settings
 							</ProductNavItem>
 						</ProductNavInner>
 					</ProductNav>
 					<ProductDetailsPanel>
-						<ProductDetailsVehicle>
-							<HorizontalList>
-								<HorizontalListItem>
-									<HorizontalListItemLabel>Brand</HorizontalListItemLabel>
-									<HorizontalListItemValue>Volkswagen</HorizontalListItemValue>
-								</HorizontalListItem>
-								<HorizontalListItem>
-									<HorizontalListItemLabel>Model</HorizontalListItemLabel>
-									<HorizontalListItemValue>Golf</HorizontalListItemValue>
-								</HorizontalListItem>
-								<HorizontalListItem>
-									<HorizontalListItemLabel>Year</HorizontalListItemLabel>
-									<HorizontalListItemValue>2020</HorizontalListItemValue>
-								</HorizontalListItem>
-								<HorizontalListItem>
-									<HorizontalListItemLabel>Variant</HorizontalListItemLabel>
-									<HorizontalListItemValue>TDI</HorizontalListItemValue>
-								</HorizontalListItem>
-							</HorizontalList>
-						</ProductDetailsVehicle>
+						<Switch>
+							<Route path="/solution/:id/vehicle" 
+								render={(props) => (
+									<ProductDetailsVehicle
+										{...props}
+										vehicles={solutionDetails.vehicles}
+										fuelType={solutionDetails.fuelType}
+										transmission={solutionDetails.transmission}
+									/>
+								)}
+							/>
+							<Route path="/solution/:id/issue" 
+								render={(props) => (
+									<ProductDetailsIssue
+										{...props}
+										description={issue.description}
+										keywords={issue.keywords}
+									/>
+								)}
+							/>
+							<Route path="/solution/:id/solution" 
+								render={(props) => (
+									<ProductDetailsSolution
+										{...props}
+										description={solutionDetails.description}
+										tools={solutionDetails.tools}
+										parts={solutionDetails.parts}
+									/>
+								)}
+							/>
+							<Redirect to="/solution/:id/vehicle" />
+						</Switch>
 					</ProductDetailsPanel>
 				</Inner>
 			</Section>
