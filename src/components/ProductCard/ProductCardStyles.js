@@ -112,16 +112,5 @@ export const Expert = styled.p`
 
 export const Keywords = styled.div`
 	display: flex;
-`;
-
-export const Keyword = styled.span`
-	color: ${colors.white};
-	background: ${colors.grey};
-	border-radius: 20px;
-	padding: 8px 16px;
-	margin-right: 16px;
-
-	&:last-child {
-		margin-right: 0;
-	}
+	column-gap: 24px;
 `;
