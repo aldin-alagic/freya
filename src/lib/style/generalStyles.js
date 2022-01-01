@@ -39,8 +39,6 @@ export const Title = styled.h1`
 export const SubTitle = styled.p`
 	font: bold 20px 'Montserrat', sans-serif;
 	text-align: center;
-	margin-top: 60px;
-	margin-bottom: 32px;
 
 	@media screen and (${breakpoints.tablet}) {
 		font-size: 24px;
@@ -132,7 +130,7 @@ export const ButtonOutline = styled.button`
 	${ButtonDefault}
 
 	color: ${colors.blue};
-	background: ${colors.white};
+	background: none;
 
 	&:hover {
 		color: ${colors.white};
@@ -145,7 +143,7 @@ export const ButtonOutlineLink = styled(Link)`
 	${ButtonDefault}
 
 	color: ${colors.blue};
-	background: ${colors.white};
+	background: none;
 
 	&:hover {
 		color: ${colors.white};

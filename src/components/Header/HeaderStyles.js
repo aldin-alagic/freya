@@ -36,31 +36,22 @@ export const Inner = styled.div`
   }
 `;
 
+export const LogoContainer = styled(NavLink)`
+  display: block;
+  width: 60px;
+  height: 60px;
+  color: ${colors.primary};
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 70px;
+    height: 70px;
+  }
+`;
+
 export const Logo = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-`;
-
-export const LogoText = styled.p`
-  display: none;
-
-  @media screen and (${breakpoints.desktop}) {
-    display: block;
-    font: bold 18px 'Montserrat', sans-serif;
-  }
-`;
-
-export const LogoContainer = styled(NavLink)`
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin-right: 16px;
-
-  @media screen and (${breakpoints.tablet}) {
-    width: 60px;
-    height: 60px;
-  }
 `;
 
 export const Nav = styled.nav`
