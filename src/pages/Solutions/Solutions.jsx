@@ -5,9 +5,10 @@ import Panel from '../../components/Panel/Panel';
 import ProductCard from './../../components/ProductCard/ProductCard';
 import SideFilter from './../../components/SideFilter/SideFilter';
 import DataLoader from './../../components/DataLoader/DataLoader';
+import { FaPlus } from 'react-icons/fa';
 
-import { SolutionsWrapper, Inner } from './SolutionsStyles';
-import { Header, Title, Sidebar, ButtonText, ButtonGroup, ButtonOutlineGruped, InfoText, ProductCards } from '../../lib/style/generalStyles';
+import { SolutionsWrapper, Inner, NewSolutionButton } from './SolutionsStyles';
+import { Header, Title, Sidebar, ButtonText, ButtonGroup, ButtonOutlineGruped, InfoText, ProductCards, AddButtonLink } from '../../lib/style/generalStyles';
 import { solutionsMock } from '../../lib/mock/solutions';
 
 const Solutions = () => {
@@ -21,10 +22,6 @@ const Solutions = () => {
 
 	const onSolutionsTypeChange = (type) => {
 		setSolutionType(type);
-	};
-
-	const onSolutionClick = async (event) => {
-		setSelectedSolution(event);
 	};
 
 	const handlePanelToggle = () => {
@@ -43,13 +40,13 @@ const Solutions = () => {
 		} else {
 			return filteredSolutions.map((solution) => (
 				<ProductCard
-					key={solution.id}
+				    key={solution.id}
 					title={solution.title}
 					price={solution.price}
 					description={solution.description}
 					expert={solution.expert}
 					keywords={solution.keywords}
-					onsolutionClick={() => onSolutionClick(solution)}
+					url={`/solutions/${solution.id}`}
 				/>
 			));
 		}
@@ -59,7 +56,14 @@ const Solutions = () => {
 		<SolutionsWrapper>
 			<Section>
 				<Header>
-					<Title>Solutions</Title>
+					<Title>
+						Solutions
+						<NewSolutionButton>
+							<AddButtonLink to="/solutions/new">
+								<FaPlus size={25} />
+							</AddButtonLink>
+						</NewSolutionButton>
+					</Title>
 					<ButtonText onClick={handlePanelToggle}>Filter solutions</ButtonText>
 					<ButtonGroup>
 						<ButtonOutlineGruped isActive={solutionType === 'all'} onClick={() => onSolutionsTypeChange('all')}>

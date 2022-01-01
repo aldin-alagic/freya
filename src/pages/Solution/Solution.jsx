@@ -16,11 +16,13 @@ import { solutionsMock } from '../../lib/mock/solutions';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ProductDetailsSolution from '../../components/ProductDetailsSolution/ProductDetailsSolution';
 import ProductDetailsIssue from '../../components/ProductDetailsIssue/ProductDetailsIssue';
+import ProductDetailsAuthor from '../../components/ProductDetailsAuthor/ProductDetailsAuthor';
+
 
 const Solution = () => {
 	var solution = solutionsMock[0];
 	var { solution: solutionDetails, issue } = solution;
-	console.log(solution);
+
 	return (
 		<SolutionWrapper>
 			<Section withoutTopPadding>
@@ -49,7 +51,7 @@ const Solution = () => {
 					</ProductNav>
 					<ProductDetailsPanel>
 						<Switch>
-							<Route path="/solution/:id/vehicle" 
+							<Route path="/solutions/:id/vehicle" 
 								render={(props) => (
 									<ProductDetailsVehicle
 										{...props}
@@ -59,7 +61,7 @@ const Solution = () => {
 									/>
 								)}
 							/>
-							<Route path="/solution/:id/issue" 
+							<Route path="/solutions/:id/issue" 
 								render={(props) => (
 									<ProductDetailsIssue
 										{...props}
@@ -68,7 +70,7 @@ const Solution = () => {
 									/>
 								)}
 							/>
-							<Route path="/solution/:id/solution" 
+							<Route path="/solutions/:id/solution" 
 								render={(props) => (
 									<ProductDetailsSolution
 										{...props}
@@ -78,7 +80,14 @@ const Solution = () => {
 									/>
 								)}
 							/>
-							<Redirect to="/solution/:id/vehicle" />
+							<Route path="/solutions/:id/author" 
+								render={(props) => (
+									<ProductDetailsAuthor
+										{...props}
+									/>
+								)}
+							/>
+							<Redirect to="/solutions/:id/vehicle" />
 						</Switch>
 					</ProductDetailsPanel>
 				</Inner>

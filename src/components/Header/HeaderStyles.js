@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 999;
 `;
 
 export const Inner = styled.div`

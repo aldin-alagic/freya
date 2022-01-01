@@ -20,7 +20,8 @@ const ProductDetailsIssue = ({ description, keywords }) => {
 								<Pill key={keyword}>
 									<PillValue>{keyword}</PillValue>
 								</Pill>
-							))}
+							))
+						}
 					</HorizontalList>
 				</ProductDetailsItemValue>
 			</ProductDetailsRow>

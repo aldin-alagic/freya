@@ -22,6 +22,9 @@ export const colors = {
 	errorBackground: '#ffd9d9',
 	error: '#eb5757',
 	success: '#27ae60',
+	warning: '#856404',
+    warningBackground: '#fff3cd',
+    warningBorder: '#ffeeba',
 };
 
 export const boxShadow = '0px 0px 5px 0px rgb(0 0 0 / 10%)';

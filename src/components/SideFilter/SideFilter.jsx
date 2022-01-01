@@ -7,7 +7,7 @@ import {
   FormRow,
   InputLabel,
   SearchBar,
-  Select,
+  SelectControl,
   SelectOption,
 } from "../../lib/style/generalStyles";
 
@@ -33,27 +33,27 @@ const SideFilter = ({ onClose, products, onFilteredItemsChange }) => {
       </FormRow>
       <FormRow>
         <InputLabel>Brand</InputLabel>
-        <Select>
+        <SelectControl>
           <SelectOption value="">Select car brand</SelectOption>
-        </Select>
+        </SelectControl>
       </FormRow>
       <FormRow>
         <InputLabel>Model</InputLabel>
-        <Select>
+        <SelectControl>
           <SelectOption value="">Select car model</SelectOption>
-        </Select>
+        </SelectControl>
       </FormRow>
       <FormRow>
         <InputLabel>Year</InputLabel>
-        <Select>
+        <SelectControl>
           <SelectOption value="">Select car year</SelectOption>
-        </Select>
+        </SelectControl>
       </FormRow>
       <FormRow>
         <InputLabel>Variant</InputLabel>
-        <Select>
+        <SelectControl>
           <SelectOption value="">Select car variant</SelectOption>
-        </Select>
+        </SelectControl>
       </FormRow>
       {onClose && (
         <Buttons>

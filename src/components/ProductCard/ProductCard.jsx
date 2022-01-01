@@ -3,14 +3,10 @@ import { MdExpandLess, MdExpandMore } from 'react-icons/md';
 import ProductCardItem from './components/ProductCardItem/ProductCardItem';
 
 import { ProductCardWrapper, Header, Title, Price, ExpandButton, Body, Row, Expert, Keywords, Keyword, Actions } from './ProductCardStyles';
-import { Button, Pill, PillValue } from '../../lib/style/generalStyles';
+import { Button, ButtonLink, Pill, PillValue } from '../../lib/style/generalStyles';
 
-const ProductCard = ({ title, price, description, prices, views, solutionId, limited, expert, keywords, onEventClick }) => {
+const ProductCard = ({ title, price, description, prices, views, limited, expert, keywords, url}) => {
 	const [isExpanded, setIsExpanded] = useState(true);
-	console.log(isExpanded);
-	const getButtonText = () => {
-		return 'Details';
-	};
 
 	return (
 		<ProductCardWrapper>
@@ -50,8 +46,8 @@ const ProductCard = ({ title, price, description, prices, views, solutionId, lim
 					</ProductCardItem>
 				</Row>
 				<Actions>
-					<Button onClick={onEventClick}>Details</Button>
-					<Button onClick={onEventClick}>Add to cart</Button>
+					<ButtonLink to={url}>Details</ButtonLink>
+					<ButtonLink to="#">Add to cart</ButtonLink>
 				</Actions>
 			</Body>
 		</ProductCardWrapper>

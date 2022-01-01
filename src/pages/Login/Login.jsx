@@ -20,7 +20,7 @@ const Login = () => {
     <>
       <Title>Login</Title>
       <Section withoutTopPadding>
-        <Form>
+        <Form centered>
           <FormRow>
             <InputLabel htmlFor="email">Email</InputLabel>
             <InputText id="email" type="email" />

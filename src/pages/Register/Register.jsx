@@ -22,7 +22,7 @@ const Register = () => {
     <>
       <Title>Register</Title>
       <Section withoutTopPadding>
-        <Form>
+        <Form centered>
           <FormRow>
             <InputLabel htmlFor="firstName">First name</InputLabel>
             <InputText id="firstName" type="text" />

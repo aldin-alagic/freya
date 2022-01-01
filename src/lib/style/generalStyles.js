@@ -35,6 +35,10 @@ export const Title = styled.h1`
   }
 `;
 
+export const Bold = styled.span`
+  font-weight: 600;
+`;
+
 export const ButtonDefault = css`
   display: block;
   text-decoration: none;
@@ -175,7 +179,7 @@ export const ButtonOutlineGruped = styled.button`
 
 export const ButtonGroup = styled.div`
   display: flex;
-  justify-contetn: center;
+  justify-content: center;
   margin: 24px 0;
   flex-basis: 100%;
 
@@ -205,21 +209,39 @@ export const ButtonText = styled.button`
   }
 `;
 
+export const AddButtonLink = styled(Link)`
+  color: ${colors.blue};
+
+  &:hover {
+    color: ${colors.darkBlue};
+  }
+`;
+
 export const Form = styled.form`
-  margin: 0 auto;
+  ${(props) =>
+      props.centered &&
+      `
+      margin: 0 auto;
+  `};
 
   @media screen and (${breakpoints.mobileLarge}) {
     width: 400px;
-
     ${(props) =>
       props.fullWidth &&
       `
-      max-width: 100%;
+      width: 100%;
     `};
   }
 `;
 
 export const FormRow = styled.div`
+  ${(props) =>
+    props.isInline &&
+    `
+    display: flex;
+    flex-wrap: wrap;
+  `};
+
   margin-bottom: 24px;
 
   &:last-child {
@@ -245,11 +267,12 @@ export const InputLabel = styled.label`
   margin-bottom: 8px;
 
   ${(props) =>
-    props.isCheckbox &&
+    props.isRadio &&
     `
     margin-bottom: 0;
     color: ${colors.black};
     font-weight: normal;
+    margin-right: 24px;
   `};
 `;
 
@@ -273,7 +296,6 @@ export const InputError = styled.p`
 export const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center;
-  flex-basis: 50%;
   margin-bottom: 16px;
 `;
 
@@ -289,7 +311,7 @@ export const InputCheckbox = styled.input`
   padding: 9px;
 `;
 
-export const Select = styled.select`
+export const SelectControl = styled.select`
   border: 1px solid ${colors.grey};
   border-radius: 4px;
   width: 100%;
@@ -314,7 +336,7 @@ export const TextArea = styled.textarea`
   border: 1px solid ${colors.grey};
   border-radius: 4px;
   width: 100%;
-  padding: 8px;
+  padding: 16px;
   outline: none;
   font: normal 16px 'Montserrat', sans-serif;
   color: ${colors.black};
@@ -564,4 +586,30 @@ export const ProductDetailsItemLabel = styled.div`
 export const ProductDetailsItemValue = styled.div`
   line-height: 1.5;
   text-align: justify;
+`;
+
+export const Inline = styled.div`
+  display: inline-block;
+
+  &:not(:last-child) {
+    margin-bottom: 72px;
+    margin-right: 100px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+`;
+
+export const Block = styled.div`
+  display: block;
+`;
+
+export const Thumbnails = styled.div`
+    display: flex;
+    column-gap: 24px;
+    row-gap: 24px;
+    margin-top: 24px;
 `;
