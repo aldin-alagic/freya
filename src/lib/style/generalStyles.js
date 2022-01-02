@@ -648,7 +648,7 @@ export const Row = styled.div`
   ${(props) =>
 		props.hasPadding &&
 		`
-      padding-bottom: 16px;
+      padding-bottom: 24px;
   `};
 `;
 
