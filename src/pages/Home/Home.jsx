@@ -102,7 +102,11 @@ const Home = () => {
 							title="Worldwide market"
 							description="Sell your solutions to the clients from all around the world"
 						/>
-						<IconCard icon={<IoSearchOutline size={48} />} title="Preferred Jobs" description="Search, bid, and accept jobs that you prefer" />
+						<IconCard
+							icon={<IoSearchOutline size={48} />}
+							title="Preferred Jobs"
+							description="Search, bid for, and accept jobs that align with your preferences"
+						/>
 					</Row>
 				</Section>
 			</Benefits>
