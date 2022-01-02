@@ -1,45 +1,40 @@
 import styled from 'styled-components';
 import { transitionCubic, boxShadow, boxShadowHover, colors } from '../../lib/style/theme';
 
-export const CardWrapper = styled.div`
+export const IconCardWrapper = styled.div`
 	display: flex;
-	flex-direction: column;
 	flex: 1;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	border-radius: 6px;
 	box-shadow: ${boxShadow};
 	transition: ${transitionCubic};
 	background: ${colors.white};
+	padding: 16px;
+	column-gap: 24px;
 
 	&:hover {
 		box-shadow: ${boxShadowHover};
 	}
 `;
 
-export const Inner = styled.div`
+export const Icon = styled.div`
+	color: ${colors.blue};
+`;
+
+export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: 20px;
 `;
-
-export const Figure = styled.figure`
-	height: 350px;
-	width: 100%;
-	border-radius: 6px;
-	overflow: hidden;
-	padding: 20px;
-	margin-bottom: auto;
-`;
-
-export const Content = styled.div``;
 
 export const Title = styled.h3`
 	font-size: 18px;
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 `;
 
 export const Description = styled.p`
 	font-size: 16px;
-	margin-bottom: 20px;
 	line-height: 1.5;
 `;

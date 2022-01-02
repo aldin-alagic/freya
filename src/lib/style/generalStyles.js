@@ -75,7 +75,7 @@ export const ButtonDefault = css`
 		width: 232px;
 	}
 
-  ${(props) =>
+	${(props) =>
 		props.isFullWidth &&
 		`
     width: 100%!important;
@@ -635,19 +635,25 @@ export const Thumbnails = styled.div`
 `;
 
 export const Row = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-  
-  @media screen and (${breakpoints.tablet}) {
-    flex-direction: row;
-    justify-content: space-between;
-    column-gap: 24px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 16px;
+
+	@media screen and (${breakpoints.tablet}) {
+		flex-direction: row;
+		justify-content: space-between;
+		column-gap: 24px;
 	}
+
+  ${(props) =>
+		props.hasPadding &&
+		`
+      padding-bottom: 16px;
+  `};
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 `;
