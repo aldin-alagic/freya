@@ -4,7 +4,6 @@ import {
   HeaderWrapper,
   Inner,
   LogoContainer,
-  Logo,
   Nav,
   NavItem,
   Hamburger,
@@ -14,6 +13,7 @@ import {
 } from "./HeaderStyles";
 import LogoImage from "../../assets/images/logo.png";
 import { IoCloseOutline } from "react-icons/io5";
+import { Image } from "../../lib/style/generalStyles";
 
 const Header = ({ onLogout, isLoggedIn }) => {
   const [isHamburgerNavOpened, setIsHamburgerNavOpened] = useState(false);
@@ -27,7 +27,7 @@ const Header = ({ onLogout, isLoggedIn }) => {
     <HeaderWrapper>
       <Inner>
         <LogoContainer to="/">
-          <Logo src={LogoImage} alt="FAH logo" />
+          <Image src={LogoImage} alt="FAH logo" />
         </LogoContainer>
         <Hamburger onClick={() => handleHamburgerClick()}>
           {isHamburgerNavOpened ? (
@@ -41,6 +41,7 @@ const Header = ({ onLogout, isLoggedIn }) => {
           )}
         </Hamburger>
         <Nav>
+          <NavItem to="/" exact>Home</NavItem>
           <NavItem to="/solutions">Solutions</NavItem>
           <NavItem to="/register">Register</NavItem>
           <NavItem to="/login">Login</NavItem>
@@ -52,6 +53,13 @@ const Header = ({ onLogout, isLoggedIn }) => {
 
       {isHamburgerNavOpened && (
         <HamburgerNav>
+          <HamburgerNavItem
+            to="/"
+            exact
+            onClick={() => handleHamburgerClick()}
+          >
+            Home
+          </HamburgerNavItem>
           <HamburgerNavItem
             to="/solutions"
             onClick={() => handleHamburgerClick()}

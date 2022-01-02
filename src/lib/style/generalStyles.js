@@ -60,7 +60,7 @@ export const ButtonDefault = css`
 	border: 2px solid ${colors.blue};
 	border-radius: 4px;
 	transition: ${transitionEase};
-	font: bold 18px/56px 'Montserrat', sans-serif;
+	font: bold 18px/50px 'Montserrat', sans-serif;
 	text-align: center;
 
 	&:hover {
@@ -632,4 +632,22 @@ export const Thumbnails = styled.div`
 	column-gap: 24px;
 	row-gap: 24px;
 	margin-top: 24px;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  
+  @media screen and (${breakpoints.tablet}) {
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 24px;
+	}
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `;

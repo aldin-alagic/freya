@@ -6,7 +6,7 @@ export const breakpoints = {
 };
 
 export const colors = {
-	blue: '#15698f',
+	blue: '#1c8fc3',
 	darkBlue: '#145a8c',
 	black: '#333333',
 	darkBlack: '#34363b',
@@ -16,7 +16,7 @@ export const colors = {
 	lightGrey: '#f5f5f5',
 	shadow: '#777777',
 	lightshadow: '#ffffff9e',
-	blackOverlay: 'rgba(0, 0, 0, 0.85)',
+	blackOverlay: 'rgba(0, 0, 0, 0.7)',
 	green: '#28a745',
 	successBackground: '#dbf4e6',
 	errorBackground: '#ffd9d9',
