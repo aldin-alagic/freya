@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+    <g fill="#FFF" fill-rule="evenodd">
+        <g font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="10" font-weight="bold">
+            <text transform="translate(1 -2)">
+                <tspan x="0" y="10">A</tspan>
+            </text>
+            <text transform="translate(1 -2)">
+                <tspan x="0" y="20">Z</tspan>
+            </text>
+        </g>
+        <path fill-rule="nonzero" stroke="#FFF" stroke-width=".6" d="M16.805 14.685l-1.742 1.928h0V3.563c0-.31-.252-.563-.563-.563-.311 0-.563.252-.563.563v13.05h0l-1.742-1.928c-.199-.22-.538-.237-.758-.038-.014.012-.027.025-.039.038-.226.25-.226.631 0 .882l2.36 2.612c.37.41 1.003.442 1.412.071.025-.022.05-.046.072-.071l2.36-2.612c.226-.25.226-.632 0-.882-.199-.22-.538-.237-.758-.038-.014.012-.027.025-.039.038z" transform="translate(1 -2)"/>
+    </g>
+</svg>
